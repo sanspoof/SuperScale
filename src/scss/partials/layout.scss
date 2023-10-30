@@ -1,0 +1,5 @@
+#app { 
+    display: grid;
+    grid-template-rows: var(--layout-nav-height) 1fr var(--layout-footer-height);
+    height:100vh;
+}
