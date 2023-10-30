@@ -1,0 +1,17 @@
+:root {
+    --var:#fff;
+}
+ 
+body {
+    background-color: blue;
+    color:#fff;
+    font-size: 0.875rem;
+}
+
+.nest {
+    &__p {
+       
+        font-size:3rem;
+    }
+
+}
