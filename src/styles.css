@@ -1,0 +1,9 @@
+:root {
+    --var:#fff;
+}
+
+body {
+    background-color: red;
+    color:#fff;
+    font-size: 0.875rem;
+}
