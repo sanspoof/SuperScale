@@ -3,7 +3,15 @@
 }
 
 body {
-    background-color: red;
+    background-color: blue;
     color:#fff;
     font-size: 0.875rem;
+}
+
+.nest {
+
+    p {
+        color: red;
+    }
+
 }
