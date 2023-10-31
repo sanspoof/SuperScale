@@ -1,0 +1,67 @@
+@mixin roundbtn {
+    display:flex;
+    align-items: center;
+    border-radius: 100px;
+    background-color:var(--col-3);
+    font-weight:var(--fontweight-bold);
+    font-size:var(--component-fontsize);
+    height:var(--component-buttonheight);
+    padding:0px 16px; 
+    line-height:0;
+
+    &:hover {
+        background-color:var(--col-3--hover);
+        cursor: pointer;
+    }
+
+} 
+
+@mixin selectbox {
+    @include roundbtn;
+    line-height: 1rem;
+    width:auto;
+    text-align: center;
+    width:140px;
+
+}
+
+@mixin filterswitch {
+    display:flex;
+    align-items: center;
+    width:fit-content;
+    gap:calc(var(--layout-gap) * 2);
+    border-radius: 100px;
+    background-color:transparent;
+    font-weight:var(--fontweight-bold);
+    font-size:var(--component-fontsize);
+    height:var(--component-filterheight);
+    padding:0 10px 0 20px; 
+    line-height:0;
+    border:1px solid var(--col-3);
+
+    &__lbl {
+        font-weight: var(--fontweight-regular);
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap:calc(var(--layout-gap) / 2);
+
+    }
+
+    &__btn {
+        @include roundbtn;
+
+        &:hover {
+            background-color:var(--col-3--hover);
+        }
+
+    }
+
+    &__select {
+        @include selectbox;
+    }
+
+}
+

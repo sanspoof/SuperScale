@@ -4,14 +4,132 @@
     <meta charset="utf-8"/>
     <title>My First Parcel App</title>
     <link rel="stylesheet" href="./scss/style.scss" />
-    <script type="module" src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap" rel="stylesheet">
+    <script type="module" defer src="app.js"></script>
   </head>
-  <body>
-    <h1>SuperScale</h1>
+  <body> 
 
-    <div class="nest">
-      <p class="nest__p">HI</p>
+    <div id="app">
+
+      <header class="nav">
+
+          <div class="nav__wrap">
+              <figure class="nav__logowrap">
+                <img class="nav__logo" src="/src/img/superscalelogo.svg" alt="SuperScale">
+              </figure>
+
+              <div class="nav__actions">
+
+                  <div class="nav__comingsoon">
+                    <span class="nav__comingsoon-txt">Coming Soon</span>
+                    <button tabindex="0" class="nav__actionbtn" role="button">Arpeggios</button>
+                    <button tabindex="0" class="nav__actionbtn" role="button">Chords</button>
+                    <button tabindex="0" class="nav__actionbtn" role="button">Metronome</button>
+                  </div>
+
+                  <button class="nav__actionbtn" role="button">Share</button>
+              </div>
+          </div>
+
+      </header>
+
+      <main class="main">
+
+        <section class="main__topline">
+          <div class="scalefilter" data-role="switcher">
+              <p class="scalefilter__lbl">Display</p>
+              <div class="scalefilter__actions">
+                  <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
+                  <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
+              </div>
+          </div>
+        </section>
+
+        <section class="main__middle">
+
+          <div id="Guitar" class="guitar">
+
+            <div class="guitar__nut">
+              <div class="guitar__nutnote" data-nutstring="1" data-nutnote="E"></div>
+              <div class="guitar__nutnote" data-nutstring="2" data-nutnote="B"></div>
+              <div class="guitar__nutnote" data-nutstring="3" data-nutnote="G"></div>
+              <div class="guitar__nutnote" data-nutstring="4" data-nutnote="D"></div>
+              <div class="guitar__nutnote" data-nutstring="5" data-nutnote="A"></div>
+              <div class="guitar__nutnote" data-nutstring="6" data-nutnote="E"></div>
+            </div>
+            
+            <div class="guitar__fretboard">
+
+              <div class="guitar__string" data-string="1"></div>
+              <div class="guitar__string" data-string="2"></div>
+              <div class="guitar__string" data-string="3"></div>
+              <div class="guitar__string" data-string="4"></div>
+              <div class="guitar__string" data-string="5"></div>
+              <div class="guitar__string" data-string="6"></div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="main__bottomline">
+
+          <div class="scalefilter" data-role="switcher">
+            <p class="scalefilter__lbl">Position</p>
+            <div class="scalefilter__actions">
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-all">All</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-1">1</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-2">2</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-3">3</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-4">4</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-5">5</button>
+            </div>
+          </div>
+
+          <div class="scalefilter" data-role="switcher-select">
+            <p class="scalefilter__lbl">Scale</p>
+            <div class="scalefilter__actions">
+                <select class="scalefilter__select">
+                  <option selected value="major">Major</option>
+                  <option value="minor">Minor</option>
+                  <option value="Mixolydian">Mixolydian</option>
+                </select>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <footer class="footer">
+          <div class="footer__wrap">
+            <a class="footer__link" href="https://www.linkedin.com/in/alex-spencer-7a298b46/">
+              <span class="footer__linklbl">Made by Alex</span> 
+              <img src="/src/img/face.jpg" class="footer__linkface" alt="Alex" title="Me">
+            </a>
+          </div>
+      </footer>
+
     </div>
 
   </body>
 </html> 
+
+<template>
+  <div class="scalefilter" data-role="switcher">
+    <p class="scalefilter__lbl">Display</p>
+    <div class="scalefilter__actions">
+        <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
+        <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
+    </div>
+</div> 
+</template>
+
+<template id="guitarfret">
+  <div class="guitar__fret" data-fret="">
+    <div class="guitar__note" data-note=""></div>
+  </div>
+</template>

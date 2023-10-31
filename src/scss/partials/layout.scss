@@ -3,3 +3,26 @@
     grid-template-rows: var(--layout-nav-height) 1fr var(--layout-footer-height);
     height:100vh;
 }
+
+.main {
+    border-top:1px solid var(--col-3);
+    background-color:var(--col-1);
+    border-bottom: 1px solid var(--col-3);
+    display: grid;
+    grid-template-rows: var(--layout-guitargrid-top) 1fr var(--layout-guitargrid-bottom);
+
+    &__topline, &__bottomline  {
+        display: flex;
+        align-items: center;
+        gap:var(--layout-gap);
+    } 
+        
+    
+    &__middle {
+        display: flex;
+        align-items: center;
+    }
+
+
+
+} 

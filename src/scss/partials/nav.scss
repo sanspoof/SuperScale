@@ -1,3 +1,121 @@
-.navigation {
-    height:var(--layout-nav-height);
+@use "./components" as *;
+
+.nav {
+    background-color:var(--col-2);
+    display: flex;
+    align-items: center;
+
+    &__wrap {
+        height:90%;
+        display: flex;
+        align-items: center; 
+        justify-content: space-between;
+        width:95%;
+        margin:0px auto;
+    }
+
+    &__logowrap {
+         height:80%;
+        display: block;
+    }
+
+    &__logo {
+        height:100%;
+        display: block;
+    }
+
+    &__actionbtn {
+        @include roundbtn;
+    }
+
+    &__actions {
+        display: flex;
+        gap:var(--layout-gap);
+        align-items: center;
+    }
+
+    &__comingsoon {
+        display: flex;
+        align-items: center;
+        gap:var(--layout-gap);
+        border:1px dashed var(--col-comingsoon);
+        border-radius: 40px;
+        padding:12px;
+        position: relative;
+
+        &-txt {
+            color: #fff;
+            background-color: var(--col-comingsoon);
+            border-radius: 10px;
+            padding: 0px 8px;
+            position: absolute;
+            top: -13px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 0.625rem;
+            font-weight: 700;
+            display: flex;
+            line-height: 0;
+            align-items: center;
+            height: 18px;
+        }
+
+    }
+
+}
+
+
+
+.footer {
+    background-color:var(--col-2);
+    font-size: 0.75rem;
+    font-weight: var(--fontweight-bold);
+    display: flex;
+    align-items: center;
+
+    &__wrap { 
+        width:95%;
+        margin:0px auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    &__lbl {
+
+    }
+
+    &__face {
+
+    }
+
+    &__link {
+        $self:&;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap:12px;
+
+        &lbl {
+
+        }
+
+        &face {
+            width:26px;
+            height:26px;
+            border-radius: 30px;
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            #{$self}lbl {
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }
+
+        }
+
+    }
+
 }

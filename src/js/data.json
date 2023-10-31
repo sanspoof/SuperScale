@@ -1,0 +1,57 @@
+{
+    "Scales": {
+        "C": {
+            "Major": ["C", "D", "E", "F", "G", "A", "B"],
+            "Mixolydian": ["C", "D", "E", "F", "G", "A", "Bb"]
+          },
+          "C#": {
+            "Major": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+            "Mixolydian": ["C#", "D#", "E", "F#", "G#", "A#", "B"]
+          },
+          "D": {
+            "Major": ["D", "E", "F#", "G", "A", "B", "C#"],
+            "Mixolydian": ["D", "E", "F#", "G", "A", "B", "C"]
+          },
+          "D#": { 
+            "Major": ["D#", "E#", "F##", "G#", "A#", "B#", "C##"],
+            "Mixolydian": ["D#", "E", "F", "G", "G#", "A#", "C"]
+          },
+          "E": {
+            "Major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+            "Mixolydian": ["E", "F#", "G#", "A", "B", "C", "D"]
+          },
+          "F": {
+            "Major": ["F", "G", "A", "Bb", "C", "D", "E"],
+            "Mixolydian": ["F", "G", "A", "Bb", "C", "D", "Eb"]
+          },
+          "F#": {
+            "Major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+            "Mixolydian": ["F#", "G#", "A#", "B", "C#", "D#", "E"]
+          },
+          "G": {
+            "Major": ["G", "A", "B", "C", "D", "E", "F#"],
+            "Mixolydian": ["G", "A", "B", "C", "D", "E", "F"]
+          },
+          "G#": {
+            "Major": ["G#", "A#", "B#", "C#", "D#", "E#", "F##"],
+            "Mixolydian": ["G#", "A#", "B#", "C#", "D#", "E#", "F#"]
+          },
+          "A": {
+            "Major": ["A", "B", "C#", "D", "E", "F#", "G#"],
+            "Mixolydian": ["A", "B", "C#", "D", "E", "F", "G"]
+          },
+          "A#": {
+            "Major": ["A#", "B#", "C##", "D#", "E#", "F##", "G##"],
+            "Mixolydian": ["A#", "C", "D", "D#", "F", "G", "G#"]
+          },
+          "B": {
+            "Major": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+            "Mixolydian": ["B", "C#", "D#", "E", "F#", "G", "A"]
+          }
+    },
+
+    "GuitarNotes": {
+        "notes":["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    }
+
+  }

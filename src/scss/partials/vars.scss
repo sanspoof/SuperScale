@@ -2,14 +2,33 @@
     --var:#fff;
     --layout-nav-height:100px;
     --layout-footer-height:40px;
+    --layout-pagewidth:1400px;
+    --layout-gap:8px;
+
+    --layout-guitargrid-top:84px;
+    --layout-guitargrid-bottom:var(--layout-guitargrid-top);
+    --layout-guitargrid-middle:1fr;
+
+    --fontweight-light:300;
+    --fontweight-regular:400;
+    --fontweight-bold:700;
+    --fontweight-megabold:800;
+
+    --component-fontsize:0.8rem;
+    --component-buttonheight:34px;
+    --component-filterheight:48px;
 
     --col-1:#0B111C;
     --col-2:#121825;
     --col-3:#2A303B;
+    --col-3--hover:#3d4453;
     --col-accent:#7A5CFF;
-    --col-note-accent:#F6935D;
+    --col-note-accent:#F61A5D;
     --col-txt:#fff;
     --col-guitar-string:#5A5D67;
     --col-guitar-fret:#B8BCBE;
+    --col-guitar-note-border:var(--col-guitar-fret);
     --col-guitar-nut:#fff;
+    --col-comingsoon:#d14e7f;
+
 }

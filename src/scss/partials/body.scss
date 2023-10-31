@@ -1,0 +1,10 @@
+@use "./components" as *;
+
+.main {
+    padding:0px 2.5%;
+}
+
+.scalefilter {
+    @include filterswitch;
+
+}

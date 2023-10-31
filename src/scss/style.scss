@@ -1,17 +1,18 @@
-:root {
-    --var:#fff;
-}
+@import url(/src/scss/partials/vars.scss);
+@import url(/src/scss/partials/reset.scss);
+@import url(/src/scss/partials/components.scss);
  
+// Build the layout
+@import url(/src/scss/partials/nav.scss);
+@import url(/src/scss/partials/layout.scss); 
+@import url(/src/scss/partials/body.scss);
+@import url(/src/scss/partials/guitar.scss);
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700;800&display=swap');
+
 body {
-    background-color: blue;
-    color:#fff;
-    font-size: 0.875rem;
+    color:var(--col-txt);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
 }
 
-.nest {
-    &__p {
-       
-        font-size:3rem;
-    }
-
-}
