@@ -92,10 +92,11 @@
           <div class="scalefilter" data-role="switcher-select">
             <p class="scalefilter__lbl">Scale</p>
             <div class="scalefilter__actions">
-                <select class="scalefilter__select">
-                  <option selected value="major">Major</option>
-                  <option value="minor">Minor</option>
-                  <option value="Mixolydian">Mixolydian</option>
+                <select class="scalefilter__select" id="selectedScale">
+                  <option data-setting="chromatic" value="chromatic">Chromatic</option>       
+                  <option data-setting="major" value="major">Major</option>
+                  <option data-setting="minor" value="minor">Minor</option>
+                  <option data-setting="mixolydian" value="mixolydian">Mixolydian</option>
                 </select>
             </div>
           </div>
@@ -105,6 +106,8 @@
       </main>
 
       <footer class="footer">
+          <button id="clearLocalStorage" role="button">Clear LS</button>
+          <button id="getLocalStorage" role="button">GET LS</button>
           <div class="footer__wrap">
             <a class="footer__link" href="https://www.linkedin.com/in/alex-spencer-7a298b46/">
               <span class="footer__linklbl">Made by Alex</span> 

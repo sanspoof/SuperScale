@@ -9,10 +9,10 @@
     --layout-guitargrid-bottom:var(--layout-guitargrid-top);
     --layout-guitargrid-middle:1fr;
 
-    --fontweight-light:300;
-    --fontweight-regular:400;
-    --fontweight-bold:700;
-    --fontweight-megabold:800;
+    --fontweight-light:600;
+    --fontweight-regular:700;
+    --fontweight-bold:900;
+    --fontweight-megabold:900;
 
     --component-fontsize:0.8rem;
     --component-buttonheight:34px;
@@ -24,6 +24,7 @@
     --col-3--hover:#3d4453;
     --col-accent:#7A5CFF;
     --col-note-accent:#F61A5D;
+    --col-note-root:orange;
     --col-txt:#fff;
     --col-guitar-string:#5A5D67;
     --col-guitar-fret:#B8BCBE;

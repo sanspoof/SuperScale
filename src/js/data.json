@@ -1,52 +1,65 @@
 {
     "Scales": {
-        "C": {
-            "Major": ["C", "D", "E", "F", "G", "A", "B"],
-            "Mixolydian": ["C", "D", "E", "F", "G", "A", "Bb"]
-          },
+          "C": {
+            "chromatic": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A","A#", "B"],
+            "major": ["C", "D", "E", "F", "G", "A", "B"],
+            "mixolydian": ["C", "D", "E", "F", "G", "A", "Bb"],
+            "minor": ["C", "D", "D#", "F", "G", "G#", "A#"]
+          }, 
           "C#": {
-            "Major": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
-            "Mixolydian": ["C#", "D#", "E", "F#", "G#", "A#", "B"]
+            "major": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+            "mixolydian": ["C#", "D#", "E", "F#", "G#", "A#", "B"],
+            "minor": ["C#", "D#", "E", "F#", "G#", "A", "B"]
           },
           "D": {
-            "Major": ["D", "E", "F#", "G", "A", "B", "C#"],
-            "Mixolydian": ["D", "E", "F#", "G", "A", "B", "C"]
+            "major": ["D", "E", "F#", "G", "A", "B", "C#"],
+            "mixolydian": ["D", "E", "F#", "G", "A", "B", "C"],
+            "minor": ["D", "E", "F", "G", "A", "A#", "C"]
           },
           "D#": { 
-            "Major": ["D#", "E#", "F##", "G#", "A#", "B#", "C##"],
-            "Mixolydian": ["D#", "E", "F", "G", "G#", "A#", "C"]
+            "major": ["D#", "E#", "F##", "G#", "A#", "B#", "C##"],
+            "mixolydian": ["D#", "E", "F", "G", "G#", "A#", "C"],
+            "minor": ["D#", "E#", "F#", "G#", "A#", "B", "C#"]
           },
           "E": {
-            "Major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
-            "Mixolydian": ["E", "F#", "G#", "A", "B", "C", "D"]
+            "major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+            "mixolydian": ["E", "F#", "G#", "A", "B", "C", "D"],
+            "minor": ["E", "F#", "G", "A", "B", "C", "D"]
           },
           "F": {
-            "Major": ["F", "G", "A", "Bb", "C", "D", "E"],
-            "Mixolydian": ["F", "G", "A", "Bb", "C", "D", "Eb"]
+            "major": ["F", "G", "A", "Bb", "C", "D", "E"],
+            "mixolydian": ["F", "G", "A", "Bb", "C", "D", "Eb"],
+            "minor": ["F", "G", "Ab", "Bb", "C", "C#", "D#"]
           },
           "F#": {
-            "Major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
-            "Mixolydian": ["F#", "G#", "A#", "B", "C#", "D#", "E"]
+            "major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+            "mixolydian": ["F#", "G#", "A#", "B", "C#", "D#", "E"],
+            "minor": ["F#", "G#", "A", "B", "C#", "D", "E"]
           },
           "G": {
-            "Major": ["G", "A", "B", "C", "D", "E", "F#"],
-            "Mixolydian": ["G", "A", "B", "C", "D", "E", "F"]
+            "major": ["G", "A", "B", "C", "D", "E", "F#"],
+            "mixolydian": ["G", "A", "B", "C", "D", "E", "F"],
+            "minor": ["G", "A", "A#", "C", "D", "D#", "F"]
           },
           "G#": {
-            "Major": ["G#", "A#", "B#", "C#", "D#", "E#", "F##"],
-            "Mixolydian": ["G#", "A#", "B#", "C#", "D#", "E#", "F#"]
+            "major": ["G#", "A#", "B#", "C#", "D#", "E#", "F##"],
+            "mixolydian": ["G#", "A#", "B#", "C#", "D#", "E#", "F#"],
+            "minor": ["G#", "A#", "B", "C#", "D#", "E", "F#"]
           },
           "A": {
-            "Major": ["A", "B", "C#", "D", "E", "F#", "G#"],
-            "Mixolydian": ["A", "B", "C#", "D", "E", "F", "G"]
+            "major": ["A", "B", "C#", "D", "E", "F#", "G#"],
+            "mixolydian": ["A", "B", "C#", "D", "E", "F", "G"],
+            "minor": ["A", "B", "C", "D", "E", "F", "G"]
           },
           "A#": {
-            "Major": ["A#", "B#", "C##", "D#", "E#", "F##", "G##"],
-            "Mixolydian": ["A#", "C", "D", "D#", "F", "G", "G#"]
+            "major": ["A#", "B#", "C##", "D#", "E#", "F##", "G##"],
+            "mixolydian": ["A#", "C", "D", "D#", "F", "G", "G#"],
+            "minor": ["A#", "B#", "C#", "D#", "E#", "F#", "G#"]
           },
           "B": {
-            "Major": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
-            "Mixolydian": ["B", "C#", "D#", "E", "F#", "G", "A"]
+            "major": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+            "mixolydian": ["B", "C#", "D#", "E", "F#", "G", "A"],
+            "minor": ["B", "C#", "D", "E", "F#", "G", "A"]
           }
     },
 

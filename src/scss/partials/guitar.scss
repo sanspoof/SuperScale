@@ -14,7 +14,9 @@
     }
 
     &__nutnote {
-
+            padding: 20px;
+            font-weight: var(--fontweight-megabold);
+        
     }
 
     &__fretboard {
@@ -55,6 +57,8 @@
             position: relative;
         }
 
+
+
         #{$self}__note {
             display: flex;
             align-items: center;
@@ -63,15 +67,34 @@
             height:50px;
             border-radius: 50px;
             outline:4px solid var(--col-1);
-            border:2px solid var(--col-guitar-note-border);
+            border:3px solid var(--col-guitar-note-border);
             font-weight: var(--fontweight-megabold);
             font-size: 1.25rem;
             background-color:var(--col-1); 
             cursor: pointer;
 
             &:hover {
-                border: 2px solid #fff;
+                border-color:#fff;
             }
+
+            &--active {
+                background-color: var(--col-note-accent);
+                border-color: var(--col-note-accent);
+            
+                &:hover {
+                    border-color: var(--col-note-accent);
+                }
+
+            }
+
+            &--root {
+                border-color: var(--col-note-root);
+
+                &:hover {
+                    border-color: var(--col-note-root) !important;
+                }
+            }
+
         }
 
     }
