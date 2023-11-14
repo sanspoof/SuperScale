@@ -9,13 +9,14 @@ export class SuperScaleApp {
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
-      this.defaults = { scale:"minor", position:0, key:"C" };
+      this.defaults = { scale:"minor", position:0, key:"C", display:"notes" };
 
       this.settings = this.loadSettingsFromStorage() || {}; 
       this.settings = this.createPassiveSettingsProxy(this.settings);
       this.settings.scale = this.settings.scale || this.defaults.scale;
         this.settings.position = this.settings.position || this.defaults.position;
         this.settings.key = this.settings.key || this.defaults.key;
+        this.settings.display = this.settings.display || this.defaults.display;
 
 
         this.string1 = document.querySelector('[data-string="1"]');
@@ -362,6 +363,12 @@ export class SuperScaleApp {
 
             }
 
+            if (keyValue === this.settings.display) {
+
+              button.classList.add('active');
+
+            }
+
             if(Number(keyValue.split('-')[1]) === this.settings.position) {
 
               button.classList.add('active');
@@ -456,17 +463,23 @@ export class SuperScaleApp {
 
           this.settings.key = val.split('-')[1];
 
+          this.funcSetupFretboard();
+
       }
 
       handleIntervals() {
      
         console.log('Handling intervals...');
+
+        this.settings.display = 'intervals';
    
       }
 
       handleNotes() {
        
         console.log('Handling notes...');
+
+        this.settings.display = 'notes';
         
       }
 

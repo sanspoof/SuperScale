@@ -10,9 +10,31 @@
             "phrygian": ["C", "Db", "Eb", "F", "G", "Ab", "Bb"],
             "locrian": ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"],
             "lydian": ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"]
-
-
+          },
+          "C#": {
+            "major": ["C#", "D#", "F", "Gb", "Ab", "Bb", "C"],
+            "harmonic_minor": ["C#", "D#", "E", "F#", "G#", "A", "B#"],
+            "melodic_minor": ["C#", "D#", "E", "F#", "G#", "A#", "C"],
+            "minor": ["C#", "D#", "E", "F#", "G#", "A", "B"],
+            "mixolydian": ["C#", "D#", "E#", "F#", "G#", "A#", "B"],
+            "dorian": ["C#", "D#", "E", "F#", "G#", "A#", "B"],
+            "phrygian": ["C#", "D", "E", "F#", "G#", "A", "B"],
+            "locrian": ["C#", "D", "E", "F#", "G", "A", "B"],
+            "lydian": ["C#", "D#", "F", "G", "G#", "A#", "B"]
+          },
+          "D": {
+            "major": ["D", "E", "F#", "G", "A", "B", "C#"],
+            "harmonic_minor": ["D", "E", "F", "G", "A", "Bb", "C#"],
+            "melodic_minor": ["D", "E", "F", "G", "A", "B", "C#"],
+            "minor": ["D", "E", "F", "G", "A", "Bb", "C"],
+            "mixolydian": ["D", "E", "F#", "G", "A", "B", "C"],
+            "dorian": ["D", "E", "F", "G", "A", "B", "C"],
+            "phrygian": ["D", "Eb", "F", "G", "A", "Bb", "C"],
+            "locrian": ["D", "Eb", "F", "G", "Ab", "Bb", "C"],
+            "lydian": ["D", "E", "F#", "G#", "A", "B", "C#"]
           }
+
+          
     },
 
     "GuitarNotes": {
