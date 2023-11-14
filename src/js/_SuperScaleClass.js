@@ -5,7 +5,7 @@ export class SuperScaleApp {
     constructor() {
 
       this.scales = scaleData.Scales;
-      this.guitarNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+      this.guitarNotes = scaleData.GuitarNotes.notes;
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
@@ -38,8 +38,11 @@ export class SuperScaleApp {
         this.funcSetupFretboard();
         this.funcSetupControls();   
         this.funcObserveNut(); 
-        this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+
     }
+
+    // Need to make sharps and Flats appear in the same box....
+
 
     funcNewMutationObs(cb) {
 
@@ -63,6 +66,27 @@ export class SuperScaleApp {
         
         });
     
+    }
+
+    funcFindCommonNotes() {
+
+      const allNotes = this.guitarNotes;
+
+      const selectedNotes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
+      
+      // Flatten the nested array structure
+      const flattenedNotes = allNotes.flat();
+      
+      const commonNotes = flattenedNotes.filter(note => selectedNotes.includes(note));
+      
+      // console.log("All Notes", allNotes);
+
+      // console.log("Notes in common", commonNotes);
+
+      // console.log("Selected Notes", selectedNotes);
+
+      return commonNotes;
+
     }
 
     funcObserveNut() {
@@ -96,6 +120,8 @@ export class SuperScaleApp {
     
         this.addFretAndNote(this[`string${el.dataset.nutstring}`], this.funcSetTuningBasedOnNutNote(newValue));
 
+        this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+
     }
 
     funcDisconnectNutObserver() {
@@ -107,6 +133,8 @@ export class SuperScaleApp {
     addFretAndNote(stringElement, startNote) {
 
         let stringNumber = stringElement.dataset.string;
+
+        let startingNutNote = startNote;
 
         const templateGuitarFret = document.querySelector('#guitarfret');
 
@@ -124,19 +152,46 @@ export class SuperScaleApp {
       
           fretElement.setAttribute('data-fret', i);
 
-          noteElement.setAttribute('data-note', startNote);
+          if(Array.isArray(startingNutNote)) { 
 
-          noteElement.textContent = startNote;
+              const combinedNotes = startingNutNote.join(':');
+
+              noteElement.setAttribute('data-note', combinedNotes);
+
+              noteElement.textContent = combinedNotes.split(':').join(' ');
+
+              noteElement.classList.add('guitar__note--sharpflat');
+
+          } else {
+
+            noteElement.setAttribute('data-note', startingNutNote);
+
+            noteElement.textContent = startingNutNote;
+
+          }
+
+
       
           stringElement.appendChild(el);
 
-          startNote = this.getNextNote(startNote, this.guitarNotes);
+          startingNutNote = this.getNextNote(startingNutNote, this.guitarNotes);
 
         }
 
         this.funcSetNutMarkup();
 
       }
+
+      getNextNote(currentNote, guitarNotes ) {
+       
+        const index = guitarNotes.indexOf(currentNote);
+      
+        const nextIndex = (index + 1) % guitarNotes.length;
+
+        return guitarNotes[nextIndex];
+
+      }
+
 
       funcSetNutMarkup() {
 
@@ -159,6 +214,9 @@ export class SuperScaleApp {
             this.addFretAndNote(this[`string${i}`], this.funcSetTuningBasedOnNutNote(this[`nutstring${i}`].dataset.nutnote));
 
         }
+
+        this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+        
        
     }
 
@@ -166,23 +224,47 @@ export class SuperScaleApp {
 
         const elements = document.querySelectorAll('[data-note]');
 
+        const notes = this.funcFindCommonNotes();
+
         elements.forEach(el => { 
             el.classList.remove('guitar__note--active', 'guitar__note--root');
         });
 
-        const notes = this.funcGetScaleNotes(key,scale);
+        if(scale === 'none') { 
+
+            return;
+
+        } 
+
+        if(scale === 'chromatic') { 
+
+              elements.forEach(el => {
+
+                el.classList.add('guitar__note--active');
+
+              });
+
+            return;
+
+      }
+
+      notes.forEach(note => {
         
-        notes.forEach(note => {
+        const elements = document.querySelectorAll('[data-note]');
+      
+        elements.forEach(el => {
 
-            const elements = document.querySelectorAll(`[data-note="${note}"]`);
+          const dataNoteValues = el.getAttribute('data-note').split(':');
+          
+          if (dataNoteValues.includes(note)) {
 
-            elements.forEach(el => {
+            el.classList.add('guitar__note--active');
 
-              el.classList.add('guitar__note--active');
+          }
 
-            });
+        });
 
-          });
+      });
           
     }
 
@@ -218,20 +300,29 @@ export class SuperScaleApp {
         }
       }
 
-      getNextNote(currentNote, guitarNotes ) {
-       
-        const index = guitarNotes.indexOf(currentNote);
-      
-        const nextIndex = (index + 1) % guitarNotes.length;
-
-        return guitarNotes[nextIndex];
-
-      }
-  
     funcSetupControls() {
         
         const controls = document.querySelectorAll('[data-role="switcher"]');
+
         const selectElement = document.querySelector('[data-role="switcher-select"]');
+
+        const selectEl = document.querySelector('#selectedScale');
+
+        let selectedScale = this.settings.scale;
+
+          for (var i = 0; i < selectEl.options.length; i++) {
+
+            if (selectEl.options[i].value === selectedScale) {
+
+                // Set the selected attribute 
+                selectEl.options[i].selected = true;
+
+                break; // Exit the loop once the option is found
+
+              }
+
+          }
+
 
         if (selectElement) { 
 
@@ -259,6 +350,26 @@ export class SuperScaleApp {
 
           const toggleButtons = control.querySelectorAll('[data-val]');
     
+          toggleButtons.forEach(button => { 
+
+            let keyValue = button.dataset.val;
+
+            console.log(keyValue)
+
+            if (keyValue.split('-')[1] === this.settings.key) {
+
+              button.classList.add('active');
+
+            }
+
+            if(Number(keyValue.split('-')[1]) === this.settings.position) {
+
+              button.classList.add('active');
+
+            }
+          
+          });
+
           toggleButtons.forEach(button => {
 
             button.addEventListener('click', () => {
@@ -277,6 +388,25 @@ export class SuperScaleApp {
                 
                 switch (dataVal) {
 
+                    case 'key-A':
+                    case 'key-Ab':
+                    case 'key-B':
+                    case 'key-Bb':
+                    case 'key-C':
+                    case 'key-C#':
+                    case 'key-D':
+                    case 'key-Db':
+                    case 'key-E':
+                    case 'key-Eb':
+                    case 'key-F':
+                    case 'key-F#':
+                    case 'key-G':
+                    case 'key-Gb':
+                      
+                      this.funcHandleKeyChange(dataVal);
+
+                      break;
+
                     case 'intervals':
 
                       this.handleIntervals();
@@ -289,41 +419,22 @@ export class SuperScaleApp {
 
                       break;
 
-                    case 'position-all':
+                      case 'position-0':
+                      case 'position-1':
+                      case 'position-2':
+                      case 'position-3':
+                      case 'position-4':
+                      case 'position-5':
 
-                        this.handlePosition(0);
-    
-                        break;
+                            const position = Number(dataVal.split('-')[1]);
 
-                    case 'position-1':
-                            
-                            this.handlePosition(1);
-        
-                            break;
-
-                    case 'position-2':
-
-                            this.handlePosition(2);
+                            this.handlePosition(position);
 
                             break;
 
-                    case 'position-3':
-
-                            this.handlePosition(3);
-
-
-                            break;
-
-                    case 'position-4':
-                            
-                                this.handlePosition(4);
-    
-                                break;
-
-                    case 'position-5':
-
-                            this.handlePosition(5);
-
+                        
+                        default:
+                          
                             break;
                             
 
@@ -336,6 +447,14 @@ export class SuperScaleApp {
           });
 
         });
+
+      }
+
+      funcHandleKeyChange(val) { 
+
+          console.log('Handling key change...', val);
+
+          this.settings.key = val.split('-')[1];
 
       }
 
@@ -353,7 +472,7 @@ export class SuperScaleApp {
 
     handlePosition(pos) {
         
-        console.log('Handling position...', pos);
+        this.settings.position = pos;
         
     }
 

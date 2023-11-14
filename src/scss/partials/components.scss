@@ -1,17 +1,34 @@
 @mixin roundbtn {
+    --iconsize:20px;
     display:flex;
     align-items: center;
     border-radius: 100px;
     background-color:var(--col-3);
-    font-weight:var(--fontweight-bold);
+    font-weight:var(--fontweight-regular);
     font-size:var(--component-fontsize);
     height:var(--component-buttonheight);
+    min-width: var(--component-buttonheight);
     padding:0px 16px; 
+    gap:6px;
     line-height:0;
+    outline:2px solid transparent;
+    outline-offset: 1px;
 
     &:hover {
-        background-color:var(--col-3--hover);
+        outline-color:var(--col-accent);
         cursor: pointer;
+    }
+
+    &-lbl {
+        display: block;
+        line-height: var(--component-fontsize);
+    }
+
+    &-icon {
+        fill:#fff;
+        width:var(--iconsize);
+        height:var(--iconsize);
+        order:-1;
     }
 
 } 
@@ -47,7 +64,7 @@
     &__actions {
         display: flex;
         align-items: center;
-        gap:calc(var(--layout-gap) / 2);
+        gap:calc(var(--layout-gap) / 1.5);
 
     }
 
@@ -56,6 +73,15 @@
 
         &:hover {
             background-color:var(--col-3--hover);
+        }
+
+        &.active {
+            background-color: var( --col-accent);
+
+            &:hover {
+                 outline-color: var( --col-accent);
+            }
+
         }
 
     }

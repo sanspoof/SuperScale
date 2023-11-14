@@ -17,19 +17,42 @@
 
           <div class="nav__wrap">
               <figure class="nav__logowrap">
-                <img class="nav__logo" src="/src/img/superscalelogo.svg" alt="SuperScale">
+                <svg class="nav__logo" viewBox="0 0 32 32">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#superscale-logo"></use>
+                </svg>
               </figure>
 
               <div class="nav__actions">
 
                   <div class="nav__comingsoon">
                     <span class="nav__comingsoon-txt">Coming Soon</span>
-                    <button tabindex="0" class="nav__actionbtn" role="button">Arpeggios</button>
-                    <button tabindex="0" class="nav__actionbtn" role="button">Chords</button>
-                    <button tabindex="0" class="nav__actionbtn" role="button">Metronome</button>
+                    <button tabindex="0" class="nav__actionbtn" role="button">
+                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#arpeggio"></use>
+                      </svg>
+                      <p class="nav__actionbtn-lbl">Arpeggios</p>
+                      </button>
+                    <button tabindex="0" class="nav__actionbtn" role="button">
+                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#chords"></use>
+                      </svg>
+                      <p class="nav__actionbtn-lbl">Chords</p>
+                      
+                    </button>
+                    <button tabindex="0" class="nav__actionbtn" role="button">
+                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#chords"></use>
+                      </svg>
+                      <p class="nav__actionbtn-lbl">Metronome</p>
+                    </button>
                   </div>
 
-                  <button class="nav__actionbtn" role="button">Share</button>
+                  <button class="nav__actionbtn" role="button">
+                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
+                    </svg>
+                    <p class="nav__actionbtn-lbl">Share</p>
+                  </button>
               </div>
           </div>
 
@@ -39,12 +62,27 @@
 
         <section class="main__topline">
           <div class="scalefilter" data-role="switcher">
-              <p class="scalefilter__lbl">Display</p>
-              <div class="scalefilter__actions">
-                  <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
-                  <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
-              </div>
+            <p class="scalefilter__lbl">Key</p>
+            <div class="scalefilter__actions">
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-A">A</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-B">B</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-C">C</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-D">D</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-E">E</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-F">F</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-G">G</button>
+
+            </div>
           </div>
+
+          <div class="scalefilter" data-role="switcher">
+            <p class="scalefilter__lbl">Display</p>
+            <div class="scalefilter__actions">
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
+            </div>
+          </div>
+
         </section>
 
         <section class="main__middle">
@@ -77,10 +115,14 @@
 
         <section class="main__bottomline">
 
+
+
+
+
           <div class="scalefilter" data-role="switcher">
             <p class="scalefilter__lbl">Position</p>
             <div class="scalefilter__actions">
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-all">All</button>
+                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-0">All</button>
                 <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-1">1</button>
                 <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-2">2</button>
                 <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-3">3</button>
@@ -92,11 +134,18 @@
           <div class="scalefilter" data-role="switcher-select">
             <p class="scalefilter__lbl">Scale</p>
             <div class="scalefilter__actions">
-                <select class="scalefilter__select" id="selectedScale">
+                <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;">
+                  <option data-setting="none" value="none">No Scale</option>   
                   <option data-setting="chromatic" value="chromatic">Chromatic</option>       
                   <option data-setting="major" value="major">Major</option>
                   <option data-setting="minor" value="minor">Minor</option>
+                  <option data-setting="harmonic_minor" value="minor">Harmonic Minor</option>
+                  <option data-setting="melodic_minor" value="minor">Melodic Minor</option>
                   <option data-setting="mixolydian" value="mixolydian">Mixolydian</option>
+                  <option data-setting="phrygian" value="phrygian">Phrygian</option>
+                  <option data-setting="dorian" value="dorian">Dorian</option>
+                  <option data-setting="locrian" value="dorian">Locrian</option>
+                  <option data-setting="lydian" value="lydian">Lydian</option>
                 </select>
             </div>
           </div>

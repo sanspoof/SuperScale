@@ -15,17 +15,20 @@
     }
 
     &__logowrap {
-         height:80%;
+         height:100%;
         display: block;
     }
 
     &__logo {
         height:100%;
         display: block;
+        fill: #fff;
     }
 
     &__actionbtn {
         @include roundbtn;
+        --component-fontsize:1rem;
+        height:38px;
     }
 
     &__actions {
@@ -38,7 +41,7 @@
         display: flex;
         align-items: center;
         gap:var(--layout-gap);
-        border:1px dashed var(--col-comingsoon);
+        border:2px solid var(--col-comingsoon);
         border-radius: 40px;
         padding:12px;
         position: relative;

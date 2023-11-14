@@ -13,6 +13,7 @@
 
     &__topline, &__bottomline  {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         gap:var(--layout-gap);
     } 
@@ -21,6 +22,7 @@
     &__middle {
         display: flex;
         align-items: center;
+
     }
 
 

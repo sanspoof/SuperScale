@@ -1,4 +1,8 @@
 :root {
+
+    --global-fontsize:0.875rem;
+    --global-letterspacing:0.04rem;
+
     --var:#fff;
     --layout-nav-height:100px;
     --layout-footer-height:40px;
@@ -14,9 +18,9 @@
     --fontweight-bold:900;
     --fontweight-megabold:900;
 
-    --component-fontsize:0.8rem;
-    --component-buttonheight:34px;
-    --component-filterheight:48px;
+    --component-fontsize:0.875rem;
+    --component-buttonheight:40px;
+    --component-filterheight:60px;
 
     --col-1:#0B111C;
     --col-2:#121825;
