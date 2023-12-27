@@ -6,10 +6,11 @@ export class SuperScaleApp {
 
       this.scales = scaleData.Scales;
       this.guitarNotes = scaleData.GuitarNotes.notes;
+      this.guitarNeck = document.querySelector('#Guitar');
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
-      this.defaults = { scale:"minor", position:0, key:"C", display:"notes" };
+      this.defaults = { scale:"minor", position:0, key:"C", display:"notes", tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } };
 
       this.settings = this.loadSettingsFromStorage() || {}; 
       this.settings = this.createPassiveSettingsProxy(this.settings);
@@ -17,27 +18,27 @@ export class SuperScaleApp {
         this.settings.position = this.settings.position || this.defaults.position;
         this.settings.key = this.settings.key || this.defaults.key;
         this.settings.display = this.settings.display || this.defaults.display;
+        this.settings.tuning = this.settings.tuning || this.defaults.tuning;
 
 
-        this.string1 = document.querySelector('[data-string="1"]');
-        this.string2 = document.querySelector('[data-string="2"]');
-        this.string3 = document.querySelector('[data-string="3"]');
-        this.string4 = document.querySelector('[data-string="4"]');
-        this.string5 = document.querySelector('[data-string="5"]');
-        this.string6 = document.querySelector('[data-string="6"]');
-        this.nutstring1 = document.querySelector('[data-nutstring="1"]');
-        this.nutstring2 = document.querySelector('[data-nutstring="2"]');
-        this.nutstring3 = document.querySelector('[data-nutstring="3"]');
-        this.nutstring4 = document.querySelector('[data-nutstring="4"]');
-        this.nutstring5 = document.querySelector('[data-nutstring="5"]');
-        this.nutstring6 = document.querySelector('[data-nutstring="6"]');
+        this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
+
+        this.nutstrings = Array.from({ length: 6 }, (_, i) => i + 1);
+    
+        this.strings.forEach((num) => {
+
+          this[`string${num}`] = document.querySelector(`[data-string="${num}"]`);
+
+          this[`nutstring${num}`] = document.querySelector(`[data-nutstring="${num}"]`);
+
+        });
         
     }
 
-    init() {
+    init() { 
 
         this.funcSetupFretboard();
-        this.funcSetupControls();   
+        this.funcSetupControls();  
         this.funcObserveNut(); 
 
     }
@@ -104,7 +105,7 @@ export class SuperScaleApp {
         const targetElement = document.querySelector(`[data-nutstring="${i}"]`);
     
         if (targetElement) {
-    
+
             this.observer.observe(targetElement, config); 
     
         }
@@ -122,6 +123,10 @@ export class SuperScaleApp {
         this.addFretAndNote(this[`string${el.dataset.nutstring}`], this.funcSetTuningBasedOnNutNote(newValue));
 
         this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+ 
+        this.settings.tuning[el.dataset.nutstring] = newValue;
+
+        this.saveSettings();
 
     }
 
@@ -218,7 +223,8 @@ export class SuperScaleApp {
 
         this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
         
-       
+        this.guitarNeck.classList.add("position-" + this.settings.position);
+
     }
 
     funcSetupNotesDisplay(key, scale) {
@@ -394,21 +400,18 @@ export class SuperScaleApp {
               if (dataVal) {
                 
                 switch (dataVal) {
-
                     case 'key-A':
-                    case 'key-Ab':
-                    case 'key-B':
                     case 'key-Bb':
+                    case 'key-B':
                     case 'key-C':
-                    case 'key-C#':
-                    case 'key-D':
                     case 'key-Db':
-                    case 'key-E':
+                    case 'key-D':
                     case 'key-Eb':
+                    case 'key-E':
                     case 'key-F':
-                    case 'key-F#':
-                    case 'key-G':
                     case 'key-Gb':
+                    case 'key-G':
+                    case 'key-Ab':
                       
                       this.funcHandleKeyChange(dataVal);
 
@@ -457,6 +460,18 @@ export class SuperScaleApp {
 
       }
 
+      funcSetupGuitarNeckModifiers() {
+
+        if(this.settings.position) {
+
+          this.guitarNeck.classList.remove('position-0', 'position-1', 'position-2', 'position-3', 'position-4', 'position-5');
+
+          this.guitarNeck.classList.add("position-" + this.settings.position);
+
+        }
+
+      }
+
       funcHandleKeyChange(val) { 
 
           console.log('Handling key change...', val);
@@ -486,6 +501,8 @@ export class SuperScaleApp {
     handlePosition(pos) {
         
         this.settings.position = pos;
+
+        this.funcSetupGuitarNeckModifiers();
         
     }
 
@@ -544,6 +561,8 @@ export class SuperScaleApp {
 
           set: (target, prop, value) => {
 
+            console.log(`Setting ${prop} to ${value}`);
+
             target[prop] = value;
 
             this.saveSettings();
@@ -552,7 +571,7 @@ export class SuperScaleApp {
 
           },
 
-        });
+        }); 
 
       }
 

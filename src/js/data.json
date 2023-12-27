@@ -1,5 +1,6 @@
 {
     "Scales": {
+
           "C": {
             "major": ["C", "D", "E", "F", "G", "A", "B"],
             "harmonic_minor": ["C", "D", "Eb", "F", "G", "Ab", "B"],
@@ -11,7 +12,7 @@
             "locrian": ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"],
             "lydian": ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"]
           },
-          "C#": {
+          "Db": {
             "major": ["C#", "D#", "F", "Gb", "Ab", "Bb", "C"],
             "harmonic_minor": ["C#", "D#", "E", "F#", "G#", "A", "B#"],
             "melodic_minor": ["C#", "D#", "E", "F#", "G#", "A#", "C"],
@@ -32,9 +33,22 @@
             "phrygian": ["D", "Eb", "F", "G", "A", "Bb", "C"],
             "locrian": ["D", "Eb", "F", "G", "Ab", "Bb", "C"],
             "lydian": ["D", "E", "F#", "G#", "A", "B", "C#"]
-          }
+          },
+          "Eb": {
+            "major": ["D#", "F", "G", "Ab", "Bb", "C", "D"],
+            "harmonic_minor": ["D#", "F", "F#", "G#", "A#", "B", "D"],
+            "melodic_minor": ["D#", "F", "F#", "G#", "A#", "C", "D"],
+            "minor": ["D#", "E#", "F#", "G#", "A#", "B", "C#"],
+            "mixolydian": ["D#", "F", "G", "G#", "A#", "C", "Bb"],
+            "dorian": ["D#", "E#", "F#", "G#", "A#", "C", "C#"],
+            "phrygian": ["D#", "E#", "F#", "G#", "A#", "B", "C#"],
+            "locrian": ["D#", "E", "F#", "G#", "A", "B", "C#"],
+            "lydian": ["D#", "F", "G", "A", "A#", "C", "D"]
+          },
+
 
           
+      
     },
 
     "GuitarNotes": {
@@ -43,10 +57,10 @@
 
     "ValidKeys" :{
       "keys" :[
-        "key-A", "key-Ab", "key-B", "key-Bb",
-        "key-C", "key-C#", "key-D", "key-Db",
-        "key-E", "key-Eb", "key-F", "key-F#",
-        "key-G", "key-Gb"
+        "key-A", "key-Bb", "key-B",
+        "key-C", "key-Db", "key-D",
+        "key-Eb", "key-E", "key-F",
+        "key-Gb", "key-G", "key-Ab"
         ]
     }
 
