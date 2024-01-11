@@ -21,6 +21,8 @@ export class SuperScaleApp {
         this.settings.tuning = this.settings.tuning || this.defaults.tuning;
 
 
+        
+
         this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
 
         this.nutstrings = Array.from({ length: 6 }, (_, i) => i + 1);
@@ -40,6 +42,7 @@ export class SuperScaleApp {
         this.funcSetupFretboard();
         this.funcSetupControls();  
         this.funcObserveNut(); 
+        this.funcHighlightMAtchingNotes();
 
     }
 
@@ -68,6 +71,64 @@ export class SuperScaleApp {
         
         });
     
+    }
+
+    funcHighlightMAtchingNotes() { 
+
+      const elements = document.querySelectorAll('[data-note]');
+
+      elements.forEach(el => {
+
+        el.addEventListener('mouseover', () => { 
+
+          const dataNoteValues = el.getAttribute('data-note').split(':');
+
+          dataNoteValues.forEach(note => {
+
+            const elements = document.querySelectorAll('[data-note]');
+
+            elements.forEach(el => {
+
+              const dataNoteValues = el.getAttribute('data-note').split(':');
+
+              if (dataNoteValues.includes(note)) {
+
+                el.classList.add('guitar__note--matchinghover');
+
+              }
+
+            });
+
+          });
+
+        });
+
+        el.addEventListener('mouseout', () => { 
+            
+            const dataNoteValues = el.getAttribute('data-note').split(':');
+  
+            dataNoteValues.forEach(note => {
+  
+              const elements = document.querySelectorAll('[data-note]');
+  
+              elements.forEach(el => {
+  
+                const dataNoteValues = el.getAttribute('data-note').split(':');
+  
+                if (dataNoteValues.includes(note)) {
+  
+                  el.classList.remove('guitar__note--matchinghover');
+  
+                }
+  
+              });
+  
+            });
+        });
+
+       });
+
+
     }
 
     funcFindCommonNotes() {

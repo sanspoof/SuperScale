@@ -1,6 +1,63 @@
 {
     "Scales": {
 
+        "Ab": {
+            "major": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+            "harmonic_minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G"],
+            "melodic_minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
+            "minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
+            "mixolydian": ["Ab", "Bb", "C", "Db", "Eb", "F", "Gb"],
+            "dorian": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "Gb"],
+            "phrygian": ["Ab", "Bbb", "Cb", "Db", "Eb", "Fb", "Gb"],
+            "locrian": ["Ab", "Bbb", "Cb", "Db", "Ebb", "Fb", "Gb"],
+            "lydian": ["Ab", "Bb", "C", "D", "Eb", "F", "G"]
+          },
+          "A": {
+            "major": ["A", "B", "C#", "D", "E", "F#", "G#"],
+            "harmonic_minor": ["A", "B", "C", "D", "E", "F", "G#"],
+            "melodic_minor": ["A", "B", "C", "D", "E", "F#", "G#"],
+            "minor": ["A", "B", "C", "D", "E", "F", "G"],
+            "mixolydian": ["A", "B", "C#", "D", "E", "F#", "G"],
+            "dorian": ["A", "B", "C", "D", "E", "F#", "G"],
+            "phrygian": ["A", "Bb", "C", "D", "E", "F", "G"],
+            "locrian": ["A", "Bb", "C", "D", "Eb", "F", "G"],
+            "lydian": ["A", "B", "C#", "D#", "E", "F#", "G#"]
+          },
+
+          "A#": {
+            "major": ["A#", "C", "D", "D#", "F", "G", "A"],
+            "harmonic_minor": ["A#", "C", "C#", "D#", "F", "F#", "A"],
+            "melodic_minor": ["A#", "C", "C#", "D#", "F", "G", "A"],
+            "minor": ["A#", "C", "C#", "D#", "F", "F#", "G#"],
+            "mixolydian": ["A#", "C", "D", "D#", "F", "G", "G#"],
+            "dorian": ["A#", "C", "C#", "D#", "F", "G", "G#"],
+            "phrygian": ["A#", "B", "C#", "D#", "F", "F#", "G#"],
+            "locrian": ["A#", "B", "C#", "D#", "E", "F#", "G#"],
+            "lydian": ["A#", "C", "D", "E", "F", "G", "A"]
+          },
+
+          "Bb": {
+            "major": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+            "harmonic_minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "A"],
+            "melodic_minor": ["Bb", "C", "Db", "Eb", "F", "G", "A"],
+            "minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab"],
+            "mixolydian": ["Bb", "C", "D", "Eb", "F", "G", "Ab"],
+            "dorian": ["Bb", "C", "Db", "Eb", "F", "G", "Ab"],
+            "phrygian": ["Bb", "B", "Db", "Eb", "F", "Gb", "Ab"],
+            "locrian": ["Bb", "B", "Db", "Eb", "E", "Gb", "Ab"],
+            "lydian": ["Bb", "C", "D", "E", "F", "G", "A"]
+          },
+          "B": {
+            "major": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+            "harmonic_minor": ["B", "C#", "D", "E", "F#", "G", "A#"],
+            "melodic_minor": ["B", "C#", "D", "E", "F#", "G#", "A#"],
+            "minor": ["B", "C#", "D", "E", "F#", "G", "A"],
+            "mixolydian": ["B", "C#", "D#", "E", "F#", "G#", "A"],
+            "dorian": ["B", "C#", "D", "E", "F#", "G#", "A"],
+            "phrygian": ["B", "C", "D", "E", "F#", "G", "A"],
+            "locrian": ["B", "C", "D", "E", "F", "G", "A"],
+            "lydian": ["B", "C#", "D#", "E#", "F#", "G#", "A#"]
+          },
           "C": {
             "major": ["C", "D", "E", "F", "G", "A", "B"],
             "harmonic_minor": ["C", "D", "Eb", "F", "G", "Ab", "B"],
@@ -45,9 +102,55 @@
             "locrian": ["D#", "E", "F#", "G#", "A", "B", "C#"],
             "lydian": ["D#", "F", "G", "A", "A#", "C", "D"]
           },
-
-
-          
+          "E": {
+            "major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+            "harmonic_minor": ["E", "F#", "G", "A", "B", "C", "D#"],
+            "melodic_minor": ["E", "F#", "G", "A", "B", "C#", "D#"],
+            "minor": ["E", "F#", "G", "A", "B", "C", "D"],
+            "mixolydian": ["E", "F#", "G#", "A", "B", "C#", "D"],
+            "dorian": ["E", "F#", "G", "A", "B", "C#", "D"],
+            "phrygian": ["E", "F", "G", "A", "B", "C", "D"],
+            "locrian": ["E", "F", "G", "A", "Bb", "C", "D"],
+            "lydian": ["E", "F#", "G#", "A#", "B", "C#", "D#"]
+          },
+          "F": {
+            "major": ["F", "G", "A", "Bb", "C", "D", "E"],
+            "harmonic_minor": ["F", "G", "Ab", "Bb", "C", "Db", "E"],
+            "melodic_minor": ["F", "G", "Ab", "Bb", "C", "D", "E"],
+            "minor": ["F", "G", "Ab", "Bb", "C", "Db", "Eb"],
+            "mixolydian": ["F", "G", "A", "Bb", "C", "D", "Eb"],
+            "dorian": ["F", "G", "Ab", "Bb", "C", "D", "Eb"],
+            "phrygian": ["F", "Gb", "Ab", "Bb", "C", "Db", "Eb"],
+            "locrian": ["F", "Gb", "Ab", "Bb", "Cb", "Db", "Eb"],
+            "lydian": ["F", "G", "A", "B", "C", "D", "E"]
+          },
+          "Gb": {
+            "major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+            "harmonic_minor": ["F#", "G#", "A", "B", "C#", "D", "E#"],
+            "melodic_minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"]
+          },
+          "G": {
+            "major": ["G", "A", "B", "C", "D", "E", "F#"],
+            "harmonic_minor": ["G", "A", "Bb", "C", "D", "Eb", "F#"],
+            "melodic_minor": ["G", "A", "Bb", "C", "D", "E", "F#"],
+            "minor": ["G", "A", "Bb", "C", "D", "Eb", "F"],
+            "mixolydian": ["G", "A", "B", "C", "D", "E", "F"],
+            "dorian": ["G", "A", "Bb", "C", "D", "E", "F"],
+            "phrygian": ["G", "Ab", "Bb", "C", "D", "Eb", "F"],
+            "locrian": ["G", "Ab", "Bb", "C", "Db", "Eb", "F"],
+            "lydian": ["G", "A", "B", "C#", "D", "E", "F#"]
+          },
+          "G#": {
+            "major": ["G#", "A#", "C", "C#", "D#", "F", "G"],
+            "harmonic_minor": ["G#", "A#", "B", "C#", "D#", "E", "G"],
+            "melodic_minor": ["G#", "A#", "B", "C#", "D#", "F", "G"],
+            "minor": ["G#", "A#", "B", "C#", "D#", "E", "F#"],
+            "mixolydian": ["G#", "A#", "C", "C#", "D#", "F", "F#"],
+            "dorian": ["G#", "A#", "B", "C#", "D#", "F", "F#"],
+            "phrygian": ["G#", "A", "B", "C#", "D#", "E", "F#"],
+            "locrian": ["G#", "A", "B", "C#", "D", "E", "F#"],
+            "lydian": ["G#", "A#", "C", "D", "D#", "F", "G"]
+          }
       
     },
 

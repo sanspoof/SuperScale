@@ -15,7 +15,7 @@
     }
 
     &__logowrap {
-         height:100%;
+         height:75%;
         display: block;
     }
 
@@ -27,7 +27,7 @@
 
     &__actionbtn {
         @include roundbtn;
-        --component-fontsize:1rem;
+        --component-fontsize:0.875rem;
         height:38px;
     }
 

@@ -87,6 +87,12 @@
 
             }
 
+            &--matchinghover {
+                border-color:#E4D00A !important;
+                outline:2px solid #E4D00A !important;
+                outline-offset: -1px;
+            }
+
             &--sharpflat {
                 font-size: 0.75rem;
                
