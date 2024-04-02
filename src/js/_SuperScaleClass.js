@@ -20,9 +20,6 @@ export class SuperScaleApp {
         this.settings.display = this.settings.display || this.defaults.display;
         this.settings.tuning = this.settings.tuning || this.defaults.tuning;
 
-
-        
-
         this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
 
         this.nutstrings = Array.from({ length: 6 }, (_, i) => i + 1);
@@ -42,7 +39,6 @@ export class SuperScaleApp {
         this.funcSetupFretboard();
         this.funcSetupControls();  
         this.funcObserveNut(); 
-        this.funcHighlightMAtchingNotes();
 
     }
 
@@ -197,6 +193,26 @@ export class SuperScaleApp {
         
     }
 
+    funcSetRootNoteModifier() {
+
+      let strModifier = "guitar__note--root";
+
+      let currentKey = this.settings.key;
+
+      let allNotes = this.guitarNeck.querySelectorAll("[data-note]");
+
+      allNotes.forEach( (n) => {
+
+        if(n.dataset.note == currentKey) {
+          
+          n.classList.add(strModifier);
+
+        }
+
+      });
+
+    }
+
     addFretAndNote(stringElement, startNote) {
 
         let stringNumber = stringElement.dataset.string;
@@ -225,7 +241,7 @@ export class SuperScaleApp {
 
               noteElement.setAttribute('data-note', combinedNotes);
 
-              noteElement.textContent = combinedNotes.split(':').join(' ');
+              noteElement.textContent = combinedNotes.split(':').join('/');
 
               noteElement.classList.add('guitar__note--sharpflat');
 
@@ -285,6 +301,10 @@ export class SuperScaleApp {
         this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
         
         this.guitarNeck.classList.add("position-" + this.settings.position);
+
+        this.funcHighlightMAtchingNotes();
+
+        this.funcSetRootNoteModifier();
 
     }
 

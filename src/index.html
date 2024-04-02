@@ -47,6 +47,15 @@
                     </button>
                   </div>
 
+                  <button class="nav__actionbtn" role="button" data-cmd="toggle-lightmode">
+                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
+                    </svg>
+                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
+                    </svg>
+                  </button>
+
                   <button class="nav__actionbtn" role="button">
                     <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
@@ -86,7 +95,7 @@
         </section>
 
         <section class="main__middle">
-
+ 
           <div id="Guitar" class="guitar">
 
             <div class="guitar__nut">
@@ -108,6 +117,20 @@
               <div class="guitar__string" data-string="6"></div>
 
             </div>
+
+            <div class="guitar__fretmarkers">
+              <div class="guitar__fretmarker" data-fretmarker="1">1</div>
+              <div class="guitar__fretmarker" data-fretmarker="2">2</div>
+              <div class="guitar__fretmarker" data-fretmarker="3">3</div>
+              <div class="guitar__fretmarker" data-fretmarker="4">4</div>
+              <div class="guitar__fretmarker" data-fretmarker="5">5</div>
+              <div class="guitar__fretmarker" data-fretmarker="6">6</div>
+              <div class="guitar__fretmarker" data-fretmarker="7">7</div>
+              <div class="guitar__fretmarker" data-fretmarker="8">8</div>
+              <div class="guitar__fretmarker" data-fretmarker="9">9</div>
+              <div class="guitar__fretmarker" data-fretmarker="10">10</div>
+              <div class="guitar__fretmarker" data-fretmarker="11">11</div>
+              <div class="guitar__fretmarker" data-fretmarker="12">12</div>
 
           </div>
 
@@ -157,7 +180,10 @@
       <footer class="footer">
 
           <div class="footer__wrap">
-            <div class="footer__version">v0.1.0</div>
+            <div class="footer__version">
+              <div class="footer__version-lbl">v0.1.0</div>
+              <a class="footer__version-feedback">Feedback</a>
+            </div>
             <button id="clearLocalStorage" role="button" style="padding:3px; border:1px solid white">Clear LS</button>
             <button id="getLocalStorage" role="button" style="padding:3px; border:1px solid white">GET LS</button>
             <a class="footer__link" href="https://www.linkedin.com/in/alex-spencer-7a298b46/">

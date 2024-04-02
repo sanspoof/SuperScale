@@ -85,15 +85,34 @@
     }
 
     &__version {
-        background-color: var(--col-3);
-        padding:4px 10px;
-        border-radius: 10px;
+        display: flex;
+        align-items: center;
         margin-right:auto;
+        gap:8px;
+
+        &-lbl {
+            background-color: var(--col-3);
+            padding:4px 10px;
+            border-radius: 10px;
+            margin-right:auto;
+        }
+
+        &-feedback {
+            font-weight: var(--fontweight-regular);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                background-color: var(--col-note-accent);
+                outline:4px solid var(--col-note-accent);
+                cursor: pointer;
+            }
+
+        }
+
     }
 
-    &__lbl {
 
-    }
 
     &__face {
 

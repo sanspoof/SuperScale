@@ -18,3 +18,25 @@ document.querySelector('#getLocalStorage').addEventListener('click', (event) => 
 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+
+    var buttons = document.querySelectorAll('[data-cmd]');
+
+    buttons.forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+            var cmd = button.getAttribute('data-cmd');
+
+            switch (cmd) {
+
+                case 'toggle-lightmode':
+
+                    console.log('Toggle Lightmode');
+
+                    break;
+
+            }
+        });
+    });
+});
