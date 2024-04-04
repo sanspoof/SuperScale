@@ -6,17 +6,19 @@ superScaleApp.init();
 
 console.log(superScaleApp.loadSettingsFromStorage());
 
-document.querySelector('#clearLocalStorage').addEventListener('click', (event) => { 
+// document.querySelector('#clearLocalStorage').addEventListener('click', (event) => { 
 
-    superScaleApp.funcClearSettings();
+//     superScaleApp.funcClearSettings();
 
-});
+// });
 
-document.querySelector('#getLocalStorage').addEventListener('click', (event) => { 
+// document.querySelector('#getLocalStorage').addEventListener('click', (event) => { 
 
-    console.log(superScaleApp.loadSettingsFromStorage());
+//     console.log(superScaleApp.loadSettingsFromStorage());
 
-});
+// });
+
+const dialog = document.getElementById("betaModal");
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -35,8 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Toggle Lightmode');
 
                     break;
+                
+                case 'open-beta-modal':
+
+                dialog.showModal();
+
+                break;
+
+                case 'close-beta-modal':
+
+                dialog.close();
+
+                break;
 
             }
         });
     });
 });
+
+

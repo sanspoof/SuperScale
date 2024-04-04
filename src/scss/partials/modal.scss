@@ -1,0 +1,36 @@
+.modal {
+    border:none;
+    background-color: var(--col-1);
+    color:#fff;
+    max-width: 600px;
+    box-sizing: border-box;
+    padding:32px;
+    border-radius: 10px;
+
+    &__content {
+        display: grid;
+        gap:16px;
+        text-align: center;
+    }
+
+    &__close {
+        padding:6px;
+        background-color: var(--col-note-accent);
+        cursor: pointer;
+        display: flex;
+        margin:0 auto;
+        border-radius: 4px;
+    }
+
+}
+
+::backdrop { 
+    background-image: linear-gradient(
+        45deg,
+        magenta,
+        rebeccapurple,
+        dodgerblue,
+        blue
+      );
+      opacity: 0.75; 
+}

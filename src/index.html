@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>My First Parcel App</title>
+    <title>Super Scale</title>
+    <meta name="description" content="The easiest way to discover new scales on guitar">
+    <meta name="keywords" content="guitar scales, scales">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.superscale.online">
     <link rel="stylesheet" href="./scss/style.scss" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +51,7 @@
                     </button>
                   </div>
 
-                  <button class="nav__actionbtn" role="button" data-cmd="toggle-lightmode">
+                  <!-- <button class="nav__actionbtn" role="button" data-cmd="toggle-lightmode">
                     <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
                     </svg>
@@ -61,13 +65,15 @@
                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
                     </svg>
                     <p class="nav__actionbtn-lbl">Share</p>
-                  </button>
+                  </button> -->
               </div>
           </div>
 
       </header>
 
       <main class="main">
+
+        <div class="betabutton" data-cmd="open-beta-modal">BETA</div>
 
         <section class="main__topline">
           <div class="scalefilter" data-role="switcher">
@@ -84,7 +90,7 @@
             </div>
           </div>
 
-          <div class="scalefilter" data-role="switcher">
+          <div class="scalefilter scalefilter--disabled" data-role="switcher">
             <p class="scalefilter__lbl">Display</p>
             <div class="scalefilter__actions">
                 <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
@@ -142,7 +148,7 @@
 
 
 
-          <div class="scalefilter" data-role="switcher">
+          <div class="scalefilter scalefilter--disabled" data-role="switcher">
             <p class="scalefilter__lbl">Position</p>
             <div class="scalefilter__actions">
                 <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-0">All</button>
@@ -182,10 +188,10 @@
           <div class="footer__wrap">
             <div class="footer__version">
               <div class="footer__version-lbl">v0.1.0</div>
-              <a class="footer__version-feedback">Feedback</a>
+              <a class="footer__version-feedback" data-cmd="open-beta-modal">Feedback</a>
             </div>
-            <button id="clearLocalStorage" role="button" style="padding:3px; border:1px solid white">Clear LS</button>
-            <button id="getLocalStorage" role="button" style="padding:3px; border:1px solid white">GET LS</button>
+            <!-- <button id="clearLocalStorage" role="button" style="padding:3px; border:1px solid white">Clear LS</button>
+            <button id="getLocalStorage" role="button" style="padding:3px; border:1px solid white">GET LS</button> -->
             <a class="footer__link" href="https://www.linkedin.com/in/alex-spencer-7a298b46/">
               <span class="footer__linklbl">Made by Alex</span> 
               <img src="/src/img/face.jpg" class="footer__linkface" alt="Alex" title="Me">
@@ -195,6 +201,17 @@
       </footer>
 
     </div>
+
+    <dialog id="betaModal" class="modal">
+      <div class="modal__content">
+        <p class="modal__p">This is still in Beta, lots of options coming soon, but lots of options do not work, however the core feature of finding scales shapes is there.... any feedback would be appreciated.</p>
+        <p class="modal__p">Feedback can be sent to hello@superscale.online</p>
+        <form method="dialog">
+          <button data-cmd="close-beta-modal" class="modal__close">Close</button>
+        </form>
+      </div>
+
+    </dialog>
 
   </body>
 </html> 
