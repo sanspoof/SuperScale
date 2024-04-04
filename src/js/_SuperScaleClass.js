@@ -182,10 +182,10 @@ export class SuperScaleApp {
         this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
  
         this.settings.tuning[el.dataset.nutstring] = newValue;
-
+        
         this.saveSettings();
 
-    }
+    } 
 
     funcDisconnectNutObserver() {
     
@@ -193,11 +193,11 @@ export class SuperScaleApp {
         
     }
 
-    funcSetRootNoteModifier() {
+    funcSetRootNoteModifier(key) {
 
       let strModifier = "guitar__note--root";
 
-      let currentKey = this.settings.key;
+      let currentKey = key;
 
       let allNotes = this.guitarNeck.querySelectorAll("[data-note]");
 
@@ -205,7 +205,7 @@ export class SuperScaleApp {
 
         if(n.dataset.note == currentKey) {
           
-          n.classList.add(strModifier);
+          n.classList.add(strModifier); 
 
         }
 
@@ -304,7 +304,7 @@ export class SuperScaleApp {
 
         this.funcHighlightMAtchingNotes();
 
-        this.funcSetRootNoteModifier();
+        this.funcSetRootNoteModifier(this.settings.key); 
 
     }
 
@@ -315,7 +315,9 @@ export class SuperScaleApp {
         const notes = this.funcFindCommonNotes();
 
         elements.forEach(el => { 
+
             el.classList.remove('guitar__note--active', 'guitar__note--root');
+            
         });
 
         if(scale === 'none') { 
@@ -427,6 +429,8 @@ export class SuperScaleApp {
                     this.settings.scale = dataVal;
 
                     this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+                    
+                    this.funcSetRootNoteModifier(this.settings.key);
                     
                   }
 
