@@ -1,5 +1,6 @@
 import { SuperScaleApp } from './js/_SuperScaleClass.js';
-
+import { PesTip, PesTipManager } from './js/_tooltip.js';
+ 
 let superScaleApp = new SuperScaleApp();
 
 superScaleApp.init();  
@@ -22,6 +23,8 @@ const dialog = document.getElementById("betaModal");
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    funcStartToolTips();
+
     var buttons = document.querySelectorAll('[data-cmd]');
 
     buttons.forEach(function(button) {
@@ -40,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 case 'open-beta-modal':
 
-                dialog.showModal();
+                dialog.showModal(); 
 
                 break;
 
@@ -55,4 +58,45 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function funcStartToolTips() {
 
+    const tooltipItems = document.querySelectorAll('[data-tooltip]');
+
+    let tooltipManager;
+
+    if (tooltipItems.length === 0) {
+
+        console.log("No tooltips found on the page.");
+          
+    } else {
+        
+        tooltipManager = new PesTipManager();
+    
+        tooltipItems.forEach((tooltipItem) => {
+
+            if (tooltipItem._PesTip == undefined) {
+
+                let val = tooltipItem.dataset.tooltipPosition;
+
+                if (val) {
+
+                    let opts = {
+                        position: val
+                    }
+
+                    tooltipItem._PesTip = new PesTip(tooltipManager, tooltipItem, opts);
+
+                } else {
+
+                    tooltipItem._PesTip = new PesTip(tooltipManager, tooltipItem);
+
+                    console.log(tooltipItem._PesTip)
+
+                }
+
+            }
+
+        });
+    }
+
+}

@@ -1,5 +1,6 @@
 @import url(/src/scss/partials/vars.scss);
 @import url(/src/scss/partials/reset.scss);
+@import url(/src/scss/partials/font.scss);
 @import url(/src/scss/partials/components.scss);
  
 // Build the layout
@@ -8,13 +9,11 @@
 @import url(/src/scss/partials/body.scss);
 @import url(/src/scss/partials/guitar.scss);
 @import url(/src/scss/partials/modal.scss);
-
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,300;0,400;0,600;0,700;0,800;0,900;1,300&display=swap');
+@import url(/src/scss/partials/tooltip.scss);
  
 body {
     color:var(--col-txt);
-    font-family: 'Urbanist', sans-serif;
+    font-family: "basic-sans",sans-serif;
     font-weight: var(--global-fontsize);
     letter-spacing: var(--global-letterspacing);
 }
-

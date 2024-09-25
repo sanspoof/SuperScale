@@ -18,5 +18,8 @@
     "drafts": {
       "nesting": true
     }
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.6.11"
   }
 }
