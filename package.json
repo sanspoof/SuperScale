@@ -12,7 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.10.0",
-    "parcel": "^2.10.0"
+    "buffer": "^6.0.3",
+    "parcel": "^2.10.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10"
   },
   "@parcel/transformer-css": {
     "drafts": {
@@ -20,6 +23,7 @@
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.11"
+    "@floating-ui/dom": "^1.6.11",
+    "@supabase/supabase-js": "^2.43.5"
   }
 }

@@ -1,30 +1,204 @@
-#app { 
-    display: grid;
-    grid-template-rows: var(--layout-nav-height) 1fr var(--layout-footer-height);
-    height:100vh;
+
+
+body.authentication--in {
+    .superscale {
+        display: grid;
+    }
+
+    .superscalelogin {
+        display: none;
+    }
+
 }
 
-.main {
-    border-top:1px solid var(--col-3);
-    background-color:var(--col-1);
-    border-bottom: 1px solid var(--col-3);
-    display: grid;
-    grid-template-rows: var(--layout-guitargrid-top) 1fr var(--layout-guitargrid-bottom);
+body.authentication--out {
+    .superscale {
+        display: none;
+    }
 
-    &__topline, &__bottomline  {
+    .superscalelogin {
+        display: flex;
+    }
+}
+
+.superscale {
+    grid-template-rows: var(--layout-nav-height) 1fr;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: var(--layout-sidebar-width) 1fr;
+
+
+    &__head {
+        display: flex;
+        align-items: center;
+        padding:0px 8px;
+        grid-column: -1 / 1;
+        border-bottom:1px solid var(--col-line);
+        justify-content: space-between;
+
+        &-logo {
+            height:75%;
+        }
+    }
+
+    &__betabadge {
+        margin-right:auto;
+        margin-left:12px;
+        padding:2px 6px;
+        transform:rotate(-2deg);
+        background-color:var(--col-comingsoon);
+        font-size:0.75rem;
+        font-weight: 600;
+        font-family: var(--font-wide);
+    }
+
+    &__userdetails {
+        display:flex;
+        flex-direction: column;
+        text-align: right;
+
+        &-name {
+            font-size:0.75rem;
+            font-weight: var(--fontweight-bold);
+            color: var(--col-txt);
+        }
+
+        &-logout {
+            font-size:0.75rem;
+            font-weight: var(--fontweight-bold);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--sslogo-color2);
+            }
+
+            &:active {
+                text-underline-offset: 1px;
+            }
+        }
+    }
+
+    &__sidebar {
+        width: var(--layout-sidebar-width);
+        border-right: 1px solid var(--col-line);
+        align-items: center;
+        gap: 6px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+
+        &-divider {
+            margin:6px 0px;
+            height:1px;
+            background-color: var(--col-line);
+            width:40%;
+        }
+
+    }
+
+    &__subnav {
+        position:absolute;
+        top:0;
+        left:0;
+        height:50px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap:var(--layout-gap);
-    } 
-        
-    
-    &__middle {
+        gap:10px;
+        width:100%;
+        border-bottom: 1px solid var(--col-line);
+    }
+
+    &__mainwrap {
+        display: grid;
+        grid-template-rows: 1fr var(--layout-footer-height);
+        position: relative;
+    }
+
+    &__main {
+        border-bottom:1px solid var(--col-line);
+        padding:50px;
+        position: relative;
         display: flex;
         align-items: center;
+        justify-content: center;
+    }
 
-    } 
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 8px;
 
+        &-link {
 
+            display: flex;
+            align-items: center;
+            gap:10px;
 
-} 
+        }
+
+        &-lbl {
+            font-size:0.625rem;
+            font-weight:600;
+            font-family: var(--font-regular);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                color:var(--sslogo-color2);
+            }
+
+            &:active {
+                text-underline-offset: 1px;
+            }
+
+        }
+
+    }
+
+}
+
+.sidebtn {
+    $self:&;
+    cursor: pointer;
+    border-radius: 6px;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border: 1px solid var(--col-line);
+    transition:all linear 0.05s;
+
+    &__icon {
+        width:22px;
+        height:22px;
+        fill:#fff;
+    
+    }
+
+    &:hover {
+        background-color: var(--col-2);
+        border: 1px solid rgba(255 255 255 / 20%);
+
+        #{$self}__icon {
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        transform:translateY(1px);
+    }
+
+    &--pushtop {
+        margin-top: auto;
+    }
+
+    &--disabled {
+        opacity: 0.4;
+    }
+
+}

@@ -12,7 +12,7 @@
     <meta charset="utf-8"/>
     <title>Super Scale</title>
     <meta name="description" content="The easiest way to discover new scales on guitar">
-    <meta name="keywords" content="guitar scales, scales">
+    <meta name="keywords" content="guitar scales, scales, learn guitar">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.superscale.online">
     <link rel="stylesheet" href="./scss/style.scss" />
@@ -21,190 +21,220 @@
   </head>
   <body> 
 
-    <div id="app">
 
-      <header class="nav">
+    <div id="app" class="superscale">
 
-          <div class="nav__wrap">
-              <figure class="nav__logowrap">
-                <svg class="nav__logo" viewBox="0 0 32 32">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#superscale-logo"></use>
-                </svg>
-              </figure>
+        <header class="superscale__head">
+          <svg class="superscale__head-logo" viewBox="0 0 32 12">
+            <use href="/src/img/icons.svg#ss-logo"></use>
+          </svg>
+          <div class="superscale__betabadge">BETA</div>
+          <div class="superscale__userdetails">
+            <p class="superscale__userdetails-name" data-role="user"></p>
+            <button class="superscale__userdetails-logout" type="button" data-cmd="sign-out">Logout</button>
+          </div>
+          
+        </header>
 
-              <div class="nav__actions">
+        <aside class="superscale__sidebar">
 
-                  <div class="nav__comingsoon">
-                    <span class="nav__comingsoon-txt">Coming Soon</span>
-                    <button tabindex="0" class="nav__actionbtn" role="button">
-                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#arpeggio"></use>
-                      </svg>
-                      <p class="nav__actionbtn-lbl">Arpeggios</p>
-                      </button>
-                    <button tabindex="0" class="nav__actionbtn" role="button">
-                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#chords"></use>
-                      </svg>
-                      <p class="nav__actionbtn-lbl">Chords</p>
-                      
-                    </button>
-                    <button tabindex="0" class="nav__actionbtn" role="button">
-                      <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#chords"></use>
-                      </svg>
-                      <p class="nav__actionbtn-lbl">Metronome</p>
-                    </button>
-                  </div>
+          <button role="button" class="sidebtn" data-tooltip="Scale Tool" data-tooltip-position="right">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#scale"></use>
+            </svg>
+          </button>
 
-                  <!-- <button class="nav__actionbtn" role="button" data-cmd="toggle-lightmode">
-                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
-                    </svg>
-                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
-                    </svg>
-                  </button>
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Chords - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#chords"></use>
+            </svg>
+          </button>
 
-                  <button class="nav__actionbtn" role="button">
-                    <svg class="nav__actionbtn-icon" viewBox="0 0 32 32">
-                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/src/img/icons.svg#share"></use>
-                    </svg>
-                    <p class="nav__actionbtn-lbl">Share</p>
-                  </button> -->
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Arpeggios - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#arpeggio"></use>
+            </svg>
+          </button>
+
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Metronome - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#metronome"></use>
+            </svg>
+          </button>
+
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Triads  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#triad"></use>
+            </svg>
+          </button>
+
+          <span class="superscale__sidebar-divider"></span>
+
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Share  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#share"></use>
+            </svg>
+          </button>
+
+
+          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="App Settings - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#settings"></use>
+            </svg>
+          </button>
+
+        </aside> 
+
+
+        <main class="superscale__mainwrap">
+
+          
+          <section class="superscale__main">
+
+            <section class="superscale__subnav" aria-label="superscale-controls">
+              <div class="scalefilter" data-role="switcher">
+                <p class="scalefilter__lbl">Key</p>
+                <div class="scalefilter__actions">
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-A">A</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-B">B</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-C">C</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-D">D</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-E">E</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-F">F</button>
+                    <button tabindex="0" class="scalefilter__keybtn" role="button" data-val="key-G">G</button>
+    
+                </div>
               </div>
-          </div>
+    
+              <!-- <div class="scalefilter scalefilter--disabled" data-role="switcher">
+                <p class="scalefilter__lbl">Display</p>
+                <div class="scalefilter__actions">
+                    <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
+                    <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
+                </div>
+              </div> -->
 
-      </header>
+              <div class="scalefilter" data-role="switcher-select">
+                <p class="scalefilter__lbl">Scale</p>
+                <div class="scalefilter__actions">
+                    <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;">
+                        <option data-setting="none" value="none">No Scale</option>   
+                        <option data-setting="chromatic" value="chromatic">Chromatic</option>       
+                        <option data-setting="major" value="major">Major</option>
+                        <option data-setting="minor" value="minor">Minor</option>
+                        <option data-setting="harmonic_minor" value="harmonic_minor">Harmonic Minor</option>
+                        <option data-setting="melodic_minor" value="melodic_minor">Melodic Minor</option>
+                        <option data-setting="mixolydian" value="mixolydian">Mixolydian</option>
+                        <option data-setting="phrygian" value="phrygian">Phrygian</option>
+                        <option data-setting="dorian" value="dorian">Dorian</option>
+                        <option data-setting="locrian" value="dorian">Locrian</option>
+                        <option data-setting="lydian" value="lydian">Lydian</option>
+                    </select>
+                </div>
+              </div>
+    
+            </section>
 
-      <main class="main">
-
-        <div class="betabutton" data-cmd="open-beta-modal">BETA</div>
-
-        <section class="main__topline">
-          <div class="scalefilter" data-role="switcher">
-            <p class="scalefilter__lbl">Key</p>
-            <div class="scalefilter__actions">
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-A">A</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-B">B</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-C">C</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-D">D</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-E">E</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-F">F</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="key-G">G</button>
-
+            <div id="Guitar" class="guitar">
+          
+              <div class="guitar__nut">
+                <div class="guitar__nutnote" data-nutstring="1" data-nutnote="E"></div>
+                <div class="guitar__nutnote" data-nutstring="2" data-nutnote="B"></div>
+                <div class="guitar__nutnote" data-nutstring="3" data-nutnote="G"></div>
+                <div class="guitar__nutnote" data-nutstring="4" data-nutnote="D"></div>
+                <div class="guitar__nutnote" data-nutstring="5" data-nutnote="A"></div>
+                <div class="guitar__nutnote" data-nutstring="6" data-nutnote="E"></div>
+              </div>
+          
+              <div class="guitar__fretboard">
+          
+                <div class="guitar__string" data-string="1"></div>
+                <div class="guitar__string" data-string="2"></div>
+                <div class="guitar__string" data-string="3"></div>
+                <div class="guitar__string" data-string="4"></div>
+                <div class="guitar__string" data-string="5"></div>
+                <div class="guitar__string" data-string="6"></div>
+          
+              </div>
+          
+              <div class="guitar__fretmarkers">
+                <div class="guitar__fretmarker" data-fretmarker="1">1</div>
+                <div class="guitar__fretmarker" data-fretmarker="2">2</div>
+                <div class="guitar__fretmarker" data-fretmarker="3">3</div>
+                <div class="guitar__fretmarker" data-fretmarker="4">4</div>
+                <div class="guitar__fretmarker" data-fretmarker="5">5</div>
+                <div class="guitar__fretmarker" data-fretmarker="6">6</div>
+                <div class="guitar__fretmarker" data-fretmarker="7">7</div>
+                <div class="guitar__fretmarker" data-fretmarker="8">8</div>
+                <div class="guitar__fretmarker" data-fretmarker="9">9</div>
+                <div class="guitar__fretmarker" data-fretmarker="10">10</div>
+                <div class="guitar__fretmarker" data-fretmarker="11">11</div>
+                <div class="guitar__fretmarker" data-fretmarker="12">12</div>
+          
+              </div>
+          
             </div>
-          </div>
 
-          <div class="scalefilter scalefilter--disabled" data-role="switcher">
-            <p class="scalefilter__lbl">Display</p>
-            <div class="scalefilter__actions">
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="intervals">Intervals</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="notes">Notes</button>
-            </div>
-          </div>
-
-        </section>
-
-        <section class="main__middle">
- 
-          <div id="Guitar" class="guitar">
-
-            <div class="guitar__nut">
-              <div class="guitar__nutnote" data-nutstring="1" data-nutnote="E"></div>
-              <div class="guitar__nutnote" data-nutstring="2" data-nutnote="B"></div>
-              <div class="guitar__nutnote" data-nutstring="3" data-nutnote="G"></div>
-              <div class="guitar__nutnote" data-nutstring="4" data-nutnote="D"></div>
-              <div class="guitar__nutnote" data-nutstring="5" data-nutnote="A"></div>
-              <div class="guitar__nutnote" data-nutstring="6" data-nutnote="E"></div>
-            </div>
-            
-            <div class="guitar__fretboard">
-
-              <div class="guitar__string" data-string="1"></div>
-              <div class="guitar__string" data-string="2"></div>
-              <div class="guitar__string" data-string="3"></div>
-              <div class="guitar__string" data-string="4"></div>
-              <div class="guitar__string" data-string="5"></div>
-              <div class="guitar__string" data-string="6"></div>
-
-            </div>
-
-            <div class="guitar__fretmarkers">
-              <div class="guitar__fretmarker" data-fretmarker="1">1</div>
-              <div class="guitar__fretmarker" data-fretmarker="2">2</div>
-              <div class="guitar__fretmarker" data-fretmarker="3">3</div>
-              <div class="guitar__fretmarker" data-fretmarker="4">4</div>
-              <div class="guitar__fretmarker" data-fretmarker="5">5</div>
-              <div class="guitar__fretmarker" data-fretmarker="6">6</div>
-              <div class="guitar__fretmarker" data-fretmarker="7">7</div>
-              <div class="guitar__fretmarker" data-fretmarker="8">8</div>
-              <div class="guitar__fretmarker" data-fretmarker="9">9</div>
-              <div class="guitar__fretmarker" data-fretmarker="10">10</div>
-              <div class="guitar__fretmarker" data-fretmarker="11">11</div>
-              <div class="guitar__fretmarker" data-fretmarker="12">12</div>
-
-          </div>
-
-        </section>
-
-        <section class="main__bottomline">
-
-
-
-
-
-          <div class="scalefilter scalefilter--disabled" data-role="switcher">
-            <p class="scalefilter__lbl">Position</p>
-            <div class="scalefilter__actions">
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-0">All</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-1">1</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-2">2</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-3">3</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-4">4</button>
-                <button tabindex="0" class="scalefilter__btn" role="button" data-val="position-5">5</button>
-            </div>
-          </div>
-
-          <div class="scalefilter" data-role="switcher-select">
-            <p class="scalefilter__lbl">Scale</p>
-            <div class="scalefilter__actions">
-                <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;">
-                    <option data-setting="none" value="none">No Scale</option>   
-                    <option data-setting="chromatic" value="chromatic">Chromatic</option>       
-                    <option data-setting="major" value="major">Major</option>
-                    <option data-setting="minor" value="minor">Minor</option>
-                    <option data-setting="harmonic_minor" value="harmonic_minor">Harmonic Minor</option>
-                    <option data-setting="melodic_minor" value="melodic_minor">Melodic Minor</option>
-                    <option data-setting="mixolydian" value="mixolydian">Mixolydian</option>
-                    <option data-setting="phrygian" value="phrygian">Phrygian</option>
-                    <option data-setting="dorian" value="dorian">Dorian</option>
-                    <option data-setting="locrian" value="dorian">Locrian</option>
-                    <option data-setting="lydian" value="lydian">Lydian</option>
-                </select>
-            </div>
-          </div>
-
-        </section>
-
-      </main>
-
-      <footer class="footer">
-
-          <div class="footer__wrap">
-            <div class="footer__version">
-              <div class="footer__version-lbl">v0.1.0</div>
-              <a class="footer__version-feedback" data-cmd="open-beta-modal">Feedback</a>
-            </div>
-            <!-- <button id="clearLocalStorage" role="button" style="padding:3px; border:1px solid white">Clear LS</button>
-            <button id="getLocalStorage" role="button" style="padding:3px; border:1px solid white">GET LS</button> -->
-            <a class="footer__link" href="https://www.linkedin.com/in/alex-spencer-7a298b46/">
-              <span class="footer__linklbl">Made by Alex</span> 
-              <img src="/src/img/face.jpg" class="footer__linkface" alt="Alex" title="Me">
+          </section>
+          <footer class="superscale__footer" >
+            <a class="superscale__footer-link"  href="https://www.alexui.dev">
+              <span class="superscale__footer-lbl">Made by Alex</span> 
             </a>
-          </div>
+          </footer>
 
-      </footer>
+        </main>
+
+    </div>
+
+    <div class="superscalelogin">
+
+      <div class="superscalelogin__wrap">
+        <svg class="superscalelogin__logo">
+          <use href="/src/img/icons.svg#ss-logo"></use>
+        </svg>
+
+        <div class="superscalelogin__headings">
+          <h1 class="superscalelogin__title">The best way to find your shapes</h1>
+        
+        </div>
+
+        <form class="superscalelogin__form">
+            <div class="superscalelogin__action" data-role="login-email">
+              <label class="superscalelogin__lbl" for="email">Email Address</label>
+              <input autocomplete="email" type="email" class="superscalelogin__input" id="email" placeholder="The Email You Used to Register" required>
+
+              <svg class="superscalelogin__action-icontick">
+                <use href="/src/img/icons.svg#tick"></use>
+              </svg>
+              <svg class="superscalelogin__action-iconcross">
+                <use href="/src/img/icons.svg#cross"></use>
+              </svg>
+
+            </div>
+    
+            <div class="superscalelogin__action" data-role="login-password">
+              <label class="superscalelogin__lbl" for="password">Password</label>
+              <input autocomplete="new-password" type="password" class="superscalelogin__input" id="password" placeholder="Password" required>
+
+              <svg class="superscalelogin__action-icontick">
+                <use href="/src/img/icons.svg#tick"></use>
+              </svg>
+              <svg class="superscalelogin__action-iconcross">
+                <use href="/src/img/icons.svg#cross"></use>
+              </svg>
+            </div>
+
+            <button class="superscalelogin__button" data-cmd="sign-in" id="signInButton" type="button">Sign In<span class="superscalelogin__button-loading"></span></button>
+            <button style="display: none;" class="superscalelogin__button" data-cmd="sign-up" id="signUpButton" type="button">Sign Up<span class="superscalelogin__button-loading"></span></button>
+
+            <p  class="superscalelogin__formcta" data-role="sign-up-statement" >Dont have an account yet?&nbsp;<button class="superscalelogin__formcta-btn" type="button" data-cmd="show-sign-up" >Sign Up for FREE</button></p>
+            <p style="display:none" class="superscalelogin__formcta" data-role="sign-in-statement" >Already have an Account?&nbsp;<button class="superscalelogin__formcta-btn" type="button" data-cmd="show-sign-in">Sign In</button></p>
+            <!-- <button type="button" data-cmd="sign-out" id="signOutButton">Sign Out</button> -->
+
+            <p id="feedback"></p>
+
+          </form>
+
 
     </div>
 

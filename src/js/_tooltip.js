@@ -83,7 +83,7 @@ class PesTip {
         this.tooltipManager = tooltipManager;
 
         const defaults = {
-            offset: 6, // px offset around the element 
+            offsetposition: 12, // px offset around the element 
             padding: 5,
             position: options.position,
             
@@ -117,7 +117,7 @@ class PesTip {
 
     computePosition() {
 
-        const { offsetValue, padding, position } = this.options;
+        const { offsetposition, padding, position } = this.options;
 
         return computePosition(this.button, this.tooltip, {
 
@@ -125,7 +125,7 @@ class PesTip {
 
             middleware: [ // look these up in the documentation 
 
-                offset(offsetValue),
+                offset(offsetposition),
 
                 autoPlacement({
                     allowedPlacements: [position],
@@ -134,7 +134,7 @@ class PesTip {
                     // autoAlignment: undefined,
                 }),
 
-                shift({ padding }),
+                shift({ padding, boundary: 'viewport', rootBoundary: 'document' }),
 
             ],
 
@@ -253,7 +253,7 @@ class PesTip {
 
         //this.animateFadeOut();
 
-        this.initCleanup();
+        this.cleanup?.();
 
     }
 

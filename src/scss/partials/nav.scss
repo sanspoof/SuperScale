@@ -1,4 +1,3 @@
-@use "./components" as *;
 
 .nav {
     background-color:var(--col-2);
@@ -26,7 +25,7 @@
     }
 
     &__actionbtn {
-        @include roundbtn;
+       
         --component-fontsize:0.875rem;
         height:38px;
     }

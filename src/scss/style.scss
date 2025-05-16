@@ -10,10 +10,14 @@
 @import url(/src/scss/partials/guitar.scss);
 @import url(/src/scss/partials/modal.scss);
 @import url(/src/scss/partials/tooltip.scss);
+@import url(/src/scss/partials/login.scss);
+
  
 body {
+    background-color:var(--col-bodybgcol); 
     color:var(--col-txt);
-    font-family: "basic-sans",sans-serif;
+    font-family:var(--font-regular);
     font-weight: var(--global-fontsize);
     letter-spacing: var(--global-letterspacing);
+    position:relative;
 }

@@ -4,8 +4,9 @@
     --global-letterspacing:0.04rem;
 
     --var:#fff;
-    --layout-nav-height:100px;
-    --layout-footer-height:40px;
+    --layout-nav-height:55px;
+    --layout-sidebar-width:60px;
+    --layout-footer-height:38px;
     --layout-pagewidth:1400px;
     --layout-gap:8px;
 
@@ -13,27 +14,37 @@
     --layout-guitargrid-bottom:var(--layout-guitargrid-top);
     --layout-guitargrid-middle:1fr;
 
-    --fontweight-light:600;
-    --fontweight-regular:700;
-    --fontweight-bold:900;
-    --fontweight-megabold:900;
+    --fontweight-light:400;
+    --fontweight-regular:400;
+    --fontweight-bold:500;
+    --fontweight-megabold:600;
+
+    --font-wide:"roc-grotesk-wide", sans-serif;
+    --font-regular:"roc-grotesk", sans-serif;
 
     --component-fontsize:0.875rem;
     --component-buttonheight:40px;
     --component-filterheight:60px;
 
+    --col-bodybgcol:#171717;
     --col-1:#1C2125;
     --col-2:#1C2125;
     --col-3:#292F3A;
+    --col-line:#3b424f;
     --col-3--hover:#3a414f;
-    --col-accent:#7A5CFF;
-    --col-note-accent:#F61A5D;
-    --col-note-root:orange;
+    --col-accent:#595aff;
+    --col-accent--hover:#7a10ff;
+    --col-note-accent:#7a5cff;
+    --col-note-root:#ff931e;
     --col-txt:#fff;
     --col-guitar-string:#5A5D67;
     --col-guitar-fret:#B8BCBE;
     --col-guitar-note-border:var(--col-guitar-fret);
     --col-guitar-nut:#fff;
     --col-comingsoon:#d14e7f;
+
+    --sslogo-color1:#fff;
+    --sslogo-color2:var(--col-note-root);
+    --sslogo-color3:var(--col-accent);
 
 }

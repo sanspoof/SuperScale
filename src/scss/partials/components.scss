@@ -1,21 +1,23 @@
-@mixin roundbtn {
+@mixin btnbase {
     --iconsize:20px;
     display:flex;
     align-items: center;
-    border-radius: 100px;
-    background-color:var(--col-3);
-    font-weight:var(--fontweight-regular);
-    font-size:var(--component-fontsize);
-    height:var(--component-buttonheight);
-    min-width: var(--component-buttonheight);
-    padding:0px 16px; 
-    gap:6px;
+    font-weight:var(--fontweight-wide);
+    font-size:0.75rem;
+    height:34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     line-height:0;
+    width:38px;
+    font-weight: 600;
+    border:1px solid var(--col-line);
+    
     outline:2px solid transparent;
     outline-offset: 1px;
 
     &:hover {
-        outline-color:var(--col-accent);
+        background-color:var(--col-accent);
         cursor: pointer;
     }
 
@@ -34,7 +36,7 @@
 } 
 
 @mixin selectbox {
-    @include roundbtn;
+    @include btnbase;
     line-height: 1rem;
     width:auto;
     text-align: center;
@@ -46,41 +48,50 @@
     display:flex;
     align-items: center;
     width:fit-content;
-    gap:calc(var(--layout-gap) * 2);
-    border-radius: 100px;
+    gap:calc(var(--layout-gap) * 1);
     background-color:transparent;
-    font-weight:var(--fontweight-bold);
-    font-size:var(--component-fontsize);
-    height:var(--component-filterheight);
-    padding:0 10px 0 20px; 
-    line-height:0;
-    border:1px solid var(--col-3);
+    font-family: var(--font-wide);
+    font-weight: 600;
+    font-size:0.75rem;
+    padding:0px 12px;
+    border-right:1px solid var(--col-line);
+    border-left:1px solid var(--col-line);
+
+    &:first-child {
+        border-left:none;
+    }
+
+    &:last-child {
+        border-right:none;
+    }
+
 
     &__lbl {
-        font-weight: var(--fontweight-regular);
-        line-height: normal;
+        font-family: var(--font-wide);
+        font-weight: 600;
+        font-size:0.75rem;
+        text-transform: uppercase;
     }
 
     &__actions {
         display: flex;
         align-items: center;
-        gap:calc(var(--layout-gap) / 1.5);
+        
 
     }
 
-    &__btn {
-        @include roundbtn;
+    &__keybtn {
+        @include btnbase;
+        &:not(:last-child) {
+            border-right:none;
+        }
 
         &:hover {
-            background-color:var(--col-3--hover);
+            background-color:var( --col-accent);
         }
 
         &.active {
             background-color: var( --col-accent);
-
-            &:hover {
-                 outline-color: var( --col-accent);
-            }
 
         }
 

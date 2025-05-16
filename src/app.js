@@ -1,27 +1,12 @@
-import { SuperScaleApp } from './js/_SuperScaleClass.js';
+
 import { PesTip, PesTipManager } from './js/_tooltip.js';
- 
-let superScaleApp = new SuperScaleApp();
-
-superScaleApp.init();  
-
-console.log(superScaleApp.loadSettingsFromStorage());
-
-// document.querySelector('#clearLocalStorage').addEventListener('click', (event) => { 
-
-//     superScaleApp.funcClearSettings();
-
-// });
-
-// document.querySelector('#getLocalStorage').addEventListener('click', (event) => { 
-
-//     console.log(superScaleApp.loadSettingsFromStorage());
-
-// });
+import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode }  from './js/_auth.js';
 
 const dialog = document.getElementById("betaModal");
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    funcInitAuthUI();
 
     funcStartToolTips();
 
@@ -43,13 +28,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 case 'open-beta-modal':
 
-                dialog.showModal(); 
+                    dialog.showModal(); 
+
+                break;
+
+                case 'sign-up':
+
+                    funcSignUpToService();
 
                 break;
 
                 case 'close-beta-modal':
 
-                dialog.close();
+                    dialog.close();
+
+                break;
+
+                case 'sign-in':
+
+                    funcSignInWithExistingEmail();
+                
+                break;
+
+                case 'sign-out':
+
+                    signOutUser();
+                
+                break;
+
+                case 'get-user-settings':
+
+                    funcGetData();
+                    
+                break;
+
+                case 'show-sign-in':
+
+                    funcSwitchSignInMode.call(this);
+
+                break;
+
+                case 'show-sign-up':
+
+                    funcSwitchSignInMode.call(this);
 
                 break;
 
@@ -57,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
 
 function funcStartToolTips() {
 
@@ -73,7 +96,7 @@ function funcStartToolTips() {
         tooltipManager = new PesTipManager();
     
         tooltipItems.forEach((tooltipItem) => {
-
+            
             if (tooltipItem._PesTip == undefined) {
 
                 let val = tooltipItem.dataset.tooltipPosition;

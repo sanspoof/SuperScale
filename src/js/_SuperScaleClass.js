@@ -10,7 +10,13 @@ export class SuperScaleApp {
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
-      this.defaults = { scale:"minor", position:0, key:"C", display:"notes", tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } };
+      this.defaults = { 
+        scale:"minor", 
+        position:0, 
+        key:"C", 
+        display:"notes", 
+        tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } 
+      };
 
       this.settings = this.loadSettingsFromStorage() || {}; 
       this.settings = this.createPassiveSettingsProxy(this.settings);
@@ -35,12 +41,17 @@ export class SuperScaleApp {
     }
 
     init() { 
-
+        this.scales = scaleData.Scales;
         this.funcSetupFretboard();
         this.funcSetupControls();  
         this.funcObserveNut(); 
 
     }
+
+    destroy() {
+        this.scales = null;
+    }
+
 
     // Need to make sharps and Flats appear in the same box....
 

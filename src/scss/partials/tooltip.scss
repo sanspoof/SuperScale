@@ -1,14 +1,16 @@
 .tooltip {
     display: none;
-    background: rgb(15 24 33 / 100%);
+    background: var(--col-bodybgcol);
     color: #fff;
     font-weight: var(--fontweight-regular);
-    padding: 6px 8px;
+    padding: 10px 14px;
     border-radius: 4px;
-    font-size: .7rem;
+    font-size: .825rem;
+    border:1px solid rgba(255 255 255 / 9%);
   width: max-content;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 9999;
+  will-change: transform;
 }  
