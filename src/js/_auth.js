@@ -280,10 +280,10 @@ export async function funcInitAuthUI() {
         });
     
 }
-
+ 
 export function funcSwitchSignInMode() {
 
-    _this = this;
+    let _this = this;
 
     let elDataCmd = _this.getAttribute('data-cmd');
 
