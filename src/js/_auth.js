@@ -7,7 +7,7 @@ import { setUserEmail, getUserEmail, waitForUserEmail } from './_globals.js';
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabaseTable = process.env.SUPABASE_TABLE;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey); 
 let userName = document.getElementById('email');
 let userPass = document.getElementById('password');
 let elSignInButton = document.getElementById('signInButton');
@@ -280,7 +280,58 @@ export async function funcInitAuthUI() {
         });
     
 }
- 
+
+export async function funcUpdateUserSettings() {
+
+    const darkMode = document.getElementById('DarkMode').checked;
+  
+    try {
+
+      const {
+
+        data: { user },
+
+        error: userError
+
+      } = await supabase.auth.getUser();
+  
+      if (userError || !user) {
+
+        console.error('No user is signed in or error fetching user:', userError?.message);
+
+        return;
+      }
+  
+      const userId = user.id;
+  
+      const { error: updateError } = await supabase
+
+        .from(supabaseTable)
+
+        .update({ 
+            dark_mode: darkMode 
+        }) 
+
+        .eq('user_id', userId); // match the row by user_id
+  
+      if (updateError) {
+
+        console.error('Error updating data:', updateError.message);
+
+        return;
+
+      }
+  
+      console.log('User settings updated successfully');
+
+    } catch (err) {
+
+      console.error('Error updating data:', err.message);
+
+    }
+
+  }
+
 export function funcSwitchSignInMode() {
 
     let _this = this;
@@ -321,4 +372,6 @@ export function funcSwitchSignInMode() {
     
 
 }
+ 
+
 

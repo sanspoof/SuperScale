@@ -6,6 +6,7 @@ export class SuperScaleApp {
 
       this.scales = scaleData.Scales;
       this.guitarNotes = scaleData.GuitarNotes.notes;
+      this.ChordFormulas = scaleData.ChordFormulas;
       this.guitarNeck = document.querySelector('#Guitar');
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
@@ -14,6 +15,7 @@ export class SuperScaleApp {
         scale:"minor", 
         position:0, 
         key:"C", 
+        showAllNotes:"true",
         display:"notes", 
         tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } 
       };
@@ -22,6 +24,7 @@ export class SuperScaleApp {
       this.settings = this.createPassiveSettingsProxy(this.settings);
       this.settings.scale = this.settings.scale || this.defaults.scale;
         this.settings.position = this.settings.position || this.defaults.position;
+        this.settings.showAllNotes = this.settings.showAllNotes || this.defaults.showAllNotes;
         this.settings.key = this.settings.key || this.defaults.key;
         this.settings.display = this.settings.display || this.defaults.display;
         this.settings.tuning = this.settings.tuning || this.defaults.tuning;
@@ -41,11 +44,12 @@ export class SuperScaleApp {
     }
 
     init() { 
+      
         this.scales = scaleData.Scales;
         this.funcSetupFretboard();
         this.funcSetupControls();  
         this.funcObserveNut(); 
-
+        this.functionGetTriadNotesFromScale();
     }
 
     destroy() {
@@ -80,7 +84,7 @@ export class SuperScaleApp {
     
     }
 
-    funcHighlightMAtchingNotes() { 
+    funcHighlightMatchingNotes() { 
 
       const elements = document.querySelectorAll('[data-note]');
 
@@ -134,7 +138,6 @@ export class SuperScaleApp {
         });
 
        });
-
 
     }
 
@@ -313,7 +316,7 @@ export class SuperScaleApp {
         
         this.guitarNeck.classList.add("position-" + this.settings.position);
 
-        this.funcHighlightMAtchingNotes();
+        this.funcHighlightMatchingNotes();
 
         this.funcSetRootNoteModifier(this.settings.key); 
 
@@ -383,6 +386,18 @@ export class SuperScaleApp {
 
       }
 
+      functionGetTriadNotesFromScale() {
+
+        let currentScale = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
+
+        let formula = this.ChordFormulas.major; // major triad
+      
+        const arrTriadNotes = formula.map(degree => currentScale[degree - 1]);
+      
+        console.log(arrTriadNotes);
+
+      }
+
     funcSetTuningBasedOnNutNote(nutnote) { 
         const targetValue = nutnote;
       
@@ -401,6 +416,7 @@ export class SuperScaleApp {
         }
       }
 
+
     funcSetupControls() {
         
         const controls = document.querySelectorAll('[data-role="switcher"]');
@@ -408,6 +424,11 @@ export class SuperScaleApp {
         const selectElement = document.querySelector('[data-role="switcher-select"]');
 
         const selectEl = document.querySelector('#selectedScale');
+
+        const radioShowAllNotes = document.querySelector('input[name="notes"][value="all"]');
+
+        const radioShowScaleNotesOnly = document.querySelector('input[name="notes"][value="scaleonly"]');
+      
 
         let selectedScale = this.settings.scale;
 
@@ -448,6 +469,46 @@ export class SuperScaleApp {
             });
 
           }
+
+        if(radioShowAllNotes) { 
+
+          if(this.settings.showAllNotes == "true") { 
+
+            radioShowAllNotes.checked = true;
+            
+          } else {
+
+            radioShowScaleNotesOnly.checked = true;
+
+            this.guitarNeck.classList.add('showscalenotesonly');
+
+          }
+
+          const radios = document.querySelectorAll('input[name="notes"]');
+
+          radios.forEach(radio => {
+
+            radio.addEventListener('change', (e) => {
+
+              if (e.target.value == 'all') {
+
+                this.settings.showAllNotes = "true";
+
+                this.guitarNeck.classList.remove('showscalenotesonly');
+
+              } else if (e.target.value == 'scaleonly') {
+
+                this.guitarNeck.classList.add('showscalenotesonly');
+
+                this.settings.showAllNotes = "false";
+
+              }
+
+            });
+
+          });
+
+        }
 
         controls.forEach(control => {
 

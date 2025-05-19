@@ -1,13 +1,13 @@
 
 import { PesTip, PesTipManager } from './js/_tooltip.js';
-import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode }  from './js/_auth.js';
+import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
 
 const dialog = document.getElementById("betaModal");
 
 document.addEventListener('DOMContentLoaded', function() {
 
     funcInitAuthUI();
-
+ 
     funcStartToolTips();
 
     var buttons = document.querySelectorAll('[data-cmd]');
@@ -71,6 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'show-sign-up':
 
                     funcSwitchSignInMode.call(this);
+
+                break;
+
+                case 'update-user-settings':
+
+                    funcUpdateUserSettings();
 
                 break;
 

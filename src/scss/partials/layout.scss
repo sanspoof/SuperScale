@@ -108,6 +108,14 @@ body.authentication--out {
         gap:10px;
         width:100%;
         border-bottom: 1px solid var(--col-line);
+
+        &--bottom {
+            bottom:0;
+            top:initial;
+            border-top: 1px solid var(--col-line);
+            border-bottom: none;
+        }
+
     }
 
     &__mainwrap {
