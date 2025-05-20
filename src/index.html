@@ -12,7 +12,7 @@
     <meta charset="utf-8"/>
     <title>Super Scale</title>
     <meta name="description" content="The easiest way to discover new scales on guitar">
-    <meta name="keywords" content="guitar scales, scales, learn guitar">
+    <meta name="keywords" content="guitar scales, scales, learn guitar, chords, arpeggios, guitar, triads">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,7 +54,7 @@
 
         <aside class="superscale__sidebar">
 
-          <button role="button" class="sidebtn" data-tooltip="Scale Tool" data-tooltip-position="right">
+          <button role="button" class="sidebtn sidebtn--selected" data-tooltip="Scale Tool" data-tooltip-position="right">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#scale"></use>
             </svg>
@@ -131,7 +131,7 @@
               </div> -->
 
               <div class="scalefilter" data-role="switcher-select">
-                <p class="scalefilter__lbl">Scale</p>
+                <label class="scalefilter__lbl" for="selectedScale">Scale</label>
                 <div class="scalefilter__actions">
                     <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;">
                         <option data-setting="none" value="none">No Scale</option>   
@@ -147,6 +147,13 @@
                         <option data-setting="lydian" value="lydian">Lydian</option>
                     </select>
                 </div>
+              </div>
+
+              <div class="scalefilter" data-role="switcher-select">
+                <label class="scalefilter__lbl" for="setTuning">Set Tuning</label>
+                <select class="scalefilter__select" id="setTuning" style="min-width: fit-content;">
+                  <option data-setting="standard" value="none">Standard</option>
+                </select>
               </div>
     
             </section>
@@ -201,11 +208,18 @@
                     <label class="radio" for="show_only_scale_note">Show Scale</label>
                   </div>
                 </div>
+
+                <div class="scalefilter" data-role="switcher" style="display: none;" >
+                  <label class="scalefilter__lbl" for="head">User Settings</label>
+                  <input type="color" id="accentColor" name="head" value="#e66465" />
+                  
+                </div>
+
             </section>
 
           </section>
           <footer class="superscale__footer" >
-            <a class="superscale__footer-link"  href="https://www.alexui.dev">
+            <a class="superscale__footer-link"  href="https://www.alexui.dev" target="_blank">
               <span class="superscale__footer-lbl">Made by Alex</span> 
             </a>
           </footer>

@@ -55,7 +55,7 @@ body.authentication--out {
     &__userdetails {
         display:flex;
         flex-direction: column;
-        text-align: right;
+        align-items: end;
 
         &-name {
             font-size:0.75rem;
@@ -85,15 +85,16 @@ body.authentication--out {
         border-right: 1px solid var(--col-line);
         align-items: center;
         gap: 6px;
-        padding-top: 10px;
+        padding: 10px 0px;
         display: flex;
         flex-direction: column;
 
         &-divider {
-            margin:6px 0px;
-            height:1px;
             background-color: var(--col-line);
-            width:40%;
+            width: 100%;
+            height: 1px;
+            margin: 6px 0;
+            margin-top: auto;
         }
 
     }
@@ -104,8 +105,7 @@ body.authentication--out {
         left:0;
         height:50px;
         display: flex;
-        justify-content: space-between;
-        gap:10px;
+        
         width:100%;
         border-bottom: 1px solid var(--col-line);
 
@@ -126,7 +126,7 @@ body.authentication--out {
 
     &__main {
         border-bottom:1px solid var(--col-line);
-        padding:50px;
+        padding: 50px 14px;
         position: relative;
         display: flex;
         align-items: center;
@@ -149,7 +149,6 @@ body.authentication--out {
 
         &-lbl {
             font-size:0.625rem;
-            font-weight:600;
             font-family: var(--font-regular);
             text-decoration: underline;
             text-underline-offset: 2px;
@@ -175,11 +174,14 @@ body.authentication--out {
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 44px;
     display: flex;
     border: 1px solid var(--col-line);
     transition:all linear 0.05s;
+    position: relative;
+
+
 
     &__icon {
         width:22px;
@@ -206,7 +208,17 @@ body.authentication--out {
     }
 
     &--disabled {
-        opacity: 0.4;
+        cursor: initial;
+    }
+
+    &--selected {
+        border: 1px solid rgba(255 255 255 / 40%);
+
+        &:hover {
+            background-color: var(--col-2);
+            border: 1px solid rgba(255 255 255 / 40%);
+        }
+
     }
 
 }

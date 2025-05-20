@@ -1,7 +1,7 @@
 require('dotenv').config();
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
-import { setUserEmail, getUserEmail, waitForUserEmail } from './_globals.js';
+import { setUserSettings, getUserSettings, waitForUserSettings  } from './_globals.js';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -12,6 +12,7 @@ let userName = document.getElementById('email');
 let userPass = document.getElementById('password');
 let elSignInButton = document.getElementById('signInButton');
 let elSignUpButton = document.getElementById('signUpButton');
+let elAccentColourInput = document.getElementById('accentColor');
 let elFeedback = document.getElementById('feedback');
 let superScaleApp = new SuperScaleApp();
 let strUser = document.querySelector('[data-role="user"]');
@@ -154,11 +155,11 @@ function funcValidateAndSignUp(email, pass) {
 
         if(!repass.test(pass)) {
 
-        userPass.closest(`.${strAction}`).classList.add(`${strAction}--error`);
+            userPass.closest(`.${strAction}`).classList.add(`${strAction}--error`);
 
-        userPass.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
+            userPass.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
         
-    }
+        }
 
     }
 
@@ -172,10 +173,7 @@ export function funcSignInWithExistingEmail() {
 
     signInWithEmail(userNameVal, userPassVal);
 
-
 }
-
-
 
 
 export async function signOutUser() {
@@ -210,16 +208,21 @@ export async function funcGetData() {
 
         const { data, error: fetchError } = await supabase
             .from(supabaseTable)
-            .select('*');
+            .select('*')
+            .eq('user_id', user.id) // If you're filtering by user
+            .single(); // Use .single() if expecting one row
 
         if (fetchError) {
             console.error('Error fetching data:', fetchError.message);
             return;
         }
 
-        console.log('Fetched data:', data);
+        console.log('Fetched user settings:', data);
 
-        setUserEmail(user.email); // Triggers the promise resolve
+        setUserSettings({
+            email: user.email,
+            accentColor: data.accent_color
+        });
 
     } catch (err) {
         console.error('Error fetching data:', err.message);
@@ -235,50 +238,55 @@ function funcShowFeedback(message) {
 
 export async function funcInitAuthUI() {
 
-        document.body.classList.add('authentication--checking');
+    document.body.classList.add('authentication--checking');
 
-        const updateAuthUI = async (session) => {
+    // Check if the user is already authenticated
+    const { data: { session } } = await supabase.auth.getSession();
 
+    const updateAuthUI = async (session) => {
+
+        if (!session) {
+            // User is not logged in
+            document.body.classList.add('authentication--out');
+            document.body.classList.remove('authentication--in');
             document.body.classList.remove('authentication--checking');
+            funcDestroySuperScale();
+            return;
+        }
 
-            if (session) {
+        // User is logged in
+        document.body.classList.add('authentication--in');
+        document.body.classList.remove('authentication--out');
+        document.body.classList.remove('authentication--checking');
 
-                document.body.classList.add('authentication--in');
+        funcStartSuperScale();
 
-                document.body.classList.remove('authentication--out');
+        // Fetch user data
+        await funcGetData();
 
-                funcStartSuperScale();
+        // Update UI with user details
+        funcUpdateUIWithUserDetails();
+    };
 
-                await funcGetData();
-            
-                const email = await waitForUserEmail();
+    // Update the UI based on the current session
+    await updateAuthUI(session);
 
-                strUser.innerHTML = email;
+    // Listen for auth state changes
+    supabase.auth.onAuthStateChange(async (event, session) => {
 
-            
-            } else {
+        await updateAuthUI(session);
 
-                document.body.classList.add('authentication--out');
+    });
+}
 
-                document.body.classList.remove('authentication--in');
+async function funcUpdateUIWithUserDetails() {
 
-                funcDestroySuperScale();
+    const { email, accentColor } = await waitForUserSettings();
 
-            }
-
-        };
-
-        supabase.auth.getSession().then(({ data: { session } }) => {
-
-            updateAuthUI(session);
-
-        });
-
-        supabase.auth.onAuthStateChange((event, session) => {
-
-            updateAuthUI(session);
-        });
+    strUser.innerHTML = email;
     
+    elAccentColourInput.value = accentColor;
+
 }
 
 export async function funcUpdateUserSettings() {

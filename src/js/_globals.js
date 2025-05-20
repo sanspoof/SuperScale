@@ -1,28 +1,22 @@
-let userEmail = null;
-
-let resolveEmailPromise;
-
-const emailReady = new Promise((resolve) => {
-
-    resolveEmailPromise = resolve;
-
-});
-
-export function setUserEmail(email) {
-
-    userEmail = email;
-    
-    resolveEmailPromise(email);
-
+function createDeferred() {
+    let resolve;
+    const promise = new Promise((res) => (resolve = res));
+    return { promise, resolve };
 }
 
-export function getUserEmail() {
+const userSettingsDeferred = createDeferred();
 
-    return userEmail;
+let userSettings = null;
 
+export function setUserSettings(settings) {
+    userSettings = settings;
+    userSettingsDeferred.resolve(settings);
 }
 
-//  async getter
-export async function waitForUserEmail() {
-    return emailReady;
+export function getUserSettings() {
+    return userSettings;
+}
+
+export function waitForUserSettings() {
+    return userSettingsDeferred.promise;
 }

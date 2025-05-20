@@ -3,12 +3,19 @@ import { PesTip, PesTipManager } from './js/_tooltip.js';
 import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
 
 const dialog = document.getElementById("betaModal");
+const elAccentColor = document.getElementById('accentColor');
 
 document.addEventListener('DOMContentLoaded', function() {
 
     funcInitAuthUI();
  
     funcStartToolTips();
+
+    elAccentColor.addEventListener('input', function(e) {
+
+        console.log("Accent Color: ", e.target.value);
+
+     });
 
     var buttons = document.querySelectorAll('[data-cmd]');
 
