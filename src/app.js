@@ -5,6 +5,7 @@ import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInit
 const dialog = document.getElementById("betaModal");
 const elAccentColor = document.getElementById('accentColor');
 
+
 document.addEventListener('DOMContentLoaded', function() {
 
     funcInitAuthUI();
@@ -92,6 +93,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+export function funcAnimateLoginLogo() {
+
+    const polygons = document.querySelectorAll("#Nav polygon");
+
+    const logodots = document.querySelector("#Nav .dots");
+
+    const logorootdots = document.querySelector("#Nav .rootdots");
+
+    const polygonDelay = 100;
+
+    polygons.forEach((polygon, index) => {
+
+        polygon.style.opacity = 0; // Start hidden
+  
+        polygon.style.transition = "opacity 0.5s ease";
+  
+        setTimeout(() => {
+  
+          polygon.style.opacity = 1;
+  
+        }, index * polygonDelay);
+  
+      });
+
+
+      [logorootdots, logodots].forEach(el => {
+
+        el.style.transform = "translate(0px, 6px)";
+
+        el.style.opacity = 0;
+
+      });
+
+        setTimeout(() => {
+
+            [logorootdots, logodots].forEach(el => { 
+
+                el.style.transform = "translate(0px, 0px)";
+
+                el.style.opacity = 1;
+
+                el.style.transition = "all 0.5s ease";
+
+            });
+
+        }, polygons.length * polygonDelay);
+
+}
 
 
 function funcStartToolTips() {

@@ -1,6 +1,7 @@
 require('dotenv').config();
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
+import { funcAnimateLoginLogo } from '../app.js';
 import { setUserSettings, getUserSettings, waitForUserSettings  } from './_globals.js';
 
 // Initialize Supabase client
@@ -251,11 +252,14 @@ export async function funcInitAuthUI() {
 
         if (!session) {
             // User is not logged in
+            
             document.body.classList.add('authentication--out');
 
             document.body.classList.remove('authentication--in');
 
             document.body.classList.remove('authentication--checking');
+
+            funcAnimateLoginLogo();
 
             funcDestroySuperScale();
 
