@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 export function funcAnimateLoginLogo() {
 
-    const polygons = document.querySelectorAll("#Nav polygon");
+    const polygons = document.querySelectorAll(".logotiles");
 
     const logodots = document.querySelector(".dots");
 
