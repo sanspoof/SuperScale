@@ -16,6 +16,7 @@ export class SuperScaleApp {
         position:0, 
         key:"C", 
         showAllNotes:"true",
+        showFlats:"true",
         display:"notes", 
         tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } 
       };
@@ -25,6 +26,7 @@ export class SuperScaleApp {
       this.settings.scale = this.settings.scale || this.defaults.scale;
         this.settings.position = this.settings.position || this.defaults.position;
         this.settings.showAllNotes = this.settings.showAllNotes || this.defaults.showAllNotes;
+        this.settings.showFlats = this.settings.showFlats || this.defaults.showFlats;
         this.settings.key = this.settings.key || this.defaults.key;
         this.settings.display = this.settings.display || this.defaults.display;
         this.settings.tuning = this.settings.tuning || this.defaults.tuning;
@@ -252,13 +254,31 @@ export class SuperScaleApp {
 
           if(Array.isArray(startingNutNote)) { 
 
-              const combinedNotes = startingNutNote.join(':');
+            const combinedNotes = startingNutNote.join(':');
 
-              noteElement.setAttribute('data-note', combinedNotes);
+            noteElement.setAttribute('data-note', combinedNotes);
 
-              noteElement.textContent = combinedNotes.split(':').join('/');
+            // Clear the noteElement content
+            noteElement.innerHTML = '';
 
-              noteElement.classList.add('guitar__note--sharpflat');
+            // Add each note in a separate <span>
+            startingNutNote.forEach(note => {
+
+                const span = document.createElement('span');
+
+                if(note.includes('#')) {
+                    span.classList.add('guitar__note--sharp');
+                } else {
+                    span.classList.add('guitar__note--flat');
+                }
+
+                span.textContent = note;
+
+                noteElement.appendChild(span);
+
+            });
+
+            noteElement.classList.add('guitar__note--sharpflat');
 
           } else {
 
@@ -268,8 +288,6 @@ export class SuperScaleApp {
 
           }
 
-
-      
           stringElement.appendChild(el);
 
           startingNutNote = this.getNextNote(startingNutNote, this.guitarNotes);
@@ -430,6 +448,9 @@ export class SuperScaleApp {
 
         const radioShowScaleNotesOnly = document.querySelector('input[name="notes"][value="scaleonly"]');
       
+        const radioShowSharps = document.querySelector('input[name="sharpsflats"][value="sharps"]');
+
+        const radioShowFlats = document.querySelector('input[name="sharpsflats"][value="flats"]');
 
         let selectedScale = this.settings.scale;
 
@@ -502,6 +523,48 @@ export class SuperScaleApp {
                 this.guitarNeck.classList.add('showscalenotesonly');
 
                 this.settings.showAllNotes = "false";
+
+              }
+
+            });
+
+          });
+
+        }
+
+        if(radioShowFlats) { 
+
+          if(this.settings.showFlats == "true") { 
+
+            radioShowFlats.checked = true;
+
+            this.guitarNeck.classList.add('showflats');
+            
+          } else {
+
+            radioShowSharps.checked = true;
+
+            this.guitarNeck.classList.remove('showflats');
+
+          }
+
+          const radios = document.querySelectorAll('input[name="sharpsflats"]');
+
+          radios.forEach(radio => {
+
+            radio.addEventListener('change', (e) => {
+
+              if (e.target.value === 'sharps') {
+
+                this.settings.showFlats = "false";
+
+                this.guitarNeck.classList.remove('showflats');
+
+              } else if (e.target.value === 'flats') {
+
+                this.settings.showFlats = "true";
+
+                this.guitarNeck.classList.add('showflats');
 
               }
 

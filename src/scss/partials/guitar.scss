@@ -15,13 +15,16 @@
     }
 
     &__nutnote {
-            width:52px;// var up
+            width:56px;// var up
             height:60px; // var up
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0px 0px;
             font-weight: var(--fontweight-megabold);
+            font-size: 1.125rem;
+            font-family: var(--font-wide);
+
         
     }
 
@@ -35,7 +38,7 @@
 
     &__fretmarkers {
         grid-column: -1/1;
-        margin-left:52px;
+        margin-left:61px; 
         display: grid;
         grid-template-columns: repeat(12, 1fr);
     }
@@ -89,11 +92,14 @@
             border-radius: 18px;
             justify-content: center;
             align-items: center;
-            width: 48px;
-            height: 44px;
-            font-size: 0.875rem;
-            display: flex
-        ;
+            width: 42px;
+            height: 42px;
+            font-size: 0.9rem;
+            display: flex;
+
+            &--flat {
+                display: none;
+            }
 
             &:hover {
                 border-color:#fff;
@@ -115,9 +121,13 @@
                 outline-offset: 2px;
             }
 
+
+            
             &--sharpflat {
-                font-size: 0.75rem;
+                // font-size: 0.75rem;
                
+                
+
             }
 
             &--root {
@@ -133,6 +143,19 @@
         }
 
     }
+
+    &.showflats {
+
+        .guitar__note--sharp {
+            display: none;
+        }
+
+        .guitar__note--flat {
+            display: flex;
+        }
+
+    }
+
 
     &.showscalenotesonly {
         #{$self}__note {

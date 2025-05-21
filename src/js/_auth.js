@@ -248,16 +248,23 @@ export async function funcInitAuthUI() {
         if (!session) {
             // User is not logged in
             document.body.classList.add('authentication--out');
+
             document.body.classList.remove('authentication--in');
+
             document.body.classList.remove('authentication--checking');
+
             funcDestroySuperScale();
+            
             return;
         }
 
         // User is logged in
         document.body.classList.add('authentication--in');
+
         document.body.classList.remove('authentication--out');
+        
         document.body.classList.remove('authentication--checking');
+
 
         funcStartSuperScale();
 
