@@ -98,7 +98,11 @@ async function signInWithEmail(email, password) {
 
         console.error('Error signing in:', error.message);
 
-        funcShowFeedback(error.message);
+       let errorMessage = error.message;
+
+       let removePhone = errorMessage.replace("missing email or phone", "missing email");
+
+        funcShowFeedback(removePhone);
 
         signInButton.classList.remove(strLoading);
 
@@ -254,7 +258,7 @@ export async function funcInitAuthUI() {
             document.body.classList.remove('authentication--checking');
 
             funcDestroySuperScale();
-            
+
             return;
         }
 
