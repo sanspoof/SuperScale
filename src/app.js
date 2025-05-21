@@ -97,9 +97,9 @@ export function funcAnimateLoginLogo() {
 
     const polygons = document.querySelectorAll("#Nav polygon");
 
-    const logodots = document.querySelector("#Nav .dots");
+    const logodots = document.querySelector(".dots");
 
-    const logorootdots = document.querySelector("#Nav .rootdots");
+    const logorootdots = document.querySelector(".rootdots");
 
     const polygonDelay = 100;
 
