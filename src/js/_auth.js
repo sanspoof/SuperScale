@@ -259,7 +259,17 @@ export async function funcInitAuthUI() {
 
             document.body.classList.remove('authentication--checking');
 
-            funcAnimateLoginLogo();
+
+            if (document.readyState === "loading") {
+
+                document.addEventListener("DOMContentLoaded", funcAnimateLoginLogo);
+
+              } else {
+
+                funcAnimateLoginLogo();
+
+            }
+
 
             funcDestroySuperScale();
 
