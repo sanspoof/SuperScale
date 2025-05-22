@@ -20,6 +20,90 @@ let strUser = document.querySelector('[data-role="user"]');
 let elSignUpStatement = document.querySelector('[data-role="sign-up-statement"]');
 let elSignInStatement = document.querySelector('[data-role="sign-in-statement"]');
 
+
+export async function funcInitAuthUI() {
+
+    document.body.classList.add('authentication--checking');
+
+    // Check if the user is already authenticated
+    const { data: { session } } = await supabase.auth.getSession();
+
+    const updateAuthUI = async (session) => {
+
+        if (!session) {
+            // User is not logged in
+            
+            document.body.classList.add('visible');
+
+            document.body.classList.add('authentication--out');
+
+            document.body.classList.remove('authentication--in');
+
+            document.body.classList.remove('authentication--checking');
+
+            funcAnimateLoginLogo();
+
+            funcDestroySuperScale();
+
+            return;
+        }
+
+        // User is logged in
+
+        document.body.classList.add('visible');
+
+        document.body.classList.add('authentication--in');
+
+        document.body.classList.remove('authentication--out');
+        
+        document.body.classList.remove('authentication--checking');
+
+        funcStartSuperScale();
+
+        // Fetch user data
+        await funcGetData();
+
+        // Update UI with user details
+        funcUpdateUIWithUserDetails();
+    };
+
+    // Update the UI based on the current session
+    await updateAuthUI(session);
+
+    // Listen for auth state changes
+    supabase.auth.onAuthStateChange(async (event, session) => {
+        
+        if (event === 'INITIAL_SESSION') {
+            // handle initial session
+          } else if (event === 'SIGNED_IN') {
+            // handle sign in event
+          } else if (event === 'SIGNED_OUT') {
+            
+            console.log('SIGNED_OUT', session);
+        
+            // Clear local and session storage
+            [
+                window.localStorage,
+                window.sessionStorage,
+            ].forEach((storage) => {
+                Object.keys(storage).forEach((key) => {
+                    storage.removeItem(key);
+                });
+            });
+
+          } else if (event === 'PASSWORD_RECOVERY') {
+            // handle password recovery event
+          } else if (event === 'TOKEN_REFRESHED') {
+            // handle token refreshed event
+          } else if (event === 'USER_UPDATED') {
+            // handle user updated event
+          }
+
+        await updateAuthUI(session);
+
+    });
+}
+
 function funcStartSuperScale() {
 
     superScaleApp = new SuperScaleApp();
@@ -146,7 +230,7 @@ function funcValidateAndSignUp(email, pass) {
 
     const reemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const repass = /^.{6,}$/;
+    const repass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
     if(reemail.test(email) && repass.test(pass)) {
 
@@ -255,86 +339,6 @@ function funcShowLoginPageFeedback(message) {
 
 }
 
-
-export async function funcInitAuthUI() {
-
-    document.body.classList.add('authentication--checking');
-
-    // Check if the user is already authenticated
-    const { data: { session } } = await supabase.auth.getSession();
-
-    const updateAuthUI = async (session) => {
-
-    
-        if (!session) {
-            // User is not logged in
-            
-            document.body.classList.add('authentication--out');
-
-            document.body.classList.remove('authentication--in');
-
-            document.body.classList.remove('authentication--checking');
-
-            funcAnimateLoginLogo();
-
-            funcDestroySuperScale();
-
-            return;
-        }
-
-        // User is logged in
-        document.body.classList.add('authentication--in');
-
-        document.body.classList.remove('authentication--out');
-        
-        document.body.classList.remove('authentication--checking');
-
-
-        funcStartSuperScale();
-
-        // Fetch user data
-        await funcGetData();
-
-        // Update UI with user details
-        funcUpdateUIWithUserDetails();
-    };
-
-    // Update the UI based on the current session
-    await updateAuthUI(session);
-
-    // Listen for auth state changes
-    supabase.auth.onAuthStateChange(async (event, session) => {
-        
-        if (event === 'INITIAL_SESSION') {
-            // handle initial session
-          } else if (event === 'SIGNED_IN') {
-            // handle sign in event
-          } else if (event === 'SIGNED_OUT') {
-            
-            console.log('SIGNED_OUT', session);
-        
-            // Clear local and session storage
-            [
-                window.localStorage,
-                window.sessionStorage,
-            ].forEach((storage) => {
-                Object.keys(storage).forEach((key) => {
-                    storage.removeItem(key);
-                });
-            });
-
-          } else if (event === 'PASSWORD_RECOVERY') {
-            // handle password recovery event
-          } else if (event === 'TOKEN_REFRESHED') {
-            // handle token refreshed event
-          } else if (event === 'USER_UPDATED') {
-            // handle user updated event
-          }
-
-        await updateAuthUI(session);
-
-    });
-}
 
 async function funcUpdateUIWithUserDetails() {
 

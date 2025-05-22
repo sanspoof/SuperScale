@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
  
     funcStartToolTips();
 
-    document.body.classList.add('visible');
-
     document.addEventListener('visibilitychange', () => {
 
         console.log("Visibility Change: ", document.visibilityState);
