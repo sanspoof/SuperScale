@@ -12,85 +12,99 @@ document.addEventListener('DOMContentLoaded', function() {
  
     funcStartToolTips();
 
+    document.body.classList.add('visible');
+
+    document.addEventListener('visibilitychange', () => {
+
+        console.log("Visibility Change: ", document.visibilityState);
+
+        if (document.visibilityState === 'visible') {
+
+          location.reload();
+
+        } else if( document.visibilityState === 'hidden') {
+
+            document.body.classList.remove('visible');
+
+        }
+
+      });
+
     elAccentColor.addEventListener('input', function(e) {
 
         console.log("Accent Color: ", e.target.value);
 
      });
 
-    var buttons = document.querySelectorAll('[data-cmd]');
+     document.addEventListener('click', function (e) {
 
-    buttons.forEach(function(button) {
+        const button = e.target.closest('[data-cmd]');
 
-        button.addEventListener('click', function() {
+        if (!button) return;
 
-            var cmd = button.getAttribute('data-cmd');
+    
+        const cmd = button.getAttribute('data-cmd'); 
 
-            switch (cmd) {
+        switch (cmd) {
+            case 'toggle-lightmode':
 
-                case 'toggle-lightmode':
+                console.log('Toggle Lightmode');
 
-                    console.log('Toggle Lightmode');
+                break;
+    
+            case 'open-beta-modal':
 
-                    break;
-                
-                case 'open-beta-modal':
+                dialog.showModal();
 
-                    dialog.showModal(); 
+                break;
+    
+            case 'sign-up':
+
+                funcSignUpToService();
+
+                break;
+    
+            case 'close-beta-modal':
+
+                dialog.close();
 
                 break;
 
-                case 'sign-up':
+    
+            case 'sign-in':
 
-                    funcSignUpToService();
-
-                break;
-
-                case 'close-beta-modal':
-
-                    dialog.close();
+                funcSignInWithExistingEmail();
 
                 break;
 
-                case 'sign-in':
+    
+            case 'sign-out':
 
-                    funcSignInWithExistingEmail();
-                
-                break;
-
-                case 'sign-out':
-
-                    signOutUser();
-                
-                break;
-
-                case 'get-user-settings':
-
-                    funcGetData();
-                    
-                break;
-
-                case 'show-sign-in':
-
-                    funcSwitchSignInMode.call(this);
+                signOutUser();
 
                 break;
 
-                case 'show-sign-up':
+    
+            case 'get-user-settings':
 
-                    funcSwitchSignInMode.call(this);
-
-                break;
-
-                case 'update-user-settings':
-
-                    funcUpdateUserSettings();
+                funcGetData();
 
                 break;
 
-            }
-        });
+    
+            case 'show-sign-in':
+
+            case 'show-sign-up':
+
+                funcSwitchSignInMode.call(button);
+                break;
+    
+            case 'update-user-settings':
+                funcUpdateUserSettings();
+                break;
+        }
     });
+
 });
 
 export function funcAnimateLoginLogo() {

@@ -15,12 +15,14 @@ let elSignInButton = document.getElementById('signInButton');
 let elSignUpButton = document.getElementById('signUpButton');
 let elAccentColourInput = document.getElementById('accentColor');
 let elFeedback = document.getElementById('feedback');
-let superScaleApp = new SuperScaleApp();
+let superScaleApp;
 let strUser = document.querySelector('[data-role="user"]');
 let elSignUpStatement = document.querySelector('[data-role="sign-up-statement"]');
 let elSignInStatement = document.querySelector('[data-role="sign-in-statement"]');
 
 function funcStartSuperScale() {
+
+    superScaleApp = new SuperScaleApp();
 
     superScaleApp.init();  
 
@@ -67,7 +69,7 @@ async function signUpWithEmail(email, password) {
         console.warn("User already registered but not confirmed.");
 
         // resend is done automatically by Supabase
-        funcShowFeedback("It looks like you've already signed up");
+        funcShowLoginPageFeedback("It looks like you've already signed up");
 
         signUpButton.classList.remove(strLoading);
 
@@ -76,7 +78,7 @@ async function signUpWithEmail(email, password) {
     }
 
     // Otherwise, normal flow
-    funcShowFeedback("Sign-up successful! Please check your email to confirm your account before logging in.  Be Sure to check your spam folder as well.");
+    funcShowLoginPageFeedback("Sign-up successful! Please check your email to confirm your account before logging in.  Be Sure to check your spam folder as well.");
 
     signUpButton.classList.remove(strLoading);
 
@@ -103,7 +105,7 @@ async function signInWithEmail(email, password) {
 
        let removePhone = errorMessage.replace("missing email or phone", "missing email");
 
-        funcShowFeedback(removePhone);
+        funcShowLoginPageFeedback(removePhone);
 
         signInButton.classList.remove(strLoading);
 
@@ -178,26 +180,37 @@ export function funcSignInWithExistingEmail() {
 
     signInWithEmail(userNameVal, userPassVal);
 
-}
+} 
 
 
 export async function signOutUser() {
 
-    const { error } = await supabase.auth.signOut();
+    
 
-    if (error) {
+    try {
 
-        console.error('Error signing out:', error.message);
+        const { error } = await supabase.auth.signOut({scope: 'global'});
 
-        funcShowFeedback(error.message);
+        if (error) {
 
-        return;
+            console.error('Error signing out:', error.message);
+
+            return;
+        }
+
+        funcShowLoginPageFeedback('Signed out successfully', 'success');
+
+    } catch (err) {
+
+        console.error('Unexpected error during sign out:', err);
+
+        funcShowLoginPageFeedback('Unexpected error during sign out', 'error');
+
+    } finally {
+
+        if (strUser) strUser.innerHTML = '';
 
     }
-
-    funcShowFeedback('Sign out successful');
-
-    strUser.innerHTML = '';
 
 }
 
@@ -207,7 +220,7 @@ export async function funcGetData() {
 
         if (error || !user) {
             console.error('No user is signed in or error fetching user:', error?.message);
-            funcShowFeedback(error.message);
+            funcShowLoginPageFeedback(error.message);
             return;
         }
 
@@ -234,7 +247,7 @@ export async function funcGetData() {
     }
 }
 
-function funcShowFeedback(message) { 
+function funcShowLoginPageFeedback(message) { 
     
     elFeedback.innerHTML = message;
 
@@ -250,6 +263,7 @@ export async function funcInitAuthUI() {
 
     const updateAuthUI = async (session) => {
 
+    
         if (!session) {
             // User is not logged in
             
@@ -260,7 +274,6 @@ export async function funcInitAuthUI() {
             document.body.classList.remove('authentication--checking');
 
             funcAnimateLoginLogo();
-
 
             funcDestroySuperScale();
 
@@ -289,6 +302,32 @@ export async function funcInitAuthUI() {
 
     // Listen for auth state changes
     supabase.auth.onAuthStateChange(async (event, session) => {
+        
+        if (event === 'INITIAL_SESSION') {
+            // handle initial session
+          } else if (event === 'SIGNED_IN') {
+            // handle sign in event
+          } else if (event === 'SIGNED_OUT') {
+            
+            console.log('SIGNED_OUT', session);
+        
+            // Clear local and session storage
+            [
+                window.localStorage,
+                window.sessionStorage,
+            ].forEach((storage) => {
+                Object.keys(storage).forEach((key) => {
+                    storage.removeItem(key);
+                });
+            });
+
+          } else if (event === 'PASSWORD_RECOVERY') {
+            // handle password recovery event
+          } else if (event === 'TOKEN_REFRESHED') {
+            // handle token refreshed event
+          } else if (event === 'USER_UPDATED') {
+            // handle user updated event
+          }
 
         await updateAuthUI(session);
 

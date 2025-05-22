@@ -20,4 +20,15 @@ body {
     font-weight: var(--global-fontsize);
     letter-spacing: var(--global-letterspacing);
     position:relative;
+
+    &.fadein {
+        opacity: 0;
+        
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+
 }
+
