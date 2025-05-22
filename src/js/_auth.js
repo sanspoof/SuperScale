@@ -2,7 +2,8 @@ require('dotenv').config();
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
 import { funcAnimateLoginLogo } from '../app.js';
-import { setUserSettings, getUserSettings, waitForUserSettings  } from './_globals.js';
+import { setUserSettings, getUserSettings, waitForUserSettings, _s  } from './_globals.js';
+
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -17,9 +18,13 @@ let elAccentColourInput = document.getElementById('accentColor');
 let elFeedback = document.getElementById('feedback');
 let superScaleApp;
 let strUser = document.querySelector('[data-role="user"]');
-let elSignUpStatement = document.querySelector('[data-role="sign-up-statement"]');
-let elSignInStatement = document.querySelector('[data-role="sign-in-statement"]');
-
+let elSignUpStatement = _s('sign-up-statement'); 
+let elSignInStatement = _s('sign-in-statement'); 
+let elPasswordFeedbackContainer = _s('password-feedback-container');
+let elPasswordFeedbackUppercase = _s('password-feedback-uppercase');
+let elPasswordFeedbackLowercase = _s('password-feedback-lowercase');
+let elPasswordFeedbackNumber = _s('password-feedback-number');
+let elPasswordFeedbackLength = _s('password-feedback-length');
 
 export async function funcInitAuthUI() {
 
@@ -218,16 +223,6 @@ export function funcSignUpToService() {
 
 function funcValidateAndSignUp(email, pass) {
 
-    let strAction = "superscalelogin__action";
-
-    userName.closest(`.${strAction}`).classList.remove(`${strAction}--error`);
-
-    userPass.closest(`.${strAction}`).classList.remove(`${strAction}--error`);
-
-    userName.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
-
-    userPass.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
-
     const reemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const repass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
@@ -238,21 +233,7 @@ function funcValidateAndSignUp(email, pass) {
 
     } else {
 
-        if(!reemail.test(email)) {
-
-            userName.closest(`.${strAction}`).classList.add(`${strAction}--error`);
-
-            userName.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
-
-        }
-
-        if(!repass.test(pass)) {
-
-            userPass.closest(`.${strAction}`).classList.add(`${strAction}--error`);
-
-            userPass.closest(`.${strAction}`).classList.remove(`${strAction}--valid`);
-        
-        }
+        funcShowLoginPageFeedback("Invalid Signup Details");
 
     }
 
@@ -419,9 +400,11 @@ export function funcSwitchSignInMode() {
 
         elSignUpStatement.style.display = "none";
 
+        elPasswordFeedbackContainer.style.display = "block";
+
         userName.setAttribute("placeholder", "Your Email Address");
 
-        userPass.setAttribute("placeholder", "Strong Password Please");
+        addPasswordFieldFeedbackListeners();
 
     } else if(elDataCmd == "show-sign-in") { 
 
@@ -429,18 +412,36 @@ export function funcSwitchSignInMode() {
 
         signInButton.style.display = "block";
 
+        elPasswordFeedbackContainer.style.display = "none";
+
         elSignUpStatement.style.display = "block";
 
         elSignInStatement.style.display = "none";
 
         userName.setAttribute("placeholder", "The Email You Used to Register");
 
-        userPass.setAttribute("placeholder", "Password");
+        removePasswordFieldFeedbackListeners();
 
     }
     
 
 }
- 
 
+function handlePasswordInput() {
+    const value = userPass.value;
 
+    elPasswordFeedbackUppercase.classList.toggle('valid', /[A-Z]/.test(value));
+    elPasswordFeedbackLowercase.classList.toggle('valid', /[a-z]/.test(value));
+    elPasswordFeedbackNumber.classList.toggle('valid', /\d/.test(value));
+    elPasswordFeedbackLength.classList.toggle('valid', value.length >= 6);
+}
+
+// Add listener
+function addPasswordFieldFeedbackListeners() {
+    userPass.addEventListener('input', handlePasswordInput);
+}
+
+// Remove listener
+function removePasswordFieldFeedbackListeners() {
+    userPass.removeEventListener('input', handlePasswordInput);
+}

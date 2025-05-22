@@ -181,6 +181,38 @@
             outline-offset: 2px;
         }
 
+        &.loading {
+            
+            color:var(--col-accent);
+
+            #{$self}__button-loading {
+                opacity: 1;
+                animation: rotate360 1s linear infinite;
+                
+            }
+
+        }
+
+    }
+
+    &__passwordfeedback {
+        font-size: 0.75rem;
+        font-weight: var(--fontweight-bold);
+        font-family: var(--font-normal);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+
+        span {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color:transparent ;
+        }
+
+        span.valid {
+            color: var(--col-accent);
+            text-decoration-color: var(--col-accent);
+        }
+
     }
 
     &__formcta {
@@ -204,20 +236,6 @@
             }
         }
 
-    }
-
-    #signInButton {
-        &.loading {
-            
-            color:var(--col-accent);
-
-            #{$self}__button-loading {
-                opacity: 1;
-                animation: rotate360 1s linear infinite;
-                
-            }
-
-        }
     }
 
     #feedback {

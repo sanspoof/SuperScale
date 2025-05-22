@@ -1,6 +1,7 @@
 
 import { PesTip, PesTipManager } from './js/_tooltip.js';
 import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
+import { _s } from './js/_globals.js';
 
 const dialog = document.getElementById("betaModal");
 const elAccentColor = document.getElementById('accentColor');
