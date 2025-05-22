@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else if( document.visibilityState === 'hidden') {
 
-            document.body.classList.remove('visible');
+          document.body.classList.remove('visible');
 
         }
 

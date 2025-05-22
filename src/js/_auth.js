@@ -32,6 +32,8 @@ function funcStartSuperScale() {
 
 function funcDestroySuperScale() { 
 
+    if (!superScaleApp) return;
+
     superScaleApp.destroy();
 }
 
