@@ -214,17 +214,19 @@ export class SuperScaleApp {
 
       let strModifier = "guitar__note--root";
 
-      let currentKey = key;
-
       let allNotes = this.guitarNeck.querySelectorAll("[data-note]");
 
       allNotes.forEach( (n) => {
+        const noteData = n.dataset.note;
+    // Split sharp/flat combo like "A#:Bb" into ["A#", "Bb"]
+    const noteVariants = noteData.includes(":") 
+      ? noteData.split(":") 
+      : [noteData]; // Single notes stay as a single-element array
 
-        if(n.dataset.note == currentKey) {
-          
-          n.classList.add(strModifier); 
-
-        }
+    // Check if the key matches any variant
+    if (noteVariants.includes(key)) {
+      n.classList.add(strModifier);
+    }
 
       });
 

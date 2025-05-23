@@ -3,13 +3,13 @@
 
         "Ab": {
             "major": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
-            "harmonic_minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G"],
-            "melodic_minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
-            "minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
+            "harmonic_minor": ["Ab", "Bb", "B", "Db", "Eb", "Fb", "G"],
+            "melodic_minor": ["Ab", "Bb", "B", "Db", "Eb", "F", "G"],
+            "minor": ["Ab", "Bb", "B", "Db", "Eb", "Fb", "Gb"],
             "mixolydian": ["Ab", "Bb", "C", "Db", "Eb", "F", "Gb"],
-            "dorian": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "Gb"],
-            "phrygian": ["Ab", "Bbb", "Cb", "Db", "Eb", "Fb", "Gb"],
-            "locrian": ["Ab", "Bbb", "Cb", "Db", "Ebb", "Fb", "Gb"],
+            "dorian": ["Ab", "Bb", "B", "Db", "Eb", "F", "Gb"],
+            "phrygian": ["Ab", "Bbb", "B", "Db", "Eb", "Fb", "Gb"],
+            "locrian": ["Ab", "Bbb", "B", "Db", "Ebb", "Fb", "Gb"],
             "lydian": ["Ab", "Bb", "C", "D", "Eb", "F", "G"]
           },
           "A": {
@@ -127,7 +127,13 @@
           "Gb": {
             "major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
             "harmonic_minor": ["F#", "G#", "A", "B", "C#", "D", "E#"],
-            "melodic_minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"]
+            "melodic_minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"],
+            "minor": ["F#", "G#", "A", "B", "C#", "D", "E"],
+            "mixolydian": ["F#", "G#", "A#", "B", "C#", "D#", "E"],
+            "dorian": ["F#", "G#", "A", "B", "C#", "D#", "E"],
+            "phrygian": ["F#", "G", "A", "B", "C#", "D", "E"],
+            "locrian": ["F#", "G", "A", "B", "C", "D", "E"],
+            "lydian": ["F#", "G#", "A#", "B#", "C#", "D#", "E#"]
           },
           "G": {
             "major": ["G", "A", "B", "C", "D", "E", "F#"],
