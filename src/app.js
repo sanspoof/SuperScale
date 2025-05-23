@@ -13,21 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
     funcStartToolTips();
 
-    document.addEventListener('visibilitychange', () => {
-
-        console.log("Visibility Change: ", document.visibilityState);
-
-        if (document.visibilityState === 'visible') {
-
-          location.reload();
-
-        } else if( document.visibilityState === 'hidden') {
-
-          document.body.classList.remove('visible');
-
-        }
-
-      });
+    document.addEventListener('visibilitychange', funcHandleVisibilityChange);
 
     elAccentColor.addEventListener('input', function(e) {
 
@@ -155,6 +141,26 @@ export function funcAnimateLoginLogo() {
 
 }
 
+function funcHandleVisibilityChange() { 
+
+    console.log("Visibility Change: ", document.visibilityState);
+
+    if(document.body.classList.contains('authentication--out')) { 
+        
+        return;
+    }
+    
+    if (document.visibilityState === 'visible') {
+
+      location.reload();
+
+    } else if( document.visibilityState === 'hidden') {
+
+      document.body.classList.remove('visible');
+
+    }
+
+}
 
 function funcStartToolTips() {
 
