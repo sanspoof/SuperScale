@@ -55,7 +55,13 @@
     font-size:0.75rem;
     padding:0px 12px;
     
-    border-left:1px solid var(--col-line);
+    &--br {
+        border-right: 1px solid var(--col-line);
+    }
+
+    &--bl {
+        border-left:1px solid var(--col-line);
+    }
 
     &:first-child {
         border-left:none;
