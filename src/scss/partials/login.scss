@@ -24,6 +24,7 @@
 
     &__logo {
         width:100%;
+        max-width: 450px;
         padding:0px 40px;
         margin:auto;
     }
@@ -38,9 +39,9 @@
     }
 
     &__title {
-        font-family: var(--font-wide);
-        font-weight: 600;
-        font-size:1.25rem;
+        font-family: var(--font-normal);
+        font-weight: var(--fontweight-megabold);
+        font-size:1.125rem;
         
     }
 
