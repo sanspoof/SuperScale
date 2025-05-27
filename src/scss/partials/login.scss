@@ -39,7 +39,7 @@
     }
 
     &__title {
-        font-family: var(--font-normal);
+        font-family: var(--font-regular);
         font-weight: var(--fontweight-megabold);
         font-size:1.125rem;
         
@@ -103,7 +103,7 @@
 
     &__lbl {
         font-weight: 600;
-        font-size:1.125rem;
+        font-size:0.875rem;
         font-family: var(--font-regular);
         cursor: pointer;
     }
@@ -145,6 +145,7 @@
         color:#fff;
         background-color: var(--col-accent);
         font-weight: var(--fontweight-megabold);
+        font-family: var(--font-wide);
         font-size:1rem;
         text-align: center; 
         cursor: pointer;
