@@ -81,7 +81,9 @@ export async function funcInitAuthUI() {
         if (event === 'INITIAL_SESSION') {
             // handle initial session
           } else if (event === 'SIGNED_IN') {
-            // handle sign in event
+            
+            await funcLogSignIn();
+            
           } else if (event === 'SIGNED_OUT') {
             
             console.log('SIGNED_OUT', session);
@@ -444,4 +446,29 @@ function addPasswordFieldFeedbackListeners() {
 // Remove listener
 function removePasswordFieldFeedbackListeners() {
     userPass.removeEventListener('input', handlePasswordInput);
+}
+
+async function funcLogSignIn() {
+
+    try {
+        const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+        if (userError || !user) {
+            console.error('Error getting user:', userError?.message);
+        } else {
+            const { error: updateError } = await supabase
+                .from(supabaseTable)
+                .update({ last_signed_in: new Date().toISOString() })
+                .eq('user_id', user.id); // Use your column that stores user ID
+
+            if (updateError) {
+                console.error('Failed to update last signed in:', updateError.message);
+            } else {
+                console.log('Last signed in timestamp updated.');
+            }
+        }
+    } catch (err) {
+        console.error('Unexpected error updating last signed in:', err);
+    }
+
 }
