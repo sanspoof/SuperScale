@@ -84,16 +84,43 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 }
 
-export function funcGetScaleNotesByName(tonic, scaleName) {
+// export function funcGetScaleNotesByName(tonic, scaleName) {
 
-    const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
+//     const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
 
-    if (!scale) {
-        console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
-        return [];
-    }
+//     if (!scale) {
+//         console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
+//         return [];
+//     }
 
-    return scale.notes;
+//     return scale.notes;
+// }
+
+
+
+export function funcGetScaleNotesByName(tonic, scaleName, useSharps = false) {
+
+const sharpMap = {
+  'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#',
+  'Fb': 'E',  'Cb': 'B',  'E#': 'F',  'B#': 'C'
+};
+
+const flatMap = {
+  'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb',
+  'E#': 'F',  'B#': 'C',  'Cb': 'B',  'Fb': 'E'
+};
+
+  const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
+
+  if (!scale || !scale.notes.length) {
+    console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
+    return [];
+  }
+
+  const map = useSharps ? sharpMap : flatMap;
+
+  const normalizedNotes = scale.notes.map(note => map[note] || note);
+  return normalizedNotes;
 }
 
 /**

@@ -3,7 +3,7 @@ import { funcGetTriads, funcCreateTriad, funcGetAllScaleNames, funcGetScaleNotes
 export class SuperScaleApp {
 
     constructor() {
-      
+
       this.ChordFormulas = scaleData.ChordFormulas;
       this.guitarNeck = document.querySelector('#Guitar');
       this.TriadContainer = document.querySelector('#Triads');
@@ -42,9 +42,8 @@ export class SuperScaleApp {
 
         });
 
-      this.guitarNotes = scaleData.GuitarNotes.flatNotes;
-      this.TriadNotes = scaleData.GuitarNotes.notes;  
-
+      this.guitarNotes = scaleData.GuitarNotes.notes;
+        
     }
 
     init() {
@@ -168,8 +167,17 @@ export class SuperScaleApp {
 
       const selectedNotes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
       
-      const commonNotes = allNotes.filter(note => selectedNotes.includes(note));
+      // Flatten the nested array structure
+      const flattenedNotes = allNotes.flat();
       
+      const commonNotes = flattenedNotes.filter(note => selectedNotes.includes(note));
+      
+      // console.log("All Notes", allNotes);
+
+      // console.log("Notes in common", commonNotes);
+
+      // console.log("Selected Notes", selectedNotes);
+
       return commonNotes;
 
     }
@@ -406,7 +414,7 @@ export class SuperScaleApp {
 
     funcGetScaleNotes(key, scaleName) {
        
-          return funcGetScaleNotesByName(key, scaleName);
+          return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats);
 
       }
 
@@ -423,7 +431,7 @@ export class SuperScaleApp {
 
           //console.log(triad);
 
-          let a = funcCreateTriad(triad, objCurrentTuning, this.TriadNotes);
+          let a = funcCreateTriad(triad, objCurrentTuning, this.guitarNotes);
 
           this.TriadContainer.appendChild(a);
 
