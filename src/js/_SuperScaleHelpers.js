@@ -1,4 +1,14 @@
-import {Note, Scale, Key, Chord} from 'tonal';
+import { get as getNote, midi, fromMidi, transpose } from "@tonaljs/note";
+
+// Functions from @tonaljs/scale
+import { get as getScale, names as scaleNames } from "@tonaljs/scale";
+
+// Functions from @tonaljs/key
+import { majorKey, minorKey } from "@tonaljs/key";
+
+// Functions from @tonaljs/chord
+import { get as getChord, detect as detectChord, notes as chordNotes } from "@tonaljs/chord";
+
 import { funcCreateElementFromTemplate } from './_Utils';
 import { _s } from './_Utils';
 
@@ -18,7 +28,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
     if(key === true) {
 
-        objKey = Key.majorKey(note);
+        objKey = majorKey(note);
 
         arrKeyTriads = objKey.triads;
 
@@ -26,7 +36,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
         minorScaleType = "natural";
 
-        objKey = Key.minorKey(note);
+        objKey = minorKey(note);
 
         // could be "natural, harmonic, melodic"
         arrKeyTriads = objKey[minorScaleType].triads;
@@ -35,7 +45,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
     const TriadNotes = arrKeyTriads.map((chord) => {
 
-        const notes = Chord.get(chord).notes;
+        const notes = getChord(chord).notes;
 
         return {
             chord: chord,
@@ -68,7 +78,7 @@ export function funcGetScaleNotes(note) {
 
 export function funcReturnEnharmonicEquivalent(note) { 
 
-    const enharmonic = Note.enharmonic(note);
+    const enharmonic = getNote.enharmonic(note);
 
     if (enharmonic) {
 
@@ -86,7 +96,7 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 // export function funcGetScaleNotesByName(tonic, scaleName) {
 
-//     const scale = Scale.get(`${tonic} ${scaleName}`);
+//     const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
 
 //     if (!scale) {
 //         console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
@@ -110,7 +120,7 @@ const flatMap = {
   'E#': 'F',  'B#': 'C',  'Cb': 'B',  'Fb': 'E'
 };
 
-  const scale = Scale.get(`${tonic} ${scaleName}`);
+  const scale = getScale(`${tonic} ${scaleName}`);
 
   if (!scale || !scale.notes.length) {
     console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
@@ -144,7 +154,7 @@ export function funcGetAllScaleNames() {
     "harmonic minor",
     ];
 
-    const allScales = Scale.names();
+    const allScales = scaleNames();
 
     const popularityIndex = name => {
 
