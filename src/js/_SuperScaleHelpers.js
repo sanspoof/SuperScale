@@ -1,4 +1,4 @@
-import * as Tonal from 'tonal';
+import {Note, Scale, Key, Chord} from 'tonal';
 import { funcCreateElementFromTemplate } from './_Utils';
 import { _s } from './_Utils';
 
@@ -18,7 +18,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
     if(key === true) {
 
-        objKey = Tonal.Key.majorKey(note);
+        objKey = Key.majorKey(note);
 
         arrKeyTriads = objKey.triads;
 
@@ -26,7 +26,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
         minorScaleType = "natural";
 
-        objKey = Tonal.Key.minorKey(note);
+        objKey = Key.minorKey(note);
 
         // could be "natural, harmonic, melodic"
         arrKeyTriads = objKey[minorScaleType].triads;
@@ -35,7 +35,7 @@ export function funcGetTriads(majorOrMinor, note) {
 
     const TriadNotes = arrKeyTriads.map((chord) => {
 
-        const notes = Tonal.Chord.get(chord).notes;
+        const notes = Chord.get(chord).notes;
 
         return {
             chord: chord,
@@ -68,7 +68,7 @@ export function funcGetScaleNotes(note) {
 
 export function funcReturnEnharmonicEquivalent(note) { 
 
-    const enharmonic = Tonal.Note.enharmonic(note);
+    const enharmonic = Note.enharmonic(note);
 
     if (enharmonic) {
 
@@ -86,7 +86,7 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 // export function funcGetScaleNotesByName(tonic, scaleName) {
 
-//     const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
+//     const scale = Scale.get(`${tonic} ${scaleName}`);
 
 //     if (!scale) {
 //         console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
@@ -110,7 +110,7 @@ const flatMap = {
   'E#': 'F',  'B#': 'C',  'Cb': 'B',  'Fb': 'E'
 };
 
-  const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
+  const scale = Scale.get(`${tonic} ${scaleName}`);
 
   if (!scale || !scale.notes.length) {
     console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
@@ -144,7 +144,7 @@ export function funcGetAllScaleNames() {
     "harmonic minor",
     ];
 
-    const allScales = Tonal.Scale.names();
+    const allScales = Scale.names();
 
     const popularityIndex = name => {
 

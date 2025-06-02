@@ -1,5 +1,5 @@
 import * as scaleData from './data.json';
-import { funcGetTriads, funcCreateTriad, funcGetAllScaleNames, funcGetScaleNotesByName, funcReturnEnharmonicEquivalent } from './_SuperScaleHelpers';
+import { funcGetTriads, funcCreateTriad, funcGetAllScaleNames, funcGetScaleNotesByName } from './_SuperScaleHelpers';
 export class SuperScaleApp {
 
     constructor() {

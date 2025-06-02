@@ -1,7 +1,7 @@
 
 import { PesTip, PesTipManager } from './js/_tooltip.js';
 import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
-import { funcGetTriads, funcGetAllScaleNames, funcReturnEnharmonicEquivalent } from './js/_SuperScaleHelpers.js';
+import { funcReturnEnharmonicEquivalent } from './js/_SuperScaleHelpers.js';
 import { _s } from './js/_Utils.js';
 
 const dialog = document.getElementById("betaModal");
@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     funcInitAuthUI();
  
     funcStartToolTips();
-
-    funcReturnEnharmonicEquivalent('C#');
 
     document.addEventListener('visibilitychange', funcHandleVisibilityChange);
 
