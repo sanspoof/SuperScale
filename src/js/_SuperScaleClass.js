@@ -1,13 +1,12 @@
 import * as scaleData from './data.json';
-
+import { funcGetTriads, funcCreateTriad, funcGetAllScaleNames, funcGetScaleNotesByName, funcReturnEnharmonicEquivalent } from './_SuperScaleHelpers';
 export class SuperScaleApp {
 
     constructor() {
-
-      this.scales = scaleData.Scales;
-      this.guitarNotes = scaleData.GuitarNotes.notes;
+      
       this.ChordFormulas = scaleData.ChordFormulas;
       this.guitarNeck = document.querySelector('#Guitar');
+      this.TriadContainer = document.querySelector('#Triads');
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
@@ -24,12 +23,12 @@ export class SuperScaleApp {
       this.settings = this.loadSettingsFromStorage() || {}; 
       this.settings = this.createPassiveSettingsProxy(this.settings);
       this.settings.scale = this.settings.scale || this.defaults.scale;
-        this.settings.position = this.settings.position || this.defaults.position;
-        this.settings.showAllNotes = this.settings.showAllNotes || this.defaults.showAllNotes;
-        this.settings.showFlats = this.settings.showFlats || this.defaults.showFlats;
-        this.settings.key = this.settings.key || this.defaults.key;
-        this.settings.display = this.settings.display || this.defaults.display;
-        this.settings.tuning = this.settings.tuning || this.defaults.tuning;
+      this.settings.position = this.settings.position || this.defaults.position;
+      this.settings.showAllNotes = this.settings.showAllNotes || this.defaults.showAllNotes;
+      this.settings.showFlats = this.settings.showFlats || this.defaults.showFlats;
+      this.settings.key = this.settings.key || this.defaults.key;
+      this.settings.display = this.settings.display || this.defaults.display;
+      this.settings.tuning = this.settings.tuning || this.defaults.tuning;
 
         this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
 
@@ -42,24 +41,23 @@ export class SuperScaleApp {
           this[`nutstring${num}`] = document.querySelector(`[data-nutstring="${num}"]`);
 
         });
-        
+
+      this.guitarNotes = scaleData.GuitarNotes.flatNotes;
+      this.TriadNotes = scaleData.GuitarNotes.notes;  
+
     }
 
-    init() { 
-      
-        this.scales = scaleData.Scales;
+    init() {
+
         this.funcSetupFretboard();
-        this.funcSetupControls();  
-        this.funcObserveNut(); 
-        this.functionGetTriadNotesFromScale();
+        this.funcSetupControls();
+        this.funcObserveNut();
+
     }
 
     destroy() {
-        this.scales = null;
+        
     }
-
-
-    // Need to make sharps and Flats appear in the same box....
 
 
     funcNewMutationObs(cb) {
@@ -84,6 +82,26 @@ export class SuperScaleApp {
         
         });
     
+    }
+
+    funcSetupScaleDropdown(dd) { 
+
+        let scaleNames = funcGetAllScaleNames();
+
+        scaleNames.forEach(name => {
+
+        const option = document.createElement("option");
+
+        option.value = name;
+
+        option.textContent = name;
+
+        option.dataset.setting = name;
+
+        dd.appendChild(option);
+
+      });
+
     }
 
     funcHighlightMatchingNotes() { 
@@ -150,17 +168,8 @@ export class SuperScaleApp {
 
       const selectedNotes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
       
-      // Flatten the nested array structure
-      const flattenedNotes = allNotes.flat();
+      const commonNotes = allNotes.filter(note => selectedNotes.includes(note));
       
-      const commonNotes = flattenedNotes.filter(note => selectedNotes.includes(note));
-      
-      // console.log("All Notes", allNotes);
-
-      // console.log("Notes in common", commonNotes);
-
-      // console.log("Selected Notes", selectedNotes);
-
       return commonNotes;
 
     }
@@ -341,6 +350,8 @@ export class SuperScaleApp {
 
         this.funcSetRootNoteModifier(this.settings.key); 
 
+        this.functionCreateTriadsBasedOnKey();
+
     }
 
     funcSetupNotesDisplay(key, scale) {
@@ -395,27 +406,28 @@ export class SuperScaleApp {
 
     funcGetScaleNotes(key, scaleName) {
        
-        if (key in this.scales && scaleName in this.scales[key]) {
-
-          return this.scales[key][scaleName];
-
-        } else {
-
-          return "Invalid key or scale name.";
-
-        }
+          return funcGetScaleNotesByName(key, scaleName);
 
       }
 
-      functionGetTriadNotesFromScale() {
+      functionCreateTriadsBasedOnKey() {
 
-        let currentScale = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
 
-        let formula = this.ChordFormulas.major; // major triad
-      
-        const arrTriadNotes = formula.map(degree => currentScale[degree - 1]);
-      
-        console.log(arrTriadNotes);
+        this.TriadContainer.innerHTML = '';
+
+        let objCurrentTuning = this.settings.tuning;
+
+        let arrAllTriads = funcGetTriads('', this.settings.key);
+
+        arrAllTriads.forEach((triad) => {
+
+          //console.log(triad);
+
+          let a = funcCreateTriad(triad, objCurrentTuning, this.TriadNotes);
+
+          this.TriadContainer.appendChild(a);
+
+        });
 
       }
 
@@ -456,6 +468,8 @@ export class SuperScaleApp {
 
         let selectedScale = this.settings.scale;
 
+        this.funcSetupScaleDropdown(selectEl); // sets the dropdown with all scales
+
           for (var i = 0; i < selectEl.options.length; i++) {
 
             if (selectEl.options[i].value === selectedScale) {
@@ -478,7 +492,7 @@ export class SuperScaleApp {
 
               const dataVal = selectedOption.value;
         
-                console.log(dataVal);
+                
 
                 if (dataVal) {
 
@@ -584,7 +598,7 @@ export class SuperScaleApp {
 
             let keyValue = button.dataset.val;
 
-            console.log(keyValue)
+            //console.log(keyValue)
 
             if (keyValue.split('-')[1] === this.settings.key) {
 

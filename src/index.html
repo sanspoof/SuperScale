@@ -88,7 +88,6 @@
             </svg>
           </button>
 
-          <span class="superscale__sidebar-divider"></span>
 
           <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Share  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
@@ -110,6 +109,8 @@
 
           
           <section class="superscale__main">
+
+            <div class="noticebanner">Note scale selection is being updated to include ALL scales — some scales may be temporarily inaccurate.</div>
 
             <section class="superscale__subnav" aria-label="superscale-controls">
               <div class="scalefilter" data-role="switcher">
@@ -142,19 +143,7 @@
               <div class="scalefilter scalefilter--br" data-role="switcher-select">
                 <label class="scalefilter__lbl" for="selectedScale">Scale</label>
                 <div class="scalefilter__actions">
-                    <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;">
-                        <option data-setting="none" value="none">No Scale</option>   
-                        <option data-setting="chromatic" value="chromatic">Chromatic</option>       
-                        <option data-setting="major" value="major">Major</option>
-                        <option data-setting="minor" value="minor">Minor</option>
-                        <option data-setting="harmonic_minor" value="harmonic_minor">Harmonic Minor</option>
-                        <option data-setting="melodic_minor" value="melodic_minor">Melodic Minor</option>
-                        <option data-setting="mixolydian" value="mixolydian">Mixolydian</option>
-                        <option data-setting="phrygian" value="phrygian">Phrygian</option>
-                        <option data-setting="dorian" value="dorian">Dorian</option>
-                        <option data-setting="locrian" value="dorian">Locrian</option>
-                        <option data-setting="lydian" value="lydian">Lydian</option>
-                    </select>
+                    <select class="scalefilter__select" id="selectedScale" style="min-width: fit-content;"></select>
                 </div>
               </div>
 
@@ -206,6 +195,8 @@
               </div>
           
             </div>
+
+            <div id="Triads" class="triadwrap"></div>
 
             <section class="superscale__subnav superscale__subnav--bottom" aria-label="superscale-settings">
               <div class="scalefilter scalefilter--br" data-role="switcher">
@@ -343,4 +334,68 @@
   <div class="guitar__fret" data-fret="">
     <div class="guitar__note" data-note=""></div>
   </div>
+</template>
+ 
+<template id="TriadTemplate">
+  <div class="triad">
+    <p class="triad__name" data-role="triad-name">Am</p>
+    <div class="triad__notes">
+        <div class="triad__note triad__note--root" data-role="triad-root">A</div>
+        <div class="triad__note triad__note--second"  data-role="triad-second">C</div>
+        <div class="triad__note triad__note--third"  data-role="triad-third">E</div>
+    </div>
+    <div class="triad__fretboard">
+
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="6" data-fret="0" data-triadnutnote=""><span class="triad__fretmarker">0</span></div>
+          <div class="triad__fret" data-string="6" data-fret="1"><span class="triad__fretmarker">1</span></div>
+          <div class="triad__fret" data-string="6" data-fret="2"><span class="triad__fretmarker">2</span></div>
+          <div class="triad__fret" data-string="6" data-fret="3"><span class="triad__fretmarker">3</span></div>
+          <div class="triad__fret" data-string="6" data-fret="4"><span class="triad__fretmarker">4</span></div>
+          <div class="triad__fret" data-string="6" data-fret="5"><span class="triad__fretmarker">5</span></div>
+        </div>
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="5" data-fret="0" data-triadnutnote=""></div>
+          <div class="triad__fret" data-string="5" data-fret="1"></div>
+          <div class="triad__fret" data-string="5" data-fret="2"></div>
+          <div class="triad__fret" data-string="5" data-fret="3"></div>
+          <div class="triad__fret" data-string="5" data-fret="4"></div>
+          <div class="triad__fret" data-string="5" data-fret="5"></div>
+        </div>
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="4" data-fret="0" data-triadnutnote=""></div>
+          <div class="triad__fret" data-string="4" data-fret="1"></div>
+          <div class="triad__fret" data-string="4" data-fret="2"></div>
+          <div class="triad__fret" data-string="4" data-fret="3"></div>
+          <div class="triad__fret" data-string="4" data-fret="4"></div>
+          <div class="triad__fret" data-string="4" data-fret="5"></div>
+        </div>
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="3" data-fret="0" data-triadnutnote=""></div>
+          <div class="triad__fret" data-string="3" data-fret="1"></div>
+          <div class="triad__fret" data-string="3" data-fret="2"></div>
+          <div class="triad__fret" data-string="3" data-fret="3"></div>
+          <div class="triad__fret" data-string="3" data-fret="4"></div>
+          <div class="triad__fret" data-string="3" data-fret="5"></div>
+        </div>
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="2" data-fret="0" data-triadnutnote=""></div>
+          <div class="triad__fret" data-string="2" data-fret="1"></div>
+          <div class="triad__fret" data-string="2" data-fret="2"></div>
+          <div class="triad__fret" data-string="2" data-fret="3"></div>
+          <div class="triad__fret" data-string="2" data-fret="4"></div>
+          <div class="triad__fret" data-string="2" data-fret="5"></div>
+        </div>
+        <div class="triad__string">
+          <div class="triad__fret triad__fret--nut" data-string="1" data-fret="0" data-triadnutnote=""></div>
+          <div class="triad__fret" data-string="1" data-fret="1"></div>
+          <div class="triad__fret" data-string="1" data-fret="2"></div>
+          <div class="triad__fret" data-string="1" data-fret="3"></div>
+          <div class="triad__fret" data-string="1" data-fret="4"></div>
+          <div class="triad__fret" data-string="1" data-fret="5"></div>
+        </div>
+
+    </div>
+    
+</div>
 </template>

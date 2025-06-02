@@ -16,7 +16,7 @@
 
     &__nutnote {
             width:56px;// var up
-            height:60px; // var up
+            height:56px; // var up
             display: flex;
             align-items: center;
             justify-content: center;
@@ -47,8 +47,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height:80px;
+        height:60px;
         font-weight: var(--fontweight-megabold);
+        font-family: var(--font-wide);
+        font-size: 1rem;
     }
 
     &__string { 
@@ -167,6 +169,198 @@
                 pointer-events: all;
             }
         }
+    }
+
+}
+
+.triadwrap {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    gap:26px;
+}
+
+.triad {
+
+    --fretHeight:28px;
+    --fretWidth:28px;
+    --stringWidth:4px;
+    --nutHeight:4px;
+    --triadGap:4px;
+
+    --offset:calc((var(--fretWidth) / 2 ) - (var(--stringWidth) / 2));
+
+    $self:&;
+
+    display: flex;
+    gap:var(--triadGap);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+
+    &__name {
+        font-weight: var(--fontweight-megabold);
+        font-family: var(--font-wide);
+        font-size:1.5rem;
+    }
+
+    &__notes {
+        display: flex;
+        gap:2px;
+        #{$self}__note {
+            width:34px;
+            height:26px;
+            font-size:0.8rem;
+            font-family: var(--font-wide);
+            font-weight: var(--fontweight-megabold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:first-of-type {
+                border-radius: 4px 0px 0px 4px;
+            }
+
+            &:last-of-type {
+                border-radius: 0px 4px 4px 0px;
+            }
+
+            &--root { background-color: var(--triadroot); }
+            &--second { background-color: var(--triadsecond); }
+            &--third { background-color: var(--triadthird); }
+
+        }
+
+    }
+
+    &__fretboard {
+        width:100%;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        
+        &:before {
+            content:'';
+            position:absolute;
+            top:calc(   var(--fretHeight))  ;
+            left:var(--offset);
+            height:var(--nutHeight); 
+            width:calc(100% - (var(--offset) * 2) );
+            background-color: var(--triadNutCol);
+            z-index: 2;
+        }
+
+    }
+
+    &__string {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height:100%;
+        
+        &:first-of-type {
+
+            & .triad__fret {
+                &:after { 
+                    right:0;
+                    left:initial;
+                    width: 16px;
+                }
+            }
+
+        }
+
+        &:last-of-type {
+
+            & .triad__fret {
+                &:after { 
+                    left:0;
+                    width: 16px;
+                }
+            }
+
+        }
+
+        &:before {
+            content:'';
+            position:absolute;
+            top:calc( var(--fretHeight) + var(--nutHeight) );
+            height:calc(100% - (var(--fretHeight) + var(--nutHeight)));
+            width:var(--stringWidth);
+            background-color: var(--triadStingCol);
+            left:calc(50% - (var(--stringWidth) / 2));
+            z-index: 1;
+        }
+        
+    }
+
+    &__fretmarker {
+        position: absolute;
+        left:-10px;
+        font-size:0.75rem;
+        font-weight: var(--fontweight-megabold);
+        opacity: 0.5;
+    }
+
+    &__fret {
+        height:var(--fretHeight);
+        width:var(--fretWidth);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        
+        &:after {
+            content:'';
+            width:100%;
+            height:1px;
+            background-color: var(--col-guitar-fret);
+            position:absolute;
+            bottom:0;
+            left:0;
+            opacity: 0.5;
+        }
+
+
+        &--nut {
+            &:after {
+                display: none;
+            }
+        }
+
+        &.active {
+            &:before {
+                content:'';
+                width:calc(var(--fretWidth) * 0.65);
+                height:calc(var(--fretHeight) * 0.65);
+                border-radius: 6px;
+
+            }
+        }
+
+        &.active--root {
+            &:before { 
+                background-color: var(--triadroot); 
+            }
+            
+        }
+
+        &.active--second {
+            &:before { 
+                background-color: var(--triadsecond); 
+            }
+            
+        }
+
+        &.active--third {
+            &:before { 
+                background-color: var(--triadthird); 
+            }
+           
+        }
+
     }
 
 }

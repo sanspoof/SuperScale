@@ -20,7 +20,3 @@ export function getUserSettings() {
 export function waitForUserSettings() {
     return userSettingsDeferred.promise;
 }
-
-export function _s(role) {
-    return document.querySelector(`[data-role="${role}"]`);
-  }

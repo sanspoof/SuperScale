@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.11",
-    "@supabase/supabase-js": "^2.43.5"
+    "@supabase/supabase-js": "^2.43.5",
+    "tonal": "^6.4.1"
   }
 }

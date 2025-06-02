@@ -2,8 +2,8 @@ require('dotenv').config();
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
 import { funcAnimateLoginLogo } from '../app.js';
-import { setUserSettings, getUserSettings, waitForUserSettings, _s  } from './_globals.js';
-
+import { setUserSettings, waitForUserSettings, _s  } from './_globals.js';
+import { _s } from './_Utils.js';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -112,6 +112,8 @@ export async function funcInitAuthUI() {
 }
 
 function funcStartSuperScale() {
+
+    if (typeof superScaleApp !== "undefined" && superScaleApp !== null) return;
 
     superScaleApp = new SuperScaleApp();
 
