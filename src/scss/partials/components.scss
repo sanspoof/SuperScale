@@ -40,7 +40,13 @@
     line-height: 1rem;
     width:auto;
     text-align: center;
-    width:140px;
+    width:120px;
+
+
+
+    option {
+        background-color:var(--col-3--hover);
+    }
 
 }
 

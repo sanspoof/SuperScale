@@ -3,8 +3,13 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    
     width:100%;
+
+    --guitar-notesize:36px;
+
+    @media screen and (min-width:768px) {
+            --guitar-notesize:42px;
+    }
 
     &__nut {
         border-right:5px solid var(--col-guitar-nut);
@@ -94,8 +99,8 @@
             border-radius: 18px;
             justify-content: center;
             align-items: center;
-            width: 42px;
-            height: 42px;
+            width: var(--guitar-notesize);
+            height: var(--guitar-notesize);
             font-size: 0.9rem;
             display: flex;
 

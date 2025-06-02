@@ -83,6 +83,21 @@ export class SuperScaleApp {
     
     }
 
+    funcFlattenTuning() {
+
+      const tuning = this.settings.tuning;
+
+      let result = '';
+      for(let i = 6; i >= 1; i--) {
+        result += tuning[i];
+      }
+
+      result = result.toLowerCase();
+
+      return result;
+
+    }
+
     funcSetupScaleDropdown(dd) { 
 
         let scaleNames = funcGetAllScaleNames();
@@ -103,63 +118,66 @@ export class SuperScaleApp {
 
     }
 
-    funcHighlightMatchingNotes() { 
+funcHighlightMatchingNotes() {
 
-      const elements = document.querySelectorAll('[data-note]');
+  const container = this.guitarNeck; 
 
-      elements.forEach(el => {
+  // Remove any existing listeners to avoid duplication, if needed
+  container.removeEventListener('mouseover', this.handleMouseOver);
 
-        el.addEventListener('mouseover', () => { 
+  container.removeEventListener('mouseout', this.handleMouseOut);
 
-          const dataNoteValues = el.getAttribute('data-note').split(':');
+  // Need to be defined to allow to remove them later
 
-          dataNoteValues.forEach(note => {
+  this.handleMouseOver = (event) => {
 
-            const elements = document.querySelectorAll('[data-note]');
+    const el = event.target.closest('[data-note]');
 
-            elements.forEach(el => {
+    if (!el) return;
 
-              const dataNoteValues = el.getAttribute('data-note').split(':');
+    const dataNoteValues = el.getAttribute('data-note').split(':');
 
-              if (dataNoteValues.includes(note)) {
+    document.querySelectorAll('[data-note]').forEach(otherEl => {
 
-                el.classList.add('guitar__note--matchinghover');
+      const otherNotes = otherEl.getAttribute('data-note').split(':');
 
-              }
+      if (dataNoteValues.some(note => otherNotes.includes(note))) {
 
-            });
+        otherEl.classList.add('guitar__note--matchinghover');
 
-          });
+      }
 
-        });
+    });
 
-        el.addEventListener('mouseout', () => { 
-            
-            const dataNoteValues = el.getAttribute('data-note').split(':');
-  
-            dataNoteValues.forEach(note => {
-  
-              const elements = document.querySelectorAll('[data-note]');
-  
-              elements.forEach(el => {
-  
-                const dataNoteValues = el.getAttribute('data-note').split(':');
-  
-                if (dataNoteValues.includes(note)) {
-  
-                  el.classList.remove('guitar__note--matchinghover');
-  
-                }
-  
-              });
-  
-            });
-        });
-        
+  };
 
-       });
+  this.handleMouseOut = (event) => {
 
-    }
+    const el = event.target.closest('[data-note]');
+
+    if (!el) return;
+
+    const dataNoteValues = el.getAttribute('data-note').split(':');
+
+    document.querySelectorAll('[data-note]').forEach(otherEl => {
+
+      const otherNotes = otherEl.getAttribute('data-note').split(':');
+
+      if (dataNoteValues.some(note => otherNotes.includes(note))) {
+
+        otherEl.classList.remove('guitar__note--matchinghover');
+
+      }
+
+    });
+
+  };
+
+  container.addEventListener('mouseover', this.handleMouseOver);
+
+  container.addEventListener('mouseout', this.handleMouseOut);
+
+}
 
     funcFindCommonNotes() {
 
@@ -213,7 +231,7 @@ export class SuperScaleApp {
     
         this.addFretAndNote(this[`string${el.dataset.nutstring}`], this.funcSetTuningBasedOnNutNote(newValue));
 
-        this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+        this.funcSetupNotesDisplay(this.settings.scale);
  
         this.settings.tuning[el.dataset.nutstring] = newValue;
         
@@ -227,27 +245,7 @@ export class SuperScaleApp {
         
     }
 
-    funcSetRootNoteModifier(key) {
-
-      let strModifier = "guitar__note--root";
-
-      let allNotes = this.guitarNeck.querySelectorAll("[data-note]");
-
-      allNotes.forEach( (n) => {
-        const noteData = n.dataset.note;
-    // Split sharp/flat combo like "A#:Bb" into ["A#", "Bb"]
-    const noteVariants = noteData.includes(":") 
-      ? noteData.split(":") 
-      : [noteData]; // Single notes stay as a single-element array
-
-    // Check if the key matches any variant
-    if (noteVariants.includes(key)) {
-      n.classList.add(strModifier);
-    }
-
-      });
-
-    }
+    
 
     addFretAndNote(stringElement, startNote) {
 
@@ -344,25 +342,32 @@ export class SuperScaleApp {
 
     funcSetupFretboard() {
 
+        document.querySelector(`[data-nutstring="1"]`).dataset.nutnote = this.settings.tuning[1];
+        document.querySelector(`[data-nutstring="2"]`).dataset.nutnote = this.settings.tuning[2];
+        document.querySelector(`[data-nutstring="3"]`).dataset.nutnote = this.settings.tuning[3];
+        document.querySelector(`[data-nutstring="4"]`).dataset.nutnote = this.settings.tuning[4];
+        document.querySelector(`[data-nutstring="5"]`).dataset.nutnote = this.settings.tuning[5];
+        document.querySelector(`[data-nutstring="6"]`).dataset.nutnote = this.settings.tuning[6];
+
         for(let i = 1; i <= 6; i++) { 
 
             this.addFretAndNote(this[`string${i}`], this.funcSetTuningBasedOnNutNote(this[`nutstring${i}`].dataset.nutnote));
 
         }
 
-        this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+        this.funcSetupNotesDisplay(this.settings.scale);
         
         this.guitarNeck.classList.add("position-" + this.settings.position);
 
         this.funcHighlightMatchingNotes();
 
-        this.funcSetRootNoteModifier(this.settings.key); 
+         
 
         this.functionCreateTriadsBasedOnKey();
 
     }
 
-    funcSetupNotesDisplay(key, scale) {
+    funcSetupNotesDisplay(scale) {
 
         const elements = document.querySelectorAll('[data-note]');
 
@@ -420,7 +425,6 @@ export class SuperScaleApp {
 
       functionCreateTriadsBasedOnKey() {
 
-
         this.TriadContainer.innerHTML = '';
 
         let objCurrentTuning = this.settings.tuning;
@@ -466,6 +470,8 @@ export class SuperScaleApp {
 
         const selectEl = document.querySelector('#selectedScale');
 
+        const selectTuning = document.querySelector('#setTuning');
+
         const radioShowAllNotes = document.querySelector('input[name="notes"][value="all"]');
 
         const radioShowScaleNotesOnly = document.querySelector('input[name="notes"][value="scaleonly"]');
@@ -506,11 +512,64 @@ export class SuperScaleApp {
 
                     this.settings.scale = dataVal;
 
-                    this.funcSetupNotesDisplay(this.settings.key, this.settings.scale);
+                    this.funcSetupNotesDisplay(this.settings.scale);
                     
-                    this.funcSetRootNoteModifier(this.settings.key);
+                    
                     
                   }
+
+            });
+
+          }
+
+          if(selectTuning) {
+
+            let flattenedTuning = this.funcFlattenTuning();
+
+            console.log("FLATT", flattenedTuning);
+
+            for (var i = 0; i < selectTuning.options.length; i++) {
+
+            if (selectTuning.options[i].value === flattenedTuning) {
+
+                // Set the selected attribute 
+                selectTuning.options[i].selected = true;
+
+                break; // Exit the loop once the option is found
+
+              }
+
+          }
+
+            selectTuning.addEventListener('change', (event) => {
+
+              const selectedOption = event.target.selectedOptions[0];
+
+              const dataVal = selectedOption.dataset.setting;
+
+              if (dataVal) {
+
+                const tuning = {};
+
+                tuning[1] = dataVal[5].toUpperCase(); // E
+                tuning[2] = dataVal[4].toUpperCase(); // B
+                tuning[3] = dataVal[3].toUpperCase(); // G
+                tuning[4] = dataVal[2].toUpperCase(); // D
+                tuning[5] = dataVal[1].toUpperCase(); // A
+                tuning[6] = dataVal[0].toUpperCase(); // E
+
+                document.querySelector(`[data-nutstring="1"]`).dataset.nutnote = tuning[1];
+                document.querySelector(`[data-nutstring="2"]`).dataset.nutnote = tuning[2];
+                document.querySelector(`[data-nutstring="3"]`).dataset.nutnote = tuning[3];
+                document.querySelector(`[data-nutstring="4"]`).dataset.nutnote = tuning[4];
+                document.querySelector(`[data-nutstring="5"]`).dataset.nutnote = tuning[5];
+                document.querySelector(`[data-nutstring="6"]`).dataset.nutnote = tuning[6];
+
+                this.settings.tuning = tuning;
+
+                this.functionCreateTriadsBasedOnKey();
+
+              }
 
             });
 
@@ -657,6 +716,11 @@ export class SuperScaleApp {
                     case 'key-Gb':
                     case 'key-G':
                     case 'key-Ab':
+                    case 'key-G#':
+                    case 'key-A#':
+                    case 'key-C#':
+                    case 'key-D#':
+                    case 'key-F#':
                       
                       this.funcHandleKeyChange(dataVal);
 
@@ -681,11 +745,11 @@ export class SuperScaleApp {
                       case 'position-4':
                       case 'position-5':
 
-                            const position = Number(dataVal.split('-')[1]);
+                          const position = Number(dataVal.split('-')[1]);
 
-                            this.handlePosition(position);
+                          this.handlePosition(position);
 
-                            break;
+                          break;
 
                         
                         default:
@@ -702,6 +766,12 @@ export class SuperScaleApp {
           });
 
         });
+
+      }
+
+      funcChangeTuning() {
+
+        console.log("Chang");
 
       }
 
