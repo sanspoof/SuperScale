@@ -178,18 +178,48 @@
               </div>
           
               <div class="guitar__fretmarkers">
-                <div class="guitar__fretmarker" data-fretmarker="1">1</div>
-                <div class="guitar__fretmarker" data-fretmarker="2">2</div>
-                <div class="guitar__fretmarker" data-fretmarker="3">3</div>
-                <div class="guitar__fretmarker" data-fretmarker="4">4</div>
-                <div class="guitar__fretmarker" data-fretmarker="5">5</div>
-                <div class="guitar__fretmarker" data-fretmarker="6">6</div>
-                <div class="guitar__fretmarker" data-fretmarker="7">7</div>
-                <div class="guitar__fretmarker" data-fretmarker="8">8</div>
-                <div class="guitar__fretmarker" data-fretmarker="9">9</div>
-                <div class="guitar__fretmarker" data-fretmarker="10">10</div>
-                <div class="guitar__fretmarker" data-fretmarker="11">11</div>
-                <div class="guitar__fretmarker" data-fretmarker="12">12</div>
+                <div class="guitar__fretmarker" data-fretmarker="1"><span data-role="marker-number"class="guitar__fretmarker-number">1</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="2"><span data-role="marker-number"class="guitar__fretmarker-number">2</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="3">
+                  <span data-role="marker-number"class="guitar__fretmarker-number">3</span>
+                  <div data-role="marker-dots" class="guitar__fretmarker-dots">
+                    <span class="guitar__fretmarker-dot"></span>
+                    <span class="guitar__fretmarker-dot"></span>
+                  </div>
+                </div>
+                <div class="guitar__fretmarker" data-fretmarker="4"><span data-role="marker-number"class="guitar__fretmarker-number">4</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="5">
+                  <span data-role="marker-number"class="guitar__fretmarker-number">5</span>
+                  <div data-role="marker-dots" class="guitar__fretmarker-dots">
+                    <span class="guitar__fretmarker-dot"></span>
+                    <span class="guitar__fretmarker-dot"></span>
+                  </div>
+                </div>
+                <div class="guitar__fretmarker" data-fretmarker="6"><span data-role="marker-number"class="guitar__fretmarker-number">6</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="7">
+                  <span data-role="marker-number"class="guitar__fretmarker-number">7</span>
+                  <div data-role="marker-dots" class="guitar__fretmarker-dots">
+                    <span class="guitar__fretmarker-dot"></span>
+                    <span class="guitar__fretmarker-dot"></span>
+                  </div>
+                </div>
+                <div class="guitar__fretmarker" data-fretmarker="8"><span data-role="marker-number"class="guitar__fretmarker-number">8</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="9">
+                  <span data-role="marker-number"class="guitar__fretmarker-number"><span data-role="marker-number"class="guitar__fretmarker-number">9</span></span>
+                  <div data-role="marker-dots" class="guitar__fretmarker-dots">
+                    <span class="guitar__fretmarker-dot"></span>
+                    <span class="guitar__fretmarker-dot"></span>
+                  </div>
+                </div>
+                <div class="guitar__fretmarker" data-fretmarker="10"><span data-role="marker-number"class="guitar__fretmarker-number">10</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="11"><span data-role="marker-number"class="guitar__fretmarker-number">11</span></div>
+                <div class="guitar__fretmarker" data-fretmarker="12">
+                  <span data-role="marker-number"class="guitar__fretmarker-number">12</span>
+                  <div data-role="marker-dots" class="guitar__fretmarker-dots">
+                    <span class="guitar__fretmarker-dot"></span>
+                    <span class="guitar__fretmarker-dot"></span>
+                  </div>
+                </div>
           
               </div>
           
@@ -211,6 +241,12 @@
                     <label class="radio" for="show_sharps">Sharps</label>
                     <input class="radio-input" id="show_flats" value="flats" type="radio" name="sharpsflats" />
                     <label class="radio" for="show_flats">Flats</label>
+                  </div>
+                  <div class="radio-container">
+                    <input class="radio-input" id="show_number" value="number" type="radio" name="fretmarker" />
+                    <label class="radio" for="show_number">Fret Numbers</label>
+                    <input class="radio-input" id="show_markers" value="marker" type="radio" name="fretmarker" />
+                    <label class="radio" for="show_markers">Fret Markers</label>                    
                   </div>
                 </div>
 

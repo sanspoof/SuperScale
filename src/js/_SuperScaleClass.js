@@ -17,6 +17,7 @@ export class SuperScaleApp {
         showAllNotes:"true",
         showFlats:"true",
         display:"notes", 
+        showFretNumbers:"true",
         tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } 
       };
 
@@ -29,6 +30,7 @@ export class SuperScaleApp {
       this.settings.key = this.settings.key || this.defaults.key;
       this.settings.display = this.settings.display || this.defaults.display;
       this.settings.tuning = this.settings.tuning || this.defaults.tuning;
+      this.settings.showFretNumbers = this.settings.showFretNumbers || this.defaults.showFretNumbers;
 
         this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
 
@@ -244,8 +246,6 @@ funcHighlightMatchingNotes() {
         this.observer.disconnect();
         
     }
-
-    
 
     addFretAndNote(stringElement, startNote) {
 
@@ -478,6 +478,10 @@ funcHighlightMatchingNotes() {
       
         const radioShowSharps = document.querySelector('input[name="sharpsflats"][value="sharps"]');
 
+        const radioShowFretNumbers = document.querySelector('input[name="fretmarker"][value="number"]');
+
+        const radioShowFretMarkers = document.querySelector('input[name="fretmarker"][value="marker"]');
+
         const radioShowFlats = document.querySelector('input[name="sharpsflats"][value="flats"]');
 
         let selectedScale = this.settings.scale;
@@ -648,6 +652,48 @@ funcHighlightMatchingNotes() {
                 this.settings.showFlats = "true";
 
                 this.guitarNeck.classList.add('showflats');
+
+              }
+
+            });
+
+          });
+
+        }
+
+        if(radioShowFretNumbers) {
+
+          if(this.settings.showFretNumbers == "true") {
+
+            radioShowFretNumbers.checked = true;
+
+          } else {
+
+            radioShowFretMarkers.checked = true;
+
+            this.guitarNeck.classList.remove('showfretmarkers');
+
+          }
+
+          const radios = document.querySelectorAll('input[name="fretmarker"]');
+
+          radios.forEach(radio => {
+
+            radio.addEventListener('change', (e) => {
+
+              console.log("Fret Marker Change", e.target.value);
+
+              if (e.target.value === 'number') {
+
+                this.settings.showFretNumbers = "true";
+
+                this.guitarNeck.classList.remove('showfretmarkers');
+
+              } else if (e.target.value === 'marker') {
+
+                this.settings.showFretNumbers = "false";
+
+                this.guitarNeck.classList.add('showfretmarkers');
 
               }
 

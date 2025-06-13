@@ -53,9 +53,37 @@
         align-items: center;
         justify-content: center;
         height:60px;
-        font-weight: var(--fontweight-megabold);
-        font-family: var(--font-wide);
-        font-size: 1rem;
+            font-weight: var(--fontweight-megabold);
+            font-family: var(--font-wide);
+            font-size: 1rem;
+
+        &-number {
+
+        }
+
+        &-dots {
+            display: none;
+            gap:8px;
+        }
+
+        &-dot {
+            width:12px;
+            height:12px;
+            background-color:#fff;
+            border-radius: 10px;
+        }
+
+        &[data-fretmarker="3"],
+        &[data-fretmarker="5"],
+        &[data-fretmarker="7"],
+        &[data-fretmarker="9"] {
+            #{$self}__fretmarker-dot {
+                &:first-of-type {
+                    display: none;
+                }
+            }
+        }
+
     }
 
     &__string { 
@@ -166,13 +194,23 @@
 
     &.showscalenotesonly {
         #{$self}__note {
-            opacity: 0;
+            opacity: 0.2;
             pointer-events: none;
 
             &--active {
                 opacity: 1;
                 pointer-events: all;
             }
+        }
+    }
+
+    &.showfretmarkers {
+        #{$self}__fretmarker-number {
+            display: none;
+        }
+
+        #{$self}__fretmarker-dots {
+            display: flex;
         }
     }
 
