@@ -1,0 +1,114 @@
+.supersettings {
+    
+    position:fixed;
+    bottom:-100px;
+    opacity: 0;
+    pointer-events: none;
+    right:20px;
+    width:440px;
+    background-color: var(--col-bodybgcol);
+    z-index: 2;
+    --subcol:#8c8c8c;
+    --pad:20px;
+    border:2px solid var(--col-accent);
+    border-radius: 14px 14px 0px 0px;
+    border-bottom:none;
+    box-shadow: -1px -3px 17px rgba(10 20 30 / 90%);
+
+    &__body {
+        padding:34px 26px 18px 26px;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom:var(--pad);
+        border-bottom:1px solid var(--col-line);
+    }
+
+    &__headercontent {
+        display: flex;
+        align-items: center;
+        gap:8px;
+    }
+
+    &__headericon {
+        width:40px;
+        height:40px;
+    }
+
+    &__headertype {
+        display: flex;
+        flex-direction: column;
+        gap:1px;
+    }
+
+    &__heading {
+        font-size:1.125rem;
+        line-height: 1.125rem;
+        font-weight:var(--fontweight-megabold);
+    }
+
+    &__subheading {
+        font-size:0.75rem;
+        color:var(--subcol);
+    }
+
+    &__close {
+        font-size: 0.75rem;
+        font-weight: 900;
+        padding:4px 6px;
+        height:30px;
+        border:1px solid var(--col-line);
+
+        &:hover {
+            cursor: pointer;
+            background-color: var(--col-accent);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+    }
+
+    &__settingswrap {
+        display: grid;
+    }
+
+    .setting {
+        display: flex;
+        flex-direction: column;
+        padding:var(--pad) 0px;
+        border-bottom: 1px solid var(--col-line);
+        gap:2px;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+        
+        &__heading {
+            font-weight:var(--fontweight-megabold);
+            font-size:1rem;
+        }
+
+        &__subheading {
+            font-size:0.875rem;
+            font-weight: var(--fontweight-bold);
+            color:var(--subcol);
+        }
+
+        &__radios {
+            margin-top:6px;
+
+            label {
+                font-size:0.875rem;
+                font-weight: var(--fontweight-megabold);
+            }
+
+        }
+
+    }
+
+}
+

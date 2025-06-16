@@ -64,41 +64,46 @@
             </svg>
           </button>
 
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Chords - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-tooltip="Chords - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#chords"></use>
             </svg>
           </button>
 
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Arpeggios - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-tooltip="Arpeggios - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#arpeggio"></use>
             </svg>
           </button>
 
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Metronome - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-tooltip="Metronome - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#metronome"></use>
             </svg>
           </button>
 
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Triads  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-tooltip="Triads  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#triad"></use>
             </svg>
           </button>
 
 
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="Share  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-tooltip="Share  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#share"></use>
             </svg>
           </button>
 
-
-          <button role="button" class="sidebtn sidebtn--disabled" data-tooltip="App Settings - Coming Soon" data-tooltip-position="right" aria-disabled="true">
+          <button role="button" class="sidebtn" data-cmd="app-settings" data-tooltip="App Settings" data-tooltip-position="right">
             <svg class="sidebtn__icon" viewBox="0 0 32 32">
               <use href="/src/img/icons.svg#settings"></use>
+            </svg>
+          </button>
+
+          <button role="button" class="sidebtn sidebtn--pushtop" data-tooltip="App Information" data-tooltip-position="right" aria-disabled="true">
+            <svg class="sidebtn__icon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#info"></use>
             </svg>
           </button>
 
@@ -227,45 +232,93 @@
 
             <div id="Triads" class="triadwrap"></div>
 
-            <section class="superscale__subnav superscale__subnav--bottom" aria-label="superscale-settings">
-              <div class="scalefilter scalefilter--br" data-role="switcher">
-                <p class="scalefilter__lbl">Note Visibility</p>
-                  <div class="radio-container">
-                    <input class="radio-input" id="show_all_notes" value="all" type="radio" name="notes" />
-                    <label class="radio" for="show_all_notes">All</label>
-                    <input class="radio-input" id="show_only_scale_note" value="scaleonly" type="radio" name="notes" />
-                    <label class="radio" for="show_only_scale_note">Scale</label>
+
+
+          </section>
+          <!-- <footer class="superscale__footer" >
+            <a class="superscale__footer-link"  href="https://www.alexui.dev" target="_blank">
+              <span class="superscale__footer-lbl">Made by Alex</span> 
+            </a>
+          </footer> -->
+
+        </main>
+
+        <section class="supersettings" id="Settings">
+
+          <div class="supersettings__body">
+
+              <div class="supersettings__header">
+
+                  <div class="supersettings__headercontent">
+                      <svg class="supersettings__headericon" viewBox="0 0 32 32">
+                        <use href="/src/img/icons.svg#ss-icon"></use>
+                      </svg>
+                      <div class="supersettings__headertype">
+                        <h3 class="supersettings__heading">Settings</h3>
+                        <p class="supersettings__subheading">Changes automatically applied</p>
+                      </div>
                   </div>
-                  <div class="radio-container">
+
+                  <button class="supersettings__close" type="button" data-cmd="close-settings">
+                    close
+                  </button>
+
+              </div>
+
+              <div class="supersettings__settingswrap">
+                                  <div class="setting" style="display: none;">
+                    <div class="scalefilter" data-role="switcher"  >
+                      <label class="scalefilter__lbl" for="head">User Settings</label>
+                      <input type="color" id="accentColor" name="head" value="#e66465" />
+                      
+                    </div>
+                  </div>
+                  <div class="setting">
+
+                      <h4 class="setting__heading">Note Visibility</h4>
+                      <p class="setting__subheading">Display options for the guitar scale</p>
+                      <div class="radio-container setting__radios">
+                        <input class="radio-input" id="show_all_notes" value="all" type="radio" name="notes" />
+                        <label class="radio" for="show_all_notes">All</label>
+                        <input class="radio-input" id="show_only_scale_note" value="scaleonly" type="radio" name="notes" />
+                        <label class="radio" for="show_only_scale_note">Scale</label>
+                      </div>
+
+                  </div>
+
+                  <div class="setting">
+
+                      <h4 class="setting__heading">#Sharps or bFlats?</h4>
+                      <p class="setting__subheading">Show either shars or flats on the guitar neck</p>
+                  <div class="radio-container setting__radios">
                     <input class="radio-input" id="show_sharps" value="sharps" type="radio" name="sharpsflats" />
                     <label class="radio" for="show_sharps">Sharps</label>
                     <input class="radio-input" id="show_flats" value="flats" type="radio" name="sharpsflats" />
                     <label class="radio" for="show_flats">Flats</label>
                   </div>
-                  <div class="radio-container">
+
+                  </div>
+
+                  <div class="setting"> 
+
+                      <h4 class="setting__heading">Guitar Markers</h4>
+                      <p class="setting__subheading">Choose how the fret numbers appear</p>
+                  <div class="radio-container setting__radios">
                     <input class="radio-input" id="show_number" value="number" type="radio" name="fretmarker" />
                     <label class="radio" for="show_number">Fret Numbers</label>
                     <input class="radio-input" id="show_markers" value="marker" type="radio" name="fretmarker" />
                     <label class="radio" for="show_markers">Fret Markers</label>                    
                   </div>
-                </div>
 
-                <div class="scalefilter" data-role="switcher" style="display: none;" >
-                  <label class="scalefilter__lbl" for="head">User Settings</label>
-                  <input type="color" id="accentColor" name="head" value="#e66465" />
-                  
-                </div>
+                  </div>
 
-            </section>
 
-          </section>
-          <footer class="superscale__footer" >
-            <a class="superscale__footer-link"  href="https://www.alexui.dev" target="_blank">
-              <span class="superscale__footer-lbl">Made by Alex</span> 
-            </a>
-          </footer>
 
-        </main>
+              </div>
+
+          </div>
+
+        </section>
 
     </div>
 

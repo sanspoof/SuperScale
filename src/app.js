@@ -2,9 +2,11 @@
 import { PesTip, PesTipManager } from './js/_tooltip.js';
 import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
 import { _s } from './js/_Utils.js';
+import { gsap } from 'gsap';
 
 const dialog = document.getElementById("betaModal");
 const elAccentColor = document.getElementById('accentColor');
+const elAppSettings = document.getElementById('Settings');
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -76,8 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 break;
 
+            case 'app-settings':
+
+                funcShowAppSettings();
+
+                break;
+
+            case 'close-settings':
+
+                funcCloseAppSettings();
+
+            break;
+
     
             case 'show-sign-in':
+
+            break;
 
             case 'show-sign-up':
 
@@ -91,6 +107,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+
+function funcShowAppSettings() {
+    gsap.to(elAppSettings, {
+        duration: 0.4,
+        opacity: 1,
+        bottom: 0,
+        ease: "power2.out",
+        onStart: () => {
+            elAppSettings.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+function funcCloseAppSettings() {
+    gsap.to(elAppSettings, {
+        duration: 0.1,
+        opacity: 0,
+        bottom: '-100px',
+        ease: "power2.in",
+        onComplete: () => {
+            elAppSettings.style.pointerEvents = 'none';
+        }
+    });
+}
 
 export function funcAnimateLoginLogo() {
 

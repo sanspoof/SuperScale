@@ -87,7 +87,7 @@ body.authentication--out {
         align-items: center;
         display: flex;
         flex-direction: column;
-        padding:6px 0px 0px 0px;
+        padding:0px 0px 0px 0px;
 
         &-divider {
             background-color: var(--col-line);
@@ -120,13 +120,13 @@ body.authentication--out {
 
     &__mainwrap {
         display: grid;
-        grid-template-rows: 1fr var(--layout-footer-height);
+        grid-template-rows: 1fr;
         position: relative;
     }
 
     &__main {
         border-bottom:1px solid var(--col-line);
-        padding: 50px 0px;
+        padding: 50px 0px 0px 0px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -193,7 +193,7 @@ text-align: center;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 60px;
     display: flex;
     transition:all linear 0.05s;
     position: relative;
@@ -201,42 +201,49 @@ text-align: center;
 
     &__icon {   
 
-        fill: #fff;
-        width: 40px;
-        height: 40px;
-        padding: 9px;
-        border-radius: 6px;
+    fill: #fff;
+    opacity: 0.6;
+    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+
     
     }
 
     &:hover {
-        #{$self}__icon {
-            opacity: 1;
-            background-color: var(--col-3);
-        }
+                    #{$self}__icon { 
+                opacity: 1;
+            }
     }
 
     &:active {
-        transform:translateY(1px);
+        #{$self}__icon {
+            transform:translateY(1px);
+        }
     }
 
     &--pushtop {
         margin-top: auto;
     }
 
+    &[aria-disabled="true"] {
+        opacity: 0.2;
+    }
+
     &--disabled {
         cursor: initial;
+        opacity: 0.2;
     }
 
     &--selected {
         #{$self}__icon {
-            background-color: var(--col-3);
+            opacity: 1;
         }
 
         &:hover {
             
             #{$self}__icon { 
-                background-color: var(--col-3);
+                opacity: 1;
             }
         }
 

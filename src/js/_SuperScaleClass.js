@@ -667,11 +667,13 @@ funcHighlightMatchingNotes() {
 
             radioShowFretNumbers.checked = true;
 
+            this.guitarNeck.classList.remove('showfretmarkers');
+
           } else {
 
             radioShowFretMarkers.checked = true;
 
-            this.guitarNeck.classList.remove('showfretmarkers');
+            this.guitarNeck.classList.add('showfretmarkers');
 
           }
 
