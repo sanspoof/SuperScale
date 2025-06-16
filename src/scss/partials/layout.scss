@@ -120,7 +120,7 @@ body.authentication--out {
 
     &__mainwrap {
         display: grid;
-        grid-template-rows: 1fr;
+        grid-template-rows: 1fr var(--layout-footer-height);
         position: relative;
     }
 
