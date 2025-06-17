@@ -1,14 +1,7 @@
 import { get as getNote, midi, fromMidi, transpose } from "@tonaljs/note";
-
-// Functions from @tonaljs/scale
 import { get as getScale, names as scaleNames } from "@tonaljs/scale";
-
-// Functions from @tonaljs/key
 import { majorKey, minorKey } from "@tonaljs/key";
-
-// Functions from @tonaljs/chord
 import { get as getChord, detect as detectChord, notes as chordNotes } from "@tonaljs/chord";
-
 import { funcCreateElementFromTemplate } from './_Utils';
 import { _s } from './_Utils';
 
@@ -93,20 +86,6 @@ export function funcReturnEnharmonicEquivalent(note) {
     }
 
 }
-
-// export function funcGetScaleNotesByName(tonic, scaleName) {
-
-//     const scale = Tonal.Scale.get(`${tonic} ${scaleName}`);
-
-//     if (!scale) {
-//         console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
-//         return [];
-//     }
-
-//     return scale.notes;
-// }
-
-
 
 export function funcGetScaleNotesByName(tonic, scaleName, useSharps = false) {
 
@@ -198,54 +177,84 @@ export function funcCreateTriad(triad, tuning, guitarNotes) {
     const [rootNote, secondNote, thirdNote] = triad.notes;
 
     _s(el, 'triad-name').innerText = triad.chord;
+
     _s(el, 'triad-root').innerText = rootNote;
+
     _s(el, 'triad-second').innerText = secondNote;
+
     _s(el, 'triad-third').innerText = thirdNote;
 
     const matchNoteType = (note) => {
+
         if (Array.isArray(note)) {
+
             if (note.includes(rootNote)) return 'root';
+
             if (note.includes(secondNote)) return 'second';
+
             if (note.includes(thirdNote)) return 'third';
+
         } else {
+
             if (note === rootNote) return 'root';
+
             if (note === secondNote) return 'second';
+
             if (note === thirdNote) return 'third';
+
         }
+
         return null;
     };
 
     for (let stringNum = 1; stringNum <= 6; stringNum++) {
+
         const stringKey = stringNum.toString();
+
         const openNote = objTuning[stringKey];
+
         const openIndex = FLAT_NOTES.indexOf(openNote);
 
         for (let fret = 0; fret <= 5; fret++) {
+
             const noteIndex = (openIndex + fret) % FLAT_NOTES.length;
+
             const note = guitarNotes[noteIndex];
+
             const noteStr = Array.isArray(note) ? note.join('/') : note;
 
             const fretEl = el.querySelector(`[data-string="${stringKey}"][data-fret="${fret}"]`);
 
             if (fretEl) {
+
                 fretEl.dataset.note = noteStr;
 
                 const matchType = matchNoteType(note);
+
                 if (matchType) {
+
                     fretEl.classList.add('active', `active--${matchType}`);
                 }
 
                 // Handle nut note
                 if (fret === 0) {
+
                     fretEl.dataset.triadnutnote = openNote;
 
                     const nutMatchType = matchNoteType(openNote);
+
                     if (nutMatchType) {
+
                         fretEl.classList.add('active', `active--${nutMatchType}`);
+
                     }
+
                 }
+
             }
+
         }
+
     }
 
     return el;

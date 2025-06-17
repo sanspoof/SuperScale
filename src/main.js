@@ -1,7 +1,7 @@
 import './scss/style.scss';
 
 import { PesTip, PesTipManager } from './js/_tooltip.js';
-import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings }  from './js/_auth.js';
+import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings, funcAddEventListenersToForm }  from './js/_auth.js';
 import { _s } from './js/_Utils.js';
 import { gsap } from 'gsap';
 
@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     funcInitAuthUI();
  
     funcStartToolTips();
+
+    funcAddEventListenersToForm();
 
     document.addEventListener('visibilitychange', funcHandleVisibilityChange);
 
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cmd = button.getAttribute('data-cmd'); 
 
         switch (cmd) {
+
             case 'toggle-lightmode':
 
                 console.log('Toggle Lightmode');
@@ -94,16 +97,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
             case 'show-sign-in':
 
+                funcSwitchSignInMode.call(button);
+
             break;
 
             case 'show-sign-up':
 
                 funcSwitchSignInMode.call(button);
-                break;
+
+            break;
     
             case 'update-user-settings':
+
                 funcUpdateUserSettings();
-                break;
+
+            break;
         }
     });
 
@@ -142,44 +150,31 @@ export function funcAnimateLoginLogo() {
 
     const logorootdots = document.querySelector(".rootdots");
 
-    const polygonDelay = 100;
+    const polygonDelay = 0.03; 
 
-    polygons.forEach((polygon, index) => {
+    gsap.set(polygons, { x:-10, opacity: 0});
+    
+    gsap.to(polygons, {
+        x: 0,
+        opacity: 1,
+        ease: "power3.out",
+        stagger: polygonDelay
+    });
 
-        polygon.style.opacity = 0; // Start hidden
-  
-        polygon.style.transition = "opacity 0.5s ease";
-  
-        setTimeout(() => {
-  
-          polygon.style.opacity = 1;
-  
-        }, index * polygonDelay);
-  
-      });
+    // the dots
+    gsap.set([logodots, logorootdots], { y: 10, opacity: 0 });
 
-
-      [logorootdots, logodots].forEach(el => {
-
-        el.style.transform = "translate(0px, 6px)";
-
-        el.style.opacity = 0;
-
-      });
-
-        setTimeout(() => {
-
-            [logorootdots, logodots].forEach(el => { 
-
-                el.style.transform = "translate(0px, 0px)";
-
-                el.style.opacity = 1;
-
-                el.style.transition = "all 0.5s ease";
-
-            });
-
-        }, polygons.length * polygonDelay);
+    gsap.to([logodots, logorootdots], {
+        y: 0,
+        opacity: 1,
+        duration: 2,
+        ease: "elastic.out",
+        delay: polygons.length * polygonDelay,
+        stagger: {
+            amount: 0.1,
+            from: "start"
+        }
+    });
 
 }
 

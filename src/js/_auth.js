@@ -1,7 +1,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
-import { funcAnimateLoginLogo } from '../app.js';
+import { funcAnimateLoginLogo } from '../main.js';
 import { setUserSettings, waitForUserSettings } from './_globals.js';
 import { _s } from './_Utils.js';
 
@@ -14,6 +14,7 @@ let userName = document.getElementById('email');
 let userPass = document.getElementById('password');
 let elSignInButton = document.getElementById('signInButton');
 let elSignUpButton = document.getElementById('signUpButton');
+let elSuperScaleForm = document.getElementById('SuperScaleForm');
 let elAccentColourInput = document.getElementById('accentColor');
 let elFeedback = document.getElementById('feedback');
 let superScaleApp;
@@ -25,6 +26,8 @@ let elPasswordFeedbackUppercase = _s('password-feedback-uppercase');
 let elPasswordFeedbackLowercase = _s('password-feedback-lowercase');
 let elPasswordFeedbackNumber = _s('password-feedback-number');
 let elPasswordFeedbackLength = _s('password-feedback-length');
+let signInFlag = true;
+let currentKeydownButton = null;
 
 export async function funcInitAuthUI() {
 
@@ -394,12 +397,14 @@ export function funcSwitchSignInMode() {
 
     elFeedback.innerHTML = "";
 
-    if(elDataCmd == "show-sign-up") {
+    if (elDataCmd === "show-sign-up") {
+
+        signInFlag = false;
 
         signUpButton.style.display = "block";
 
         signInButton.style.display = "none";
-
+        
         elSignInStatement.style.display = "block";
 
         elSignUpStatement.style.display = "none";
@@ -410,7 +415,9 @@ export function funcSwitchSignInMode() {
 
         addPasswordFieldFeedbackListeners();
 
-    } else if(elDataCmd == "show-sign-in") { 
+    } else if (elDataCmd === "show-sign-in") {
+
+        signInFlag = true;
 
         signUpButton.style.display = "none";
 
@@ -419,35 +426,97 @@ export function funcSwitchSignInMode() {
         elPasswordFeedbackContainer.style.display = "none";
 
         elSignUpStatement.style.display = "block";
-
+        
         elSignInStatement.style.display = "none";
 
         userName.setAttribute("placeholder", "The Email You Used to Register");
 
         removePasswordFieldFeedbackListeners();
+    }
+
+    funcRemoveEventListeners();
+
+    funcAddEventListenersToForm();
+
+}
+
+function keydownHandler(e) {
+
+  if (e.key === 'Enter') {
+
+    e.preventDefault();
+
+    if (currentKeydownButton) {
+
+      currentKeydownButton.click();
 
     }
-    
+
+  }
+
+}
+
+
+// Add keydown listeners with the named handler
+function funcKeydownEventListener(button) {
+
+  currentKeydownButton = button;
+
+  elSuperScaleForm.querySelectorAll('input').forEach(input => {
+
+    input.addEventListener('keydown', keydownHandler);
+
+  });
+
+}
+
+// Remove keydown listeners with the same named handler
+function funcRemoveEventListeners() {
+
+  elSuperScaleForm.querySelectorAll('input').forEach(input => {
+
+    input.removeEventListener('keydown', keydownHandler);
+
+  });
+
+}
+
+export function funcAddEventListenersToForm() {
+
+    if (signInFlag) {
+
+        funcKeydownEventListener(elSignInButton);
+
+    } else {
+
+        funcKeydownEventListener(elSignUpButton);
+
+    }
 
 }
 
 function handlePasswordInput() {
-    const value = userPass.value;
 
+    const value = userPass.value;
     elPasswordFeedbackUppercase.classList.toggle('valid', /[A-Z]/.test(value));
     elPasswordFeedbackLowercase.classList.toggle('valid', /[a-z]/.test(value));
     elPasswordFeedbackNumber.classList.toggle('valid', /\d/.test(value));
     elPasswordFeedbackLength.classList.toggle('valid', value.length >= 6);
+
 }
 
-// Add listener
+
 function addPasswordFieldFeedbackListeners() {
+
     userPass.addEventListener('input', handlePasswordInput);
+
 }
 
-// Remove listener
+
 function removePasswordFieldFeedbackListeners() {
+
     userPass.removeEventListener('input', handlePasswordInput);
+
 }
 
 async function funcLogSignIn() {
