@@ -93,16 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
             case 'show-sign-in':
 
+                funcSwitchSignInMode.call(button);
+
             break;
 
             case 'show-sign-up':
 
                 funcSwitchSignInMode.call(button);
-                break;
+
+            break;
     
             case 'update-user-settings':
+
                 funcUpdateUserSettings();
-                break;
+
+            break;
         }
     });
 
@@ -110,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function funcShowAppSettings() {
+
     gsap.to(elAppSettings, {
         duration: 0.4,
         opacity: 1,
@@ -119,9 +125,11 @@ function funcShowAppSettings() {
             elAppSettings.style.pointerEvents = 'auto';
         }
     });
+
 }
 
 function funcCloseAppSettings() {
+
     gsap.to(elAppSettings, {
         duration: 0.1,
         opacity: 0,
@@ -131,6 +139,7 @@ function funcCloseAppSettings() {
             elAppSettings.style.pointerEvents = 'none';
         }
     });
+
 }
 
 export function funcAnimateLoginLogo() {
@@ -144,6 +153,7 @@ export function funcAnimateLoginLogo() {
     const polygonDelay = 0.03; 
 
     gsap.set(polygons, { x:-10, opacity: 0});
+    
     gsap.to(polygons, {
         x: 0,
         opacity: 1,
