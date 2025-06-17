@@ -11,6 +11,7 @@ const elAppSettings = document.getElementById('Settings');
 
 //TODO: Move Animations to another file
 //TODO: Allow user to change accent color
+//TODO: Improve signup experience and email
 
 document.addEventListener('DOMContentLoaded', function() {
 
