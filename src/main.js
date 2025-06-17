@@ -9,6 +9,8 @@ const dialog = document.getElementById("betaModal");
 const elAccentColor = document.getElementById('accentColor');
 const elAppSettings = document.getElementById('Settings');
 
+//TODO: Move Animations to another file
+//TODO: Allow user to change accent color
 
 document.addEventListener('DOMContentLoaded', function() {
 
