@@ -1,14 +1,14 @@
-require('dotenv').config();
+
 import { createClient } from '@supabase/supabase-js';
 import { SuperScaleApp } from './_SuperScaleClass.js';
 import { funcAnimateLoginLogo } from '../app.js';
-import { setUserSettings, waitForUserSettings, _s  } from './_globals.js';
+import { setUserSettings, waitForUserSettings } from './_globals.js';
 import { _s } from './_Utils.js';
 
 // Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
-const supabaseTable = process.env.SUPABASE_TABLE;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseTable = import.meta.env.VITE_SUPABASE_TABLE;
 const supabase = createClient(supabaseUrl, supabaseKey); 
 let userName = document.getElementById('email');
 let userPass = document.getElementById('password');
