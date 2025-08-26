@@ -4,12 +4,28 @@
     grid-template-columns: auto 1fr;
     align-items: center;
     width:100%;
+    max-width:1500px;
 
     --guitar-notesize:36px;
 
     @media screen and (min-width:768px) {
-            --guitar-notesize:42px;
+            --guitar-notesize:38px;
     }
+
+        div[data-fretmarker="13"],
+        div[data-fretmarker="14"],
+        div[data-fretmarker="15"],
+        div[data-fretmarker="16"],
+        div[data-fretmarker="17"],
+        div[data-fretmarker="18"],
+        div[data-fretmarker="19"],
+        div[data-fretmarker="20"],
+        div[data-fretmarker="21"],
+        div[data-fretmarker="22"],
+        div[data-fretmarker="23"],
+        div[data-fretmarker="24"] {
+        display: none;
+        }
 
     &__nut {
         border-right:5px solid var(--col-guitar-nut);
@@ -29,8 +45,6 @@
             font-weight: var(--fontweight-megabold);
             font-size: 1.125rem;
             font-family: var(--font-wide);
-
-        
     }
 
     &__fretboard {
@@ -124,12 +138,12 @@
             font-weight: var(--fontweight-megabold);
             background-color: var(--col-bodybgcol);
             cursor: pointer;
-            border-radius: 18px;
+            border-radius: 14px;
             justify-content: center;
             align-items: center;
             width: var(--guitar-notesize);
             height: var(--guitar-notesize);
-            font-size: 0.9rem;
+            font-size: 0.825rem;
             display: flex;
 
             &--flat {
@@ -212,6 +226,35 @@
         #{$self}__fretmarker-dots {
             display: flex;
         }
+    }
+
+    &.full24frets {
+        max-width:98%;
+        --guitar-notesize:34px;
+
+        #{$self}__fretmarkers {
+            grid-template-columns: repeat(24, 1fr);
+        }
+
+        #{$self}__string {
+            grid-template-columns: repeat(24, 1fr);
+        }
+
+        div[data-fretmarker="13"],
+        div[data-fretmarker="14"],
+        div[data-fretmarker="15"],
+        div[data-fretmarker="16"],
+        div[data-fretmarker="17"],
+        div[data-fretmarker="18"],
+        div[data-fretmarker="19"],
+        div[data-fretmarker="20"],
+        div[data-fretmarker="21"],
+        div[data-fretmarker="22"],
+        div[data-fretmarker="23"],
+        div[data-fretmarker="24"] {
+        display: flex;
+        }
+
     }
 
 }

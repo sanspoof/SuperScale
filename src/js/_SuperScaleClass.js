@@ -15,10 +15,11 @@ export class SuperScaleApp {
         position:0, 
         key:"C", 
         showAllNotes:"true",
-        showFlats:"true",
+        showFlats:"true", 
         display:"notes", 
         showFretNumbers:"true",
-        tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" } 
+        tuning:{ 1:"E", 2:"B", 3:"G", 4:"D", 5:"A", 6:"E" },
+        fullFretboard:"false"
       };
 
       this.settings = this.loadSettingsFromStorage() || {}; 
@@ -31,9 +32,10 @@ export class SuperScaleApp {
       this.settings.display = this.settings.display || this.defaults.display;
       this.settings.tuning = this.settings.tuning || this.defaults.tuning;
       this.settings.showFretNumbers = this.settings.showFretNumbers || this.defaults.showFretNumbers;
+      this.settings.fullFretboard = this.settings.fullFretboard || this.defaults.fullFretboard;
 
         this.strings = Array.from({ length: 6 }, (_, i) => i + 1);
-
+ 
         this.nutstrings = Array.from({ length: 6 }, (_, i) => i + 1);
     
         this.strings.forEach((num) => {
@@ -45,7 +47,7 @@ export class SuperScaleApp {
         });
 
       this.guitarNotes = scaleData.GuitarNotes.notes;
-        
+
     }
 
     init() {
@@ -53,6 +55,8 @@ export class SuperScaleApp {
         this.funcSetupFretboard();
         this.funcSetupControls();
         this.funcObserveNut();
+ 
+        
 
     }
 
@@ -89,7 +93,7 @@ export class SuperScaleApp {
 
       const tuning = this.settings.tuning;
 
-      let result = '';
+      let result = ''; 
       for(let i = 6; i >= 1; i--) {
         result += tuning[i];
       }
@@ -257,9 +261,23 @@ funcHighlightMatchingNotes() {
 
         let el = this[`string${stringNumber}`];
 
+        let fretCount;
+
+        if(this.settings.fullFretboard == "true") { 
+
+          fretCount = 24;
+ 
+        } else {
+
+          fretCount = 12;
+
+        }
+
         el.innerHTML = '';
 
-        for (let i = 1; i <= 12; i++) {
+        console.log("fretCount", fretCount);
+
+        for (let i = 1; i <= fretCount; i++) {
 
           const el = templateGuitarFret.content.cloneNode(true);
 
@@ -471,6 +489,8 @@ funcHighlightMatchingNotes() {
         const selectEl = document.querySelector('#selectedScale');
 
         const selectTuning = document.querySelector('#setTuning');
+        
+        const selectFretcount = document.querySelector('#setFrets');
 
         const radioShowAllNotes = document.querySelector('input[name="notes"][value="all"]');
 
@@ -572,6 +592,52 @@ funcHighlightMatchingNotes() {
                 this.settings.tuning = tuning;
 
                 this.functionCreateTriadsBasedOnKey();
+
+              }
+
+            });
+
+          }
+
+          if(selectFretcount) {
+
+            selectFretcount.value = this.settings.fullFretboard;
+
+            if(this.settings.fullFretboard == "true") { 
+
+              this.guitarNeck.classList.add('full24frets'); 
+
+            } else {
+
+              this.guitarNeck.classList.remove('full24frets');
+
+            }
+
+            selectFretcount.addEventListener('change', (event) => {
+
+              const selectedOption = event.target.selectedOptions[0];
+
+              const dataVal = selectedOption.value;
+
+              console.log("DATA VAL", dataVal)
+
+              if (dataVal) {
+
+                this.settings.fullFretboard = dataVal;
+
+              }
+
+              if(dataVal == "true") { 
+
+                this.guitarNeck.classList.add('full24frets');
+
+                this.funcSetupFretboard();
+
+              } else {
+
+                this.guitarNeck.classList.remove('full24frets');
+
+                this.funcSetupFretboard();
 
               }
 

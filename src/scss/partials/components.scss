@@ -32,16 +32,47 @@
         height:var(--iconsize);
         order:-1;
     }
-
+ 
 } 
 
 @mixin selectbox {
-    @include btnbase;
+        --iconsize:20px;
+    display:flex;
+    align-items: center;
+    font-weight:var(--fontweight-wide);
+    font-size:0.75rem;
+    height:34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height:0;
+    width:38px;
+    font-weight: 600;
+    border:1px solid var(--col-line);
+
+    outline:2px solid transparent;
+    outline-offset: 1px;
     line-height: 1rem;
     width:auto;
     text-align: center;
     width:120px;
 
+    &:hover {
+        background-color:var(--col-accent);
+        cursor: pointer;
+    }
+
+    &-lbl { 
+        display: block;
+        line-height: var(--component-fontsize);
+    }
+
+    &-icon {
+        fill:#fff;
+        width:var(--iconsize);
+        height:var(--iconsize);
+        order:-1;
+    }
 
 
     option {
@@ -95,6 +126,7 @@
 
     &__keybtn {
         @include btnbase;
+        
         &:not(:last-child) {
             border-right:none;
         }
