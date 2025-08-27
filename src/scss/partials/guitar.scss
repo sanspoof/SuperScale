@@ -229,7 +229,7 @@
     }
 
     &.full24frets {
-        max-width:98%;
+        max-width:95%;
         --guitar-notesize:34px;
 
         #{$self}__fretmarkers {
@@ -238,6 +238,11 @@
 
         #{$self}__string {
             grid-template-columns: repeat(24, 1fr);
+        }
+
+        #{$self}__note {
+            font-size:0.75rem;
+            border-radius: 12px;
         }
 
         div[data-fretmarker="13"],
