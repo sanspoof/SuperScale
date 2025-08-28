@@ -53,6 +53,8 @@ export function funcGetTriads(majorOrMinor, note) {
 
 }
 
+
+
 export function funcGetScaleNotes(note) {
 
     const tonic = note; // or any other root note
@@ -87,16 +89,14 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 }
 
-export function funcGetScaleNotesByName(tonic, scaleName, useSharps = false) {
+export function funcGetScaleNotesByName(tonic, scaleName, useSharps = "false") {
 
 const sharpMap = {
-  'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#',
-  'Fb': 'E',  'Cb': 'B',  'E#': 'F',  'B#': 'C'
+  'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Fb': 'E',  'Cb': 'B',  'E#': 'F',  'B#': 'C'
 };
 
 const flatMap = {
-  'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb',
-  'E#': 'F',  'B#': 'C',  'Cb': 'B',  'Fb': 'E'
+  'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb', 'E#': 'F',  'B#': 'C',  'Cb': 'B',  'Fb': 'E'
 };
 
   const scale = getScale(`${tonic} ${scaleName}`);
@@ -123,7 +123,7 @@ export function funcGetAllScaleNames() {
     "minor",
     "major pentatonic",
     "minor pentatonic",
-    "blues", // catch-all: major blues + minor blues
+    "blues", // catch: major blues and minor blues
     "dorian",
     "mixolydian",
     "lydian",

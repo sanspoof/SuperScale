@@ -7,6 +7,8 @@ export class SuperScaleApp {
       this.ChordFormulas = scaleData.ChordFormulas;
       this.guitarNeck = document.querySelector('#Guitar');
       this.TriadContainer = document.querySelector('#Triads');
+      this.scaleName = document.querySelector('[data-val="scalename"]');
+      this.scaleNotes = document.querySelector('[data-val="scalenotes"]');
       this.observer = null;
       this.funcReturnMutation = this.funcReturnMutation.bind(this);
       this.storageKey = 'superScaleSettings';
@@ -379,9 +381,39 @@ funcHighlightMatchingNotes() {
 
         this.funcHighlightMatchingNotes();
 
-         
-
         this.functionCreateTriadsBasedOnKey();
+
+    }
+
+    funcSetupScaleWording() {
+
+      this.scaleName.textContent = this.settings.key + ' ' + this.settings.scale;
+
+    }
+
+    funcSetupScaleNotes() {
+
+      let notes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
+
+      this.scaleNotes.innerHTML = '';
+
+      notes.forEach(note => {
+
+        const noteDiv = document.createElement('div');
+
+        noteDiv.classList.add('scaleinfo__note');
+
+        noteDiv.textContent = note;
+
+        this.scaleNotes.appendChild(noteDiv);
+
+        if(note === this.settings.key) { 
+
+          noteDiv.classList.add('scaleinfo__note--root');
+
+        }
+
+      });
 
     }
 
@@ -432,7 +464,11 @@ funcHighlightMatchingNotes() {
         });
 
       });
-          
+
+    this.funcSetupScaleWording();
+
+    this.funcSetupScaleNotes();
+
     }
 
     funcGetScaleNotes(key, scaleName) {
