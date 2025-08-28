@@ -206,17 +206,18 @@
     }
 
 
-    &.showscalenotesonly {
-        #{$self}__note {
-            opacity: 0.2;
+        &.showscalenotesonly {
+        #{$self}__note:not(#{$self}__note--active) {
+            color:rgba(255 255 255 / 15%);
+            border-color:rgba(255 255 255 / 15%);
             pointer-events: none;
-
-            &--active {
-                opacity: 1;
-                pointer-events: all;
-            }
         }
-    }
+
+        #{$self}__note--active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        }
 
     &.showfretmarkers {
         #{$self}__fretmarker-number {
@@ -269,6 +270,9 @@
     flex-wrap:wrap;
     justify-content: center;
     gap:26px;
+    width:100%;
+    align-items: center;
+    height:calc(40vh - (var(--layout-subnav-height) + var(--layout-footer-height)));
 }
 
 .triad {

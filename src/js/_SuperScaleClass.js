@@ -439,7 +439,7 @@ funcHighlightMatchingNotes() {
        
           return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats);
 
-      }
+    }
 
       functionCreateTriadsBasedOnKey() {
 

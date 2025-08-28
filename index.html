@@ -45,9 +45,11 @@
     <div id="app" class="superscale">
 
         <header class="superscale__head">
-          <svg class="superscale__head-logo" viewBox="0 0 32 12">
-            <use href="/src/img/icons.svg#ss-logo-new"></use>
-          </svg>
+          <a href="https://www.superscale.site" class="superscale__headlink">
+            <svg class="superscale__head-logo" viewBox="0 0 32 12">
+              <use href="/src/img/icons.svg#ss-logo-new"></use>
+            </svg>
+          </a>
           <div class="superscale__betabadge">BETA</div>
           <div class="superscale__userdetails">
             <p class="superscale__userdetails-name" data-role="user"></p>
@@ -150,7 +152,7 @@
                 </div>
               </div>
 
-              <div class="scalefilter scalefilter--bl" data-role="switcher-select">
+              <div class="scalefilter scalefilter--br" data-role="switcher-select">
                 <label class="scalefilter__lbl" for="setFrets">Frets</label>
                 <select class="scalefilter__select" id="setFrets" style="min-width: fit-content;">
                   <option data-setting="false" value="false" data-val="false">12</option>
@@ -167,6 +169,21 @@
               </div>
     
             </section>
+
+            <section class="guitarwrapper">
+
+            <!-- <div class="scaleinfo">
+              <h3 class="scaleinfo__name" data-val="scalename">E Mixolydian</h3>
+              <div class="scaleinfo__notes" data-val="scalenotes">
+                <span class="scaleinfo__note">E</span>
+                <span class="scaleinfo__note">F#</span>
+                <span class="scaleinfo__note">G#</span>
+                <span class="scaleinfo__note">A</span>
+                <span class="scaleinfo__note">B</span>
+                <span class="scaleinfo__note">C#</span>
+                <span class="scaleinfo__note">D</span>
+              </div>
+            </div> -->
 
             <div id="Guitar" class="guitar">
           
@@ -280,6 +297,10 @@
               </div>
           
             </div>
+
+            </section>
+
+
 
             <div id="Triads" class="triadwrap"></div>
 

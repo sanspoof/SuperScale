@@ -11,4 +11,7 @@ export default defineConfig({
     // comments wont be saved anywhere
     extractComments: false,
   },
+    esbuild: {
+    drop: ['console', 'debugger'], // removes console.* and debugger
+  },
 });
