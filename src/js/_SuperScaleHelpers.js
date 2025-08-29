@@ -89,7 +89,23 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 }
 
-export function funcGetScaleNotesByName(tonic, scaleName, useSharps = "false") {
+export function funcGetScaleNotesByName(tonic, scaleName, showFlats) {
+
+let showFlatslocal = showFlats;
+
+if (showFlatslocal == "true") {
+
+    showFlatslocal = true;
+
+    console.log("Using flats");
+
+} else {
+
+    showFlatslocal = false;
+
+    console.log("Using sharps");
+
+}
 
 const sharpMap = {
   'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Fb': 'E',  'Cb': 'B',  'E#': 'F',  'B#': 'C'
@@ -106,7 +122,7 @@ const flatMap = {
     return [];
   }
 
-  const map = useSharps ? sharpMap : flatMap;
+  const map = showFlatslocal ? flatMap : sharpMap;
 
   const normalizedNotes = scale.notes.map(note => map[note] || note);
   return normalizedNotes;

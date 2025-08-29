@@ -110,7 +110,7 @@ body.authentication--out {
 
         height:var(--layout-subnav-height);
         display: flex;
-    
+        flex-shrink: 0;
         width:100%;
         border-bottom: 1px solid var(--col-line);
 
@@ -183,21 +183,21 @@ body.authentication--out {
     align-items: center;
     justify-content: center;
     width:100%;
-    gap:40px;
-    height:calc(60vh - (var(--layout-nav-height) + 1px));
-    border-bottom:1px solid var(--col-line)
+    gap:20px;
+    height:100%;
+    border-bottom:1px solid var(--col-line);
+    position:relative;
 }
 
 .scaleinfo {
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap:4px;
 
     &__name {
         font-family: var(--font-wide);
         font-weight: var(--fontweight-megabold);
-        font-size:2.5rem;
+        font-size:2rem;
         text-transform: capitalize;
     }
 
