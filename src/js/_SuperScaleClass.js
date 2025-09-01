@@ -198,12 +198,6 @@ funcHighlightMatchingNotes() {
       const flattenedNotes = allNotes.flat();
       
       const commonNotes = flattenedNotes.filter(note => selectedNotes.includes(note));
-      
-      // console.log("All Notes", allNotes);
-
-      // console.log("Notes in common", commonNotes);
-
-      // console.log("Selected Notes", selectedNotes);
 
       return commonNotes;
 
@@ -450,7 +444,7 @@ funcHighlightMatchingNotes() {
 
       }
 
-      notes.forEach((note, index) => {
+      notes.forEach((note) => {
         
         const elements = document.querySelectorAll('[data-note]');
       
@@ -462,7 +456,7 @@ funcHighlightMatchingNotes() {
 
             el.classList.add('guitar__note--active');
 
-            el.setAttribute('data-interval', getIntervalsForScale[index]);
+            //el.setAttribute('data-interval', getIntervalsForScale[index]);
 
           }
 
@@ -473,6 +467,8 @@ funcHighlightMatchingNotes() {
     this.funcSetupScaleWording();
 
     this.funcSetupScaleNotes();
+
+      this.funcApplyIntervalsToFretboard();
 
     }
 
@@ -485,6 +481,35 @@ funcHighlightMatchingNotes() {
     funcGetScaleIntervals(key, scaleName) {
 
       return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats, true);
+
+    }
+
+    funcApplyIntervalsToFretboard() {
+
+        const notes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
+
+        const intervals = this.funcGetScaleIntervals(this.settings.key, this.settings.scale);
+
+        const noteIntervalMap = notes.map((note, idx) => ({
+          note: note,
+          interval: intervals[idx]
+        }));
+
+        noteIntervalMap.forEach(({ note, interval }) => {
+          
+          document.querySelectorAll('[data-note]').forEach(el => {
+
+            const dataNoteValues = el.getAttribute('data-note').split(':');
+
+            if (dataNoteValues.includes(note)) {
+
+              el.setAttribute('data-interval', interval);
+
+            }
+
+          });
+
+        });
 
     }
 
@@ -815,13 +840,14 @@ funcHighlightMatchingNotes() {
                 this.guitarNeck.classList.add('showfretmarkers');
 
               }
-
+ 
             });
 
           });
 
         }
 
+        // fyi: intervals or notes 
         if(radioShowNotes) {
 
           if(this.settings.display == "notes") { 
@@ -836,7 +862,7 @@ funcHighlightMatchingNotes() {
 
           const radios = document.querySelectorAll('input[name="notesorintervals"]');
 
-                    radios.forEach(radio => {
+            radios.forEach(radio => {
 
             radio.addEventListener('change', (e) => {
 
@@ -925,18 +951,6 @@ funcHighlightMatchingNotes() {
 
                       break;
 
-                    case 'intervals':
-
-                      this.handleIntervals();
-                      
-                      break;
-
-                    case 'notes':
-
-                      this.handleNotes();
-
-                      break;
-
                       case 'position-0':
                       case 'position-1':
                       case 'position-2':
@@ -994,22 +1008,6 @@ funcHighlightMatchingNotes() {
 
           this.funcSetupFretboard();
 
-      }
-
-      handleIntervals() {
-     
-        console.log('Handling intervals...');
-
-        this.settings.display = 'intervals';
-   
-      }
-
-      handleNotes() {
-       
-        console.log('Handling notes...');
-
-        this.settings.display = 'notes';
-        
       }
 
     handlePosition(pos) {
