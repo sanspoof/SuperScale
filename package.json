@@ -9,11 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^6.3.5",
-    "sass-embedded": "^1.85.0",
-    "@floating-ui/dom": "^1.6.11",
+    "@floating-ui/dom": "^1.7.4",
     "@supabase/supabase-js": "^2.43.5",
     "gsap": "^3.13.0",
-    "tonal": "^6.4.1"
+    "sass-embedded": "^1.85.0",
+    "tonal": "^6.4.1",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "tippy.js": "^6.3.7"
   }
 }

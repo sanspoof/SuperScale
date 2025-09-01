@@ -25,7 +25,7 @@ body.authentication--out {
     grid-template-rows: var(--layout-nav-height) 1fr;
     height: 100vh;
     display: grid;
-    grid-template-columns: var(--layout-sidebar-width) 1fr;
+    grid-template-columns: 1fr;
 
     &__headlink {
             height: 100%;
@@ -61,8 +61,13 @@ body.authentication--out {
 
     &__userdetails {
         display:flex;
-        flex-direction: column;
-        align-items: end;
+        gap:10px;
+        align-items: center;
+        background-color:transparent;
+        border:1px solid var(--col-line);
+        border-radius: 6px;
+        height:38px;
+        padding:0px 0px 0px 10px;
 
         &-name {
             font-size:0.75rem;
@@ -71,20 +76,49 @@ body.authentication--out {
         }
 
         &-logout {
-            font-size:0.75rem;
-            font-weight: var(--fontweight-bold);
-            text-decoration: underline;
-            text-underline-offset: 2px;
+            background-color:transparent;
             cursor: pointer;
-
-            &:hover {
-                color: var(--sslogo-color2);
-            }
-
-            &:active {
-                text-underline-offset: 1px;
-            }
+            display:flex;
+            align-items: center;
+            height:100%;
+            
+            padding:0px 10px 0px 14px;
+            border-left:1px solid var(--col-line);
+            
+        &:hover {
+            background-color: var(--col-2);
         }
+
+        }
+
+        &-logouticon {
+            width:20px;
+            height:20px;
+            fill:rgba(255 255 255 / 80%);
+        }
+    }
+
+    &__menbtn {
+        height:38px;
+        background-color:transparent;
+        border:1px solid var(--col-line);
+        border-radius: 6px;
+        padding:0px 12px;
+        display: flex;
+        align-items: center;
+        margin-left:10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--col-2);
+        }
+    }
+
+    &__menubtnicon {
+        width:20px;
+        height:20px;
+        fill:rgba(255 255 255 / 80%);
+        pointer-events: none;
     }
 
     &__sidebar {

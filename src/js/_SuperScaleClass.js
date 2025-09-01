@@ -50,6 +50,7 @@ export class SuperScaleApp {
 
       this.guitarNotes = scaleData.GuitarNotes.notes;
 
+      
     }
 
     init() {
@@ -419,6 +420,8 @@ funcHighlightMatchingNotes() {
 
     funcSetupNotesDisplay(scale) {
 
+        const getIntervalsForScale = this.funcGetScaleIntervals(this.settings.key, this.settings.scale);
+
         const elements = document.querySelectorAll('[data-note]');
 
         const notes = this.funcFindCommonNotes();
@@ -447,7 +450,7 @@ funcHighlightMatchingNotes() {
 
       }
 
-      notes.forEach(note => {
+      notes.forEach((note, index) => {
         
         const elements = document.querySelectorAll('[data-note]');
       
@@ -458,6 +461,8 @@ funcHighlightMatchingNotes() {
           if (dataNoteValues.includes(note)) {
 
             el.classList.add('guitar__note--active');
+
+            el.setAttribute('data-interval', getIntervalsForScale[index]);
 
           }
 
@@ -474,6 +479,12 @@ funcHighlightMatchingNotes() {
     funcGetScaleNotes(key, scaleName) {
        
           return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats);
+
+    }
+
+    funcGetScaleIntervals(key, scaleName) {
+
+      return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats, true);
 
     }
 

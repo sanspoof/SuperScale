@@ -89,7 +89,7 @@ export function funcReturnEnharmonicEquivalent(note) {
 
 }
 
-export function funcGetScaleNotesByName(tonic, scaleName, showFlats) {
+export function funcGetScaleNotesByName(tonic, scaleName, showFlats, getInterval = false) {
 
 let showFlatslocal = showFlats;
 
@@ -118,14 +118,25 @@ const flatMap = {
   const scale = getScale(`${tonic} ${scaleName}`);
 
   if (!scale || !scale.notes.length) {
+
     console.error(`Scale "${scaleName}" not found for tonic "${tonic}".`);
+
     return [];
+
   }
 
   const map = showFlatslocal ? flatMap : sharpMap;
 
   const normalizedNotes = scale.notes.map(note => map[note] || note);
+
+  if(getInterval) {
+
+    return scale.intervals;
+
+  }
+
   return normalizedNotes;
+
 }
 
 /**

@@ -1,9 +1,9 @@
 import './scss/style.scss';
-
-import { PesTip, PesTipManager } from './js/_tooltip.js';
 import { funcSignUpToService, funcSignInWithExistingEmail, signOutUser, funcInitAuthUI, funcGetData, funcSwitchSignInMode, funcUpdateUserSettings, funcAddEventListenersToForm }  from './js/_auth.js';
 import { _s } from './js/_Utils.js';
 import { gsap } from 'gsap';
+import tippy from 'tippy.js'; 
+import initMenu from './js/_menu.js';
 
 const dialog = document.getElementById("betaModal");
 const elAccentColor = document.getElementById('accentColor');
@@ -16,10 +16,12 @@ const elAppSettings = document.getElementById('Settings');
 document.addEventListener('DOMContentLoaded', function() {
 
     funcInitAuthUI();
- 
-    funcStartToolTips();
 
     funcAddEventListenersToForm();
+
+    funcInitToolTips();
+
+    initMenu();
 
     document.addEventListener('visibilitychange', funcHandleVisibilityChange);
 
@@ -202,45 +204,26 @@ function funcHandleVisibilityChange() {
 
 }
 
-function funcStartToolTips() {
+function funcInitToolTips() {
 
-    const tooltipItems = document.querySelectorAll('[data-tooltip]');
+    let tippyInstances = document.querySelectorAll('[data-tooltip]');
 
-    let tooltipManager;
+    tippyInstances.forEach(instance => {
 
-    if (tooltipItems.length === 0) {
+        let position;
 
-        console.log("No tooltips found on the page.");
-          
-    } else {
-        
-        tooltipManager = new PesTipManager();
-    
-        tooltipItems.forEach((tooltipItem) => {
-            
-            if (tooltipItem._PesTip == undefined) {
+        if(instance.getAttribute('data-tooltip-position')) {
+            position = instance.getAttribute('data-tooltip-position');
+        } else {
+            position = 'auto';
+        }
 
-                let val = tooltipItem.dataset.tooltipPosition;
-
-                if (val) {
-
-                    let opts = {
-                        position: val
-                    }
-
-                    tooltipItem._PesTip = new PesTip(tooltipManager, tooltipItem, opts);
-
-                } else {
-
-                    tooltipItem._PesTip = new PesTip(tooltipManager, tooltipItem);
-
-                    console.log(tooltipItem._PesTip)
-
-                }
-
-            }
-
+        tippy(instance, {
+            content: instance.getAttribute('data-tooltip'),
+            placement: position,
+            duration:0,
+            theme:'superscale'
         });
-    }
+    });
 
 }

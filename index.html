@@ -51,70 +51,88 @@
             </svg>
           </a>
           <div class="superscale__betabadge">BETA</div>
+
           <div class="superscale__userdetails">
             <p class="superscale__userdetails-name" data-role="user"></p>
-            <button class="superscale__userdetails-logout" type="button" data-cmd="sign-out">Logout</button>
+            <button class="superscale__userdetails-logout" type="button" data-cmd="sign-out" data-tooltip="Log Out" data-tooltip-position="bottom">
+              <svg class="superscale__userdetails-logouticon" viewBox="0 0 30 32">
+                <use href="/src/img/icons.svg#logout"></use>
+              </svg>
+            </button>
           </div>
           
+          <div id="menuButton" class="superscale__menbtn" data-tooltip="Menu" data-tooltip-position="bottom">
+            <svg class="superscale__menubtnicon" viewBox="0 0 32 32">
+              <use href="/src/img/icons.svg#menu"></use>
+            </svg>
+          </div>
         </header>
 
-        <aside class="superscale__sidebar">
+        <div id="superscaleMenu">
 
-          <button role="button" class="sidebtn sidebtn--selected" data-tooltip="Scale Tool" data-tooltip-position="right">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#scale"></use>
-            </svg>
-          </button>
+            <div class="supermenuitem supermenuitem--comingsoon">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#chords"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">Chords</h3>
+                  <p class="supermenuitem__subheading">Generate chords and more</p>
+                </div>
+            </div>
 
-          <button role="button" class="sidebtn" data-tooltip="Chords - Coming Soon" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#chords"></use>
-            </svg>
-          </button>
+            <div class="supermenuitem supermenuitem--comingsoon">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#arpeggio"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">Arpeggios</h3>
+                  <p class="supermenuitem__subheading">Create and view common arpeggios</p>
+                </div>
+            </div>
 
-          <button role="button" class="sidebtn" data-tooltip="Arpeggios - Coming Soon" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#arpeggio"></use>
-            </svg>
-          </button>
+            <div class="supermenuitem supermenuitem--comingsoon">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#metronome"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">Metronome</h3>
+                  <p class="supermenuitem__subheading">Set a beat and practice</p>
+                </div>
+            </div>
 
-          <button role="button" class="sidebtn" data-tooltip="Metronome - Coming Soon" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#metronome"></use>
-            </svg>
-          </button>
+            <div class="supermenuitem supermenuitem--comingsoon">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#share"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">Share</h3>
+                  <p class="supermenuitem__subheading">Share this tool with your friends</p>
+                </div>
+            </div>
+            <span class="menudivider"></span>
+            <div class="supermenuitem supermenuitem--bordertop" data-cmd="app-settings">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#settings"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">App Settings</h3>
+                  <p class="supermenuitem__subheading">Configure your app preferences</p>
+                </div>
+            </div>
+            <div class="supermenuitem supermenuitem--bordertop" data-cmd="app-info">
+                <svg class="supermenuitem__icon" viewBox="0 0 32 32">
+                  <use href="/src/img/icons.svg#info"></use>
+                </svg>
+                <div class="supermenuitem__type">
+                  <h3 class="supermenuitem__heading">App Information</h3>
+                  <p class="supermenuitem__subheading">View information about the app</p>
+                </div>
+            </div>
 
-          <button role="button" class="sidebtn" data-tooltip="Triads  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#triad"></use>
-            </svg>
-          </button>
-
-
-          <button role="button" class="sidebtn" data-tooltip="Share  - Coming Soon" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#share"></use>
-            </svg>
-          </button>
-
-          <button role="button" class="sidebtn" data-cmd="app-settings" data-tooltip="App Settings" data-tooltip-position="right">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#settings"></use>
-            </svg>
-          </button>
-
-          <button role="button" class="sidebtn sidebtn--pushtop" data-tooltip="App Information" data-tooltip-position="right" aria-disabled="true">
-            <svg class="sidebtn__icon" viewBox="0 0 32 32">
-              <use href="/src/img/icons.svg#info"></use>
-            </svg>
-          </button>
-
-        </aside> 
-
+        </div>
 
         <main class="superscale__mainwrap">
 
-          
           <section class="superscale__main">
 
             <section class="superscale__subnav" aria-label="superscale-controls">

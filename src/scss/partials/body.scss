@@ -50,3 +50,10 @@
 
 } 
 
+.tippy-box[data-theme~='superscale'] {
+  background-color: #111;
+  padding:6px 6px;
+  font-size: 0.75rem;
+  color:#fff;
+  border:1px solid #333;
+}
