@@ -551,6 +551,10 @@ funcHighlightMatchingNotes() {
 
         const radioShowFlats = document.querySelector('input[name="sharpsflats"][value="flats"]');
 
+        const radioShowNotes = document.querySelector('input[name="notesorintervals"][value="notes"]');
+
+        const radioShowIntervals = document.querySelector('input[name="notesorintervals"][value="intervals"]');
+
         let selectedScale = this.settings.scale;
 
         this.funcSetupScaleDropdown(selectEl); // sets the dropdown with all scales
@@ -809,6 +813,40 @@ funcHighlightMatchingNotes() {
                 this.settings.showFretNumbers = "false";
 
                 this.guitarNeck.classList.add('showfretmarkers');
+
+              }
+
+            });
+
+          });
+
+        }
+
+        if(radioShowNotes) {
+
+          if(this.settings.display == "notes") { 
+
+            radioShowNotes.checked = true;
+
+          } else {
+
+            radioShowIntervals.checked = true;
+
+          }
+
+          const radios = document.querySelectorAll('input[name="notesorintervals"]');
+
+                    radios.forEach(radio => {
+
+            radio.addEventListener('change', (e) => {
+
+              if (e.target.value === 'notes') {
+
+                this.settings.display = "notes";
+
+              } else if (e.target.value === 'intervals') {
+
+                this.settings.display = "intervals";
 
               }
 
