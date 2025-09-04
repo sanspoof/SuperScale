@@ -169,13 +169,9 @@
                 outline:2px solid #E4D00A !important;
                 outline-offset: 2px;
             }
-
-
             
             &--sharpflat {
                 // font-size: 0.75rem;
-               
-                
 
             }
 
@@ -191,7 +187,26 @@
 
         }
 
+
+
+
     }
+
+        &__interval {
+            display:none;
+            outline: 6px solid var(--col-bodybgcol);
+            border: 2px solid var(--col-guitar-note-border);
+            font-weight: var(--fontweight-megabold);
+            background-color: var(--col-bodybgcol);
+            cursor: pointer;
+            border-radius: 14px;
+            justify-content: center;
+            align-items: center;
+            width: var(--guitar-notesize);
+            height: var(--guitar-notesize);
+            font-size: 0.825rem;
+            
+        }
 
     &.showflats {
 
@@ -226,6 +241,16 @@
 
         #{$self}__fretmarker-dots {
             display: flex;
+        }
+    }
+
+    &.showintervals {
+        #{$self}__interval {
+            display: flex;
+        }
+
+        #{$self}__note--active {
+            display: none;
         }
     }
 

@@ -97,13 +97,9 @@ if (showFlatslocal == "true") {
 
     showFlatslocal = true;
 
-    console.log("Using flats");
-
 } else {
 
     showFlatslocal = false;
-
-    console.log("Using sharps");
 
 }
 

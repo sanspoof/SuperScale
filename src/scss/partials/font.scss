@@ -35,11 +35,22 @@
         font-display:swap;font-style:normal;font-weight:700;font-stretch:normal;
         }
 
+@import url("https://p.typekit.net/p.css?s=1&k=xgw2mdk&ht=tk&f=49080.49086.49089&a=314682734&app=typekit&e=css");
 
 @font-face {
-  font-family: 'space-gro';
-  src: url('../../SpaceGro.woff2') format('woff2');
-  font-weight: 300 700; /* Range of supported weights */
-  font-style: normal;
-  font-display: swap;
+font-family:"elza";
+src:url("https://use.typekit.net/af/f84176/00000000000000007735f907/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/f84176/00000000000000007735f907/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/f84176/00000000000000007735f907/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"elza";
+src:url("https://use.typekit.net/af/771774/00000000000000007735f906/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/771774/00000000000000007735f906/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/771774/00000000000000007735f906/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"elza";
+src:url("https://use.typekit.net/af/c87b5e/00000000000000007735f910/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/c87b5e/00000000000000007735f910/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/c87b5e/00000000000000007735f910/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:400;font-stretch:normal;
 }

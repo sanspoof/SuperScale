@@ -272,8 +272,6 @@ funcHighlightMatchingNotes() {
 
         el.innerHTML = '';
 
-        console.log("fretCount", fretCount);
-
         for (let i = 1; i <= fretCount; i++) {
 
           const el = templateGuitarFret.content.cloneNode(true);
@@ -299,8 +297,11 @@ funcHighlightMatchingNotes() {
                 const span = document.createElement('span');
 
                 if(note.includes('#')) {
+
                     span.classList.add('guitar__note--sharp');
+
                 } else {
+                  
                     span.classList.add('guitar__note--flat');
                 }
 
@@ -378,6 +379,7 @@ funcHighlightMatchingNotes() {
 
         this.functionCreateTriadsBasedOnKey();
 
+
     }
 
     funcSetupScaleWording() {
@@ -413,8 +415,6 @@ funcHighlightMatchingNotes() {
     }
 
     funcSetupNotesDisplay(scale) {
-
-        const getIntervalsForScale = this.funcGetScaleIntervals(this.settings.key, this.settings.scale);
 
         const elements = document.querySelectorAll('[data-note]');
 
@@ -456,8 +456,6 @@ funcHighlightMatchingNotes() {
 
             el.classList.add('guitar__note--active');
 
-            //el.setAttribute('data-interval', getIntervalsForScale[index]);
-
           }
 
         });
@@ -468,31 +466,21 @@ funcHighlightMatchingNotes() {
 
     this.funcSetupScaleNotes();
 
-      this.funcApplyIntervalsToFretboard();
-
-    }
-
-    funcGetScaleNotes(key, scaleName) {
-       
-          return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats);
-
-    }
-
-    funcGetScaleIntervals(key, scaleName) {
-
-      return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats, true);
+    this.funcApplyIntervalsToFretboard();
 
     }
 
     funcApplyIntervalsToFretboard() {
 
+        this.guitarNeck.querySelectorAll('.guitar__interval').forEach(el => el.remove());
+
         const notes = this.funcGetScaleNotes(this.settings.key, this.settings.scale);
 
         const intervals = this.funcGetScaleIntervals(this.settings.key, this.settings.scale);
 
-        const noteIntervalMap = notes.map((note, idx) => ({
+        const noteIntervalMap = notes.map((note, index) => ({
           note: note,
-          interval: intervals[idx]
+          interval: intervals[index]
         }));
 
         noteIntervalMap.forEach(({ note, interval }) => {
@@ -508,6 +496,22 @@ funcHighlightMatchingNotes() {
             }
 
           });
+
+        });
+
+        this.guitarNeck.querySelectorAll('[data-interval]').forEach(function(el) {
+
+          const interval = el.getAttribute('data-interval');
+
+          const intervalParent = el.parentElement;
+   
+          const elInterval = document.createElement("div");
+
+          elInterval.classList.add('guitar__interval');
+
+          elInterval.innerText = interval;
+
+          intervalParent.appendChild(elInterval)
 
         });
 
@@ -550,7 +554,6 @@ funcHighlightMatchingNotes() {
           return this.guitarNotes[newIndex];
         }
       }
-
 
     funcSetupControls() {
         
@@ -606,8 +609,6 @@ funcHighlightMatchingNotes() {
 
               const dataVal = selectedOption.value;
         
-                
-
                 if (dataVal) {
 
                     this.settings.scale = dataVal;
@@ -854,9 +855,13 @@ funcHighlightMatchingNotes() {
 
             radioShowNotes.checked = true;
 
+            this.guitarNeck.classList.remove('showintervals');
+
           } else {
 
             radioShowIntervals.checked = true;
+
+            this.guitarNeck.classList.add('showintervals');
 
           }
 
@@ -870,9 +875,13 @@ funcHighlightMatchingNotes() {
 
                 this.settings.display = "notes";
 
+                this.guitarNeck.classList.remove('showintervals');
+
               } else if (e.target.value === 'intervals') {
 
                 this.settings.display = "intervals";
+
+                this.guitarNeck.classList.add('showintervals');
 
               }
 
@@ -948,6 +957,7 @@ funcHighlightMatchingNotes() {
                     case 'key-F#':
                       
                       this.funcHandleKeyChange(dataVal);
+                      
 
                       break;
 
@@ -1016,6 +1026,18 @@ funcHighlightMatchingNotes() {
 
         this.funcSetupGuitarNeckModifiers();
         
+    }
+
+    funcGetScaleNotes(key, scaleName) {
+       
+          return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats);
+
+    }
+
+    funcGetScaleIntervals(key, scaleName) {
+
+      return funcGetScaleNotesByName(key, scaleName, this.settings.showFlats, true);
+
     }
 
     saveSettings() {
