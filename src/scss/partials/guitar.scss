@@ -162,6 +162,11 @@
                     border-color: var(--col-note-accent);
                 }
 
+                &[data-interval="1P"] {
+                    background-color:crimson;
+                    border-color:crimson;
+                }
+
             }
 
             &--matchinghover {

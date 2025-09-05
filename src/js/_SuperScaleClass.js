@@ -615,8 +615,6 @@ funcHighlightMatchingNotes() {
 
                     this.funcSetupNotesDisplay(this.settings.scale);
                     
-                    
-                    
                   }
 
             });
